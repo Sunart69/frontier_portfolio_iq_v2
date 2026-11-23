@@ -21,8 +21,9 @@ the LOB dashboard and the CEO deck, and the semi-annual cycle agent with its LT 
    scenario-based stochastic CVaR MILP for risk-aware optimization.
 5. **What-if analysis** across optimization, frontier and risk, cached by model fingerprint.
 6. **A decision dashboard and a 12-slide CEO decision deck** (plus seven technical appendices), built from
-   the live run, with PROVEN / SIMULATED / ESTIMATE labels throughout. Radar (spider) views show the risk
-   trade-off, the optimization KPIs, risk appetite and what-if shapes side by side (`docs/METHODS.md` §7).
+   the live run, with PROVEN / SIMULATED / ESTIMATE labels throughout. Spider (radar) charts for the
+   optimization KPIs and the risk trade-off are on the dashboard's first screen and on deck slide 6; the
+   dashboard's **Spider views** tab adds risk appetite, fixed vs adaptive and what-if spiders (`docs/METHODS.md` §7).
 
 All stages work on one canonical, versioned portfolio model.
 
@@ -50,12 +51,18 @@ The answers leadership gets:
 | How likely are we to achieve the promised outcomes? | Slide 7; dashboard *Risk* (probabilities with sampling error) |
 | Which portfolio balances value, risk, cost and confidence best? | Slides 5, 10; dashboard *Portfolio choices* |
 | How sure are we of the math? | Appendix A1; dashboard *Decision assurance* |
+| How do the choices compare on every KPI and on risk at a glance? | Slide 6 (two spiders); dashboard *Portfolio choices* (first screen) and *Spider views*; appendices A5–A7 |
 
 ## Sample output
 
 `sample_output/v2/` holds a full `decide` run on the synthetic sample: the decision dashboard, the CEO
 deck, the results workbook, the JSON bundle and the solver confidence reports. `sample_output/` keeps the
 v1 outputs and an example approved-portfolio memo.
+
+GitHub shows `.html` files as source code. To see the dashboard, download
+`sample_output/v2/decision_dashboard.html` (Raw → save) and open it in a browser; it is a single
+self-contained file and needs no server. The spider charts are on the first screen and on the
+*Spider views* tab; in `ceo_decision_deck.pptx` they are on slide 6 and appendices A5–A7.
 
 ## Documentation
 

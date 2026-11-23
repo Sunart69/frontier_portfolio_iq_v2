@@ -69,7 +69,7 @@ On the optimization-run date the workflow runs the v1 analysis (tiers, scenarios
 
 | File | For |
 |---|---|
-| `ceo_decision_deck_<cycle>.pptx` | the LT meeting: decision, opportunity, constraints, frontier, four strategic choices, radar, risk, execution, LOB impact, recommendation, what-ifs, decisions required, appendices (solver validation, model, assumptions, sensitivity, risk / KPI / risk-appetite radars) |
+| `ceo_decision_deck_<cycle>.pptx` | the LT meeting: decision, opportunity, constraints, frontier, four strategic choices, radar, risk, execution, LOB impact, recommendation, what-ifs, decisions required, appendices (solver validation, model, assumptions, sensitivity, ranking-criteria / risk-detail / risk-appetite spiders); the dashboard's Spider views tab collects every radar |
 | `decision_dashboard.html` | exploring the trade-offs before and during the meeting |
 | `decision_results.xlsx`, `decision_intelligence.json`, `solver_confidence.md` | analysts and audit |
 | `executive_deck_<cycle>.pptx`, `lob_dashboard.html`, `portfolio_results.xlsx` | the v1 views (tiers, capacity, LOB reconciliation) |

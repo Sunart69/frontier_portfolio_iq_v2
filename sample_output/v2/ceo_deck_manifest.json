@@ -44,32 +44,103 @@
     }
   },
   "6": {
-    "criteria": [
-      "expected_npv",
-      "downside_risk",
-      "budget_confidence",
-      "schedule_confidence",
-      "strategic_alignment",
-      "okr_achievement",
-      "resource_resilience",
-      "time_to_value"
-    ],
-    "winners": {
-      "Aggressive": [
-        "expected npv",
-        "schedule confidence",
-        "okr achievement"
-      ],
-      "Accelerated delivery": [
-        "downside risk",
-        "strategic alignment",
-        "resource resilience",
-        "time to value"
-      ],
-      "Conservative": [
-        "budget confidence"
-      ]
-    }
+    "kpi": {
+      "ALT-D71AA2BD": {
+        "value": 1.0,
+        "npv": 1.0,
+        "alignment": 0.896551724137931,
+        "okr": 0.8736842105263157,
+        "acceleration": 0.6923076923076923,
+        "compliance": 1.0,
+        "cost": 0.0,
+        "risk": 0.0,
+        "overload": 0.0,
+        "time_to_value": 0.8962264150943396,
+        "diversification": 0.9218670584221629
+      },
+      "ALT-17179BCF": {
+        "value": 0.8515568007992133,
+        "npv": 0.8660625772514717,
+        "alignment": 0.9655172413793104,
+        "okr": 0.7253508771929825,
+        "acceleration": 0.5128205128205128,
+        "compliance": 1.0,
+        "cost": 0.18013161675172037,
+        "risk": 0.2389044382247101,
+        "overload": 0.0,
+        "time_to_value": 0.8867924528301886,
+        "diversification": 0.7388374052232517
+      },
+      "ALT-5072212F": {
+        "value": 0.9417125347829055,
+        "npv": 0.9462461738440243,
+        "alignment": 1.0,
+        "okr": 0.8736842105263157,
+        "acceleration": 0.8205128205128205,
+        "compliance": 1.0,
+        "cost": 0.08068845685515298,
+        "risk": 0.11115553778488604,
+        "overload": 0.0,
+        "time_to_value": 1.0,
+        "diversification": 1.0
+      }
+    },
+    "risk": {
+      "ALT-D71AA2BD": {
+        "budget_confidence": 0.8181,
+        "lob_budgets": 0.9999,
+        "committed_dates": 0.0029,
+        "okr_targets": 0.0096,
+        "capacity": 9.999999999998899e-05,
+        "value_floor": 0.9646,
+        "downside_protection": 0.6190057045872455,
+        "value_certainty": 0.883885201460385
+      },
+      "ALT-17179BCF": {
+        "budget_confidence": 0.838,
+        "lob_budgets": 1.0,
+        "committed_dates": 0.0003,
+        "okr_targets": 0.0003,
+        "capacity": 0.0,
+        "value_floor": 0.9599,
+        "downside_protection": 0.6280095911361948,
+        "value_certainty": 0.8876068996088057
+      },
+      "ALT-5072212F": {
+        "budget_confidence": 0.826,
+        "lob_budgets": 1.0,
+        "committed_dates": 0.0,
+        "okr_targets": 0.0089,
+        "capacity": 0.00039999999999995595,
+        "value_floor": 0.9697,
+        "downside_protection": 0.632410055480548,
+        "value_certainty": 0.8846750778549424
+      }
+    },
+    "kpi_leaders": {
+      "value": "ALT-D71AA2BD",
+      "npv": "ALT-D71AA2BD",
+      "alignment": "ALT-5072212F",
+      "okr": null,
+      "acceleration": "ALT-5072212F",
+      "compliance": null,
+      "cost": "ALT-17179BCF",
+      "risk": "ALT-17179BCF",
+      "overload": null,
+      "time_to_value": "ALT-5072212F",
+      "diversification": "ALT-5072212F"
+    },
+    "risk_leaders": {
+      "budget_confidence": "ALT-17179BCF",
+      "lob_budgets": null,
+      "committed_dates": null,
+      "okr_targets": null,
+      "capacity": null,
+      "value_floor": null,
+      "downside_protection": null,
+      "value_certainty": null
+    },
+    "safest_reference": "ALT-B489601E"
   },
   "7": {
     "p10": 13768.89175495846,
@@ -177,49 +248,36 @@
     ]
   },
   "A5": {
-    "axes": [
+    "criteria": [
+      "expected_npv",
+      "downside_risk",
       "budget_confidence",
-      "lob_budgets",
-      "committed_dates",
-      "okr_targets",
-      "capacity",
-      "value_floor",
-      "downside_protection",
-      "value_certainty"
+      "schedule_confidence",
+      "strategic_alignment",
+      "okr_achievement",
+      "resource_resilience",
+      "time_to_value"
     ],
-    "safest_reference": "ALT-B489601E",
-    "plans": {
-      "ALT-D71AA2BD": {
-        "budget_confidence": 0.8181,
-        "lob_budgets": 0.9999,
-        "committed_dates": 0.0029,
-        "okr_targets": 0.0096,
-        "capacity": 9.999999999998899e-05,
-        "value_floor": 0.9646,
-        "downside_protection": 0.6190057045872455,
-        "value_certainty": 0.883885201460385
-      },
-      "ALT-17179BCF": {
-        "budget_confidence": 0.838,
-        "lob_budgets": 1.0,
-        "committed_dates": 0.0003,
-        "okr_targets": 0.0003,
-        "capacity": 0.0,
-        "value_floor": 0.9599,
-        "downside_protection": 0.6280095911361948,
-        "value_certainty": 0.8876068996088057
-      },
-      "ALT-5072212F": {
-        "budget_confidence": 0.826,
-        "lob_budgets": 1.0,
-        "committed_dates": 0.0,
-        "okr_targets": 0.0089,
-        "capacity": 0.00039999999999995595,
-        "value_floor": 0.9697,
-        "downside_protection": 0.632410055480548,
-        "value_certainty": 0.8846750778549424
-      }
+    "winners": {
+      "Aggressive = Balanced": [
+        "Expected NPV",
+        "OKR achievement"
+      ],
+      "Conservative": [
+        "Budget confidence"
+      ],
+      "Accelerated delivery": [
+        "Strategic alignment",
+        "Speed to value"
+      ]
     },
+    "ties": [
+      "Downside protection",
+      "Schedule confidence",
+      "Resource resilience"
+    ]
+  },
+  "A6": {
     "adaptive": {
       "budget_confidence": 0.6779,
       "lob_budgets": 0.9942,
@@ -230,118 +288,15 @@
       "downside_protection": 0.6109957101556509,
       "value_certainty": 0.8831083138292869
     },
-    "leaders": {
-      "budget_confidence": "ALT-17179BCF",
-      "lob_budgets": null,
-      "committed_dates": null,
-      "okr_targets": null,
-      "capacity": null,
-      "value_floor": null,
-      "downside_protection": null,
-      "value_certainty": null
-    }
-  },
-  "A6": {
-    "axes": [
-      "value",
-      "npv",
-      "alignment",
-      "okr",
-      "acceleration",
-      "compliance",
-      "cost",
-      "risk",
-      "overload",
-      "time_to_value",
-      "diversification"
-    ],
-    "plans": {
-      "ALT-D71AA2BD": {
-        "value": 1.0,
-        "npv": 1.0,
-        "alignment": 0.896551724137931,
-        "okr": 0.8736842105263157,
-        "acceleration": 0.6923076923076923,
-        "compliance": 1.0,
-        "cost": 0.0,
-        "risk": 0.0,
-        "overload": 0.0,
-        "time_to_value": 0.8962264150943396,
-        "diversification": 0.9218670584221629
-      },
-      "ALT-17179BCF": {
-        "value": 0.8515568007992133,
-        "npv": 0.8660625772514717,
-        "alignment": 0.9655172413793104,
-        "okr": 0.7253508771929825,
-        "acceleration": 0.5128205128205128,
-        "compliance": 1.0,
-        "cost": 0.18013161675172037,
-        "risk": 0.2389044382247101,
-        "overload": 0.0,
-        "time_to_value": 0.8867924528301886,
-        "diversification": 0.7388374052232517
-      },
-      "ALT-5072212F": {
-        "value": 0.9417125347829055,
-        "npv": 0.9462461738440243,
-        "alignment": 1.0,
-        "okr": 0.8736842105263157,
-        "acceleration": 0.8205128205128205,
-        "compliance": 1.0,
-        "cost": 0.08068845685515298,
-        "risk": 0.11115553778488604,
-        "overload": 0.0,
-        "time_to_value": 1.0,
-        "diversification": 1.0
-      }
-    },
-    "leaders": {
-      "value": "ALT-D71AA2BD",
-      "npv": "ALT-D71AA2BD",
-      "alignment": "ALT-5072212F",
-      "okr": null,
-      "acceleration": "ALT-5072212F",
-      "compliance": null,
-      "cost": "ALT-17179BCF",
-      "risk": "ALT-17179BCF",
-      "overload": null,
-      "time_to_value": "ALT-5072212F",
-      "diversification": "ALT-5072212F"
-    }
-  },
-  "A7": {
-    "profiles": {
-      "risk_neutral": {
-        "expected_npv": 0.6,
-        "downside_risk": 0.0,
-        "budget_confidence": 0.0,
-        "schedule_confidence": 0.0,
-        "strategic_alignment": 0.1,
-        "okr_achievement": 0.1,
-        "resource_resilience": 0.0,
-        "time_to_value": 0.0
-      },
-      "balanced": {
-        "expected_npv": 0.3,
-        "downside_risk": 0.2,
-        "budget_confidence": 0.15,
-        "schedule_confidence": 0.15,
-        "strategic_alignment": 0.1,
-        "okr_achievement": 0.1,
-        "resource_resilience": 0.0,
-        "time_to_value": 0.0
-      },
-      "risk_averse": {
-        "expected_npv": 0.15,
-        "downside_risk": 0.35,
-        "budget_confidence": 0.2,
-        "schedule_confidence": 0.2,
-        "strategic_alignment": 0.0,
-        "okr_achievement": 0.0,
-        "resource_resilience": 0.1,
-        "time_to_value": 0.0
-      }
+    "fixed": {
+      "budget_confidence": 0.8181,
+      "lob_budgets": 0.9999,
+      "committed_dates": 0.0029,
+      "okr_targets": 0.0096,
+      "capacity": 9.999999999998899e-05,
+      "value_floor": 0.9646,
+      "downside_protection": 0.6190057045872455,
+      "value_certainty": 0.883885201460385
     },
     "scenarios": {
       "baseline": {
@@ -380,6 +335,45 @@
         "downside_protection": 0.43052460505478085,
         "value_certainty": 0.8961614398288343
       }
+    }
+  },
+  "A7": {
+    "profiles": {
+      "risk_neutral": {
+        "expected_npv": 0.6,
+        "downside_risk": 0.0,
+        "budget_confidence": 0.0,
+        "schedule_confidence": 0.0,
+        "strategic_alignment": 0.1,
+        "okr_achievement": 0.1,
+        "resource_resilience": 0.0,
+        "time_to_value": 0.0
+      },
+      "balanced": {
+        "expected_npv": 0.3,
+        "downside_risk": 0.2,
+        "budget_confidence": 0.15,
+        "schedule_confidence": 0.15,
+        "strategic_alignment": 0.1,
+        "okr_achievement": 0.1,
+        "resource_resilience": 0.0,
+        "time_to_value": 0.0
+      },
+      "risk_averse": {
+        "expected_npv": 0.15,
+        "downside_risk": 0.35,
+        "budget_confidence": 0.2,
+        "schedule_confidence": 0.2,
+        "strategic_alignment": 0.0,
+        "okr_achievement": 0.0,
+        "resource_resilience": 0.1,
+        "time_to_value": 0.0
+      }
+    },
+    "recommended": {
+      "risk_neutral": "ALT-D71AA2BD",
+      "balanced": "ALT-D71AA2BD",
+      "risk_averse": "ALT-5072212F"
     }
   }
 }

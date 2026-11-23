@@ -189,8 +189,8 @@ def test_dashboard_is_built_from_live_bundle_data(di_bundle, tmp_path):
     assert "NaN" not in json.dumps(D)
     assert D["radar"]["risk"][di_bundle.recommended_id]["budget_confidence"] == \
         pytest.approx(r["probabilities"]["within_budget"]["p"])
-    for title in ("Risk trade-off radar", "Optimization KPI radar", "Risk appetite lens", "What-if radar",
-                  "Fixed plan vs adaptive execution", "KPI shape of each strategic choice"):
+    for title in ("Spider views", "Risk trade-off radar", "Optimization KPI radar", "Risk appetite lens", "What-if radar",
+                  "Fixed plan vs adaptive execution", "KPI shape of each strategic choice", "Ranking criteria radar"):
         assert title in html
 
 
@@ -214,17 +214,19 @@ def test_ceo_deck_reconciles_with_bundle(di_bundle, tmp_path):
     assert m["5"]["balanced"]["alt"] == di_bundle.choices["balanced"]["alt_id"]
     assert m["10"]["selected"] == sorted(di_bundle.recommended.starts)
     assert m["A1"]["level"] == di_bundle.confidence.level
-    # radar appendices reconcile with the shared radar profiles and are native radar charts
+    # slide 6 carries the optimization-KPI and risk spiders; values reconcile with the shared radar profiles
     from frontier_portfolio_iq.radar import radar_profiles
     rd = radar_profiles(di_bundle)
-    for aid, vals in m["A5"]["plans"].items():
+    for aid, vals in m["6"]["risk"].items():
         assert vals == pytest.approx(rd["risk"][aid])
-    for aid, vals in m["A6"]["plans"].items():
+    for aid, vals in m["6"]["kpi"].items():
         assert vals == pytest.approx(rd["kpi"][aid])
-    assert set(m["A6"]["plans"]) == {c["alt_id"] for c in di_bundle.choices.values()}
+    assert set(m["6"]["kpi"]) == {c["alt_id"] for c in di_bundle.choices.values()}
     assert m["A7"]["profiles"]["balanced"] == pytest.approx(rd["profiles"]["balanced"]["weights"])
-    radars = [sh for sl in list(prs.slides)[16:] for sh in sl.shapes if sh.has_chart]
-    assert len(radars) >= 4 and all("radar" in str(sh.chart.chart_type).lower() for sh in radars)
+    assert m["A6"]["fixed"] == pytest.approx(rd["risk"][di_bundle.recommended_id])
+    kinds = lambda sl: [str(sh.chart.chart_type).lower() for sh in sl.shapes if sh.has_chart]
+    assert sum("radar" in k for k in kinds(prs.slides[5])) == 2          # storyline slide 6: two spiders
+    assert all(any("radar" in k for k in kinds(sl)) for sl in list(prs.slides)[16:19])
 
 
 def test_radar_profiles_are_bounded_and_consistent(di_bundle):

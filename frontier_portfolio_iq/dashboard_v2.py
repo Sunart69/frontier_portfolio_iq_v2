@@ -69,6 +69,7 @@ canvas{width:100%;height:auto;aspect-ratio:3/2;cursor:grab;background:var(--surf
 <label><input type="checkbox" id="effOnly"> efficient only</label></div>
 <main>
 <section class="tab" id="t-choices"></section>
+<section class="tab" id="t-spider"></section>
 <section class="tab" id="t-frontier"></section>
 <section class="tab" id="t-compare"></section>
 <section class="tab" id="t-risk"></section>
@@ -104,7 +105,7 @@ $("#badges").innerHTML=`<span class="badge b-proven" title="${conf.verdict}">OPT
 (D.assumptions.calibrated?`<span class="badge b-proven">INPUTS CALIBRATED</span>`:`<span class="badge b-est" title="Uncertainty inputs are demonstration defaults">ESTIMATE: uncalibrated inputs</span>`)+
 (D.consistency_issues.length?`<span class="badge b-warn">MODEL VERSION MISMATCH</span>`:"");
 // ---------------------------------------------------------------- nav + selection bar
-const tabs=[["choices","Portfolio choices"],["frontier","Trade-off frontier"],["compare","Compare"],["risk","Risk"],["execution","Execution"],["scenarios","What-if"],["assurance","Decision assurance"]];
+const tabs=[["choices","Portfolio choices"],["spider","Spider views"],["frontier","Trade-off frontier"],["compare","Compare"],["risk","Risk"],["execution","Execution"],["scenarios","What-if"],["assurance","Decision assurance"]];
 tabs.forEach(([k,l],i)=>{const b=el("button",{},l);b.onclick=()=>show(k);b.id="nb-"+k;$("#nav").append(b)});
 function show(k){document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t.id=="t-"+k));document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.id=="nb-"+k));render(k)}
 function fillFocus(){const s=$("#focus");s.innerHTML="";short.forEach(id=>{const o=el("option",{value:id},`${name(id)} (${id})`);if(id==focus)o.selected=true;s.append(o)});s.onchange=()=>{focus=s.value;rerender()}}
@@ -112,7 +113,7 @@ function fillChips(){const c=$("#chips");c.innerHTML="";short.forEach(id=>{const
 ch.onclick=()=>{if(k>=0)sel.splice(k,1);else if(sel.length<4)sel.push(id);fillChips();rerender()};c.append(ch)})}
 $("#effOnly").onchange=()=>rerender();
 let current="choices";function rerender(){render(current)}
-function render(k){current=k;({choices:rChoices,frontier:rFrontier,compare:rCompare,risk:rRisk,execution:rExec,scenarios:rScen,assurance:rAssure})[k]()}
+function render(k){current=k;({choices:rChoices,spider:rSpider,frontier:rFrontier,compare:rCompare,risk:rRisk,execution:rExec,scenarios:rScen,assurance:rAssure})[k]()}
 // ---------------------------------------------------------------- chart helpers
 function axes(g,W,H,m,xs,ys,xl,yl,fx=F,fy=F){const nt=5;for(let i=0;i<=nt;i++){const yv=ys.d0+(ys.d1-ys.d0)*i/nt,y=ys(yv);g.append(sv("line",{x1:m.l,x2:W-m.r,y1:y,y2:y,class:"gl"}));const t=sv("text",{x:m.l-6,y:y+4,"text-anchor":"end"});t.textContent=fy(yv);g.append(t)}
 for(let i=0;i<=nt;i++){const xv=xs.d0+(xs.d1-xs.d0)*i/nt,x=xs(xv);const t=sv("text",{x:x,y:H-m.b+16,"text-anchor":"middle"});t.textContent=fx(xv);g.append(t)}
@@ -143,21 +144,17 @@ const card=el("div",{class:"card choice"+(c.alt_id==focus?" sel":"")},`<h3>${c.t
 <span>CVaR (worst ${Math.round((1-r.var_cvar.alpha)*100)}%)</span><span>${M(r.var_cvar.cvar)}</span><span>Optimization</span><span>${a.evidence.proof.replace("_"," ")}</span></div>
 <div class="note">${c.rule}${same?` — same plan as ${same}`:""}</div>`);card.onclick=()=>{focus=c.alt_id;fillFocus();rerender()};g.append(card)});
 t.append(g);
+const glance=el("div",{class:"grid g2",style:"margin-top:14px"});glance.append(kpiCard(),riskRadarCard());t.append(glance,el("div",{class:"note"},"More spider views (KPI shape per choice, fixed vs adaptive, risk appetite, what-if) are on the <a href='#' onclick='show(\"spider\");return false'>Spider views</a> tab."));
 const rk=D.rankings.balanced||Object.values(D.rankings)[0];
 const rec=el("div",{class:"card",style:"margin-top:14px"},`<h2>Recommendation (${rk.profile.name.replace("_"," ")} profile)</h2>
 <div><b>${name(D.recommended)}</b> (${D.recommended})</div><ul>${rk.rationale.map(x=>"<li>"+x+"</li>").join("")}</ul>${rk.note?`<div class="bad">${rk.note}</div>`:""}
 <div class="note">${D.rankings.balanced?"Method: "+rk.method+". Weights: "+Object.entries(rk.profile.weights).map(([k,v])=>k.replace(/_/g," ")+" "+Math.round(v*100)+"%").join(", ")+". Constraints: "+(rk.profile.constraints.join("; ")||"none")+".":""}</div>`);
 t.append(rec);
-const prof=el("div",{class:"card"},"<h2>How each risk preference ranks the shortlist</h2>");
+const prof=el("div",{class:"card",style:"margin-top:14px"},"<h2>How each risk preference ranks the shortlist</h2>");
 const tb=el("table");tb.innerHTML="<tr><th>Profile</th><th>Recommended</th><th class=n>Score</th><th class=n>Utility (E[NPV] − λ·CVaR)</th><th>Eligible plans</th></tr>"+
 Object.entries(D.rankings).map(([k,r])=>{const top=r.rows.find(x=>x.alt_id==r.recommended)||{};return `<tr><td>${k.replace(/_/g," ")}</td><td>${name(r.recommended)}</td><td class=n>${F(top.score,3)}</td><td class=n>${M(top.utility)}</td><td>${r.eligible.length}/${r.rows.length}</td></tr>`}).join("");
-prof.append(tb);
-const g2=el("div",{class:"grid g2",style:"margin-top:14px"});const lens=el("div",{class:"card"},`<h2>Risk appetite lens: what each profile weighs</h2>`);
-const PRO=Object.keys(D.radar.profiles),plab={expected_npv:"Expected NPV",downside_risk:"Downside protection",budget_confidence:"Budget confidence",schedule_confidence:"Schedule confidence",strategic_alignment:"Alignment",okr_achievement:"OKR achievement",resource_resilience:"Resilience",time_to_value:"Speed to value"};
-const pax=D.radar.profile_axes.map(k=>({key:k,label:plab[k]||k}));const pmax=Math.max(.05,...PRO.flatMap(p=>Object.values(D.radar.profiles[p].weights)));
-const pser=PRO.slice(0,4).map((p,i)=>({name:p.replace(/_/g," "),color:SLOT[i],values:D.radar.profiles[p].weights}));
-lens.append(radarSvg(pax,pser,{max:Math.ceil(pmax*20)/20,fmt:P}),radarLegend(pser),el("div",{class:"note"},"Spokes show the weight each risk preference puts on a criterion (weights sum to 100%). Further out = matters more. "+PRO.map(p=>`${p.replace(/_/g," ")} recommends <b>${name(D.radar.profiles[p].recommended)}</b>`).join("; ")+"."));
-g2.append(lens,prof);t.append(g2)}
+prof.append(tb);t.append(prof)}
+
 // ---------------------------------------------------------------- tab: frontier
 let fx=keys[1]||keys[0],fy=keys[0],f3=[keys[0],keys[1]||keys[0],keys[2]||keys[0]],rot={a:0.6,b:0.4};
 function visibleAlts(){return alts.filter(a=>a.evidence.validated&&a.status!="duplicate"&&(!$("#effOnly").checked||a.status=="efficient"))}
@@ -172,17 +169,6 @@ const c2=el("div",{class:"card"},"<h2>3-D trade-off view</h2>");const ctl2=el("d
 ctl2.append("X ",objSelect(f3[0],v=>{f3[0]=v;draw3d()})," Y ",objSelect(f3[1],v=>{f3[1]=v;draw3d()})," Z ",objSelect(f3[2],v=>{f3[2]=v;draw3d()}));
 const cv=el("canvas",{id:"c3d",width:900,height:600});c2.append(ctl2,cv,el("div",{class:"note"},"Drag to rotate. Axes are normalized 0 (nadir) to 1 (ideal); blue = efficient, grey = dominated."));g.append(c2);
 t.append(g);draw3d();initDrag(cv);
-const KA=D.radar.kpi_axes;const kser=sel.filter(id=>D.radar.kpi[id]).map(id=>({name:name(id),color:slotOf(id),values:D.radar.kpi[id],raw:A[id].objectives}));
-const gk=el("div",{class:"grid g2",style:"margin-top:14px"});
-const ck=el("div",{class:"card"},`<h2>Optimization KPI radar <span class="badge b-proven">PROVEN</span></h2>`);ck.append(radarSvg(KA,kser,{W:600,H:460,R:155}),radarLegend(kser),
-el("div",{class:"note"},"Every optimization objective on one spider: 0 = nadir (worst efficient value), 1 = ideal (best value any plan reached on that objective alone). Lower-is-better objectives (cost, risk, peak load, time to value) are flipped so outward is always better. No plan reaches the outer ring everywhere — that gap is the trade-off."),leaderNote("kpi",KA));
-const cm=el("div",{class:"card"},"<h2>KPI shape of each strategic choice</h2>");const gm=el("div",{class:"grid",style:"grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px"});
-const seenC={};choiceOrder.forEach(k=>{const c=D.choices[k];if(!c||!D.radar.kpi[c.alt_id]||seenC[c.alt_id])return;
-const ttl=choiceOrder.filter(j=>D.choices[j]&&D.choices[j].alt_id==c.alt_id).map(j=>D.choices[j].title.toUpperCase()).join(" = ");
-const col=slotOf(c.alt_id)||"var(--s1)";const ser=[];if(D.recommended&&c.alt_id!=D.recommended&&D.radar.kpi[D.recommended])ser.push({name:"Recommended",color:"var(--muted)",values:D.radar.kpi[D.recommended],fill:false,width:1.5,dash:"4 3"});
-ser.push({name:c.title,color:col,values:D.radar.kpi[c.alt_id],raw:A[c.alt_id].objectives});
-const box=el("div",{},`<h3>${ttl}${c.alt_id==D.recommended?" · RECOMMENDED":""}</h3>`);box.append(radarSvg(KA.map(a=>({...a,label:a.label.split(" ")[0]})),ser,{W:300,H:250,R:78,mini:true}));gm.append(box);seenC[c.alt_id]=box});
-cm.append(gm,el("div",{class:"note"},"Small multiples: same axes and scale as the KPI radar. The dashed outline is the recommended plan, for reference."));gk.append(ck,cm);t.append(gk);
 const c3=el("div",{class:"card",style:"margin-top:14px"},"<h2>Parallel coordinates (1 = ideal on every axis)</h2>");c3.append(parallel());t.append(c3);
 const c4=el("div",{class:"card",style:"margin-top:14px"},"<h2>Portfolio comparison table</h2>");c4.append(altTable());t.append(c4)}
 function scatter(kx,ky){const W=640,H=400,m={l:70,r:20,t:14,b:44};const s=svgBox(W,H);const vs=visibleAlts();
@@ -281,16 +267,9 @@ c6.append(el("div",{},ad?`<table><tr><th></th><th class=n>Fixed plan</th><th cla
 <tr><td>Expected NPV</td><td class=n>${M(r.npv.mean)}</td><td class=n>${M(ad.npv.mean)}</td></tr><tr><td>P50 completion</td><td class=n>${month(r.completion.p50)}</td><td class=n>${month(ad.completion.p50)}</td></tr>
 <tr><td>P(meet committed dates)</td><td class=n>${P(r.probabilities.meet_key_dates.p)}</td><td class=n>${P(ad.probabilities.meet_key_dates.p)}</td></tr><tr><td>P(within budget)</td><td class=n>${P(r.probabilities.within_budget.p)}</td><td class=n>${P(ad.probabilities.within_budget.p)}</td></tr>
 <tr><td>Contingency hours used (mean)</td><td class=n>0</td><td class=n>${F(ad.contingency_hours,0)}</td></tr><tr><td>Start deferrals (months, mean)</td><td class=n>0</td><td class=n>${F(ad.deferred_months,2)}</td></tr></table>
-<div class=note>Adaptive = commitments first, gated starts (max ${D.assumptions.simulation.max_defer_months} months deferral), approved contingency ${P(D.assumptions.simulation.contingency_pct)} of capacity at $${D.assumptions.simulation.contingency_rate}/h. Never unlimited resources.</div>`:"Adaptive simulation runs for the strategic choices; pick one of them as focus."));g.append(c6);
-const RAX=D.radar.risk_axes;const rser=sel.filter(id=>D.radar.risk[id]).map(id=>({name:name(id),color:slotOf(id),values:D.radar.risk[id]}));
-const gr=el("div",{class:"grid g2",style:"margin-top:14px"});
-const c7=el("div",{class:"card"},`<h2>Risk trade-off radar <span class="badge b-sim">SIMULATED</span></h2>`);const sf=D.radar.safest;if(sf&&!sel.includes(sf)&&D.radar.risk[sf])rser.push({name:"Safest shortlisted: "+name(sf),color:"var(--muted)",values:D.radar.risk[sf],dash:"5 3",fill:false});
-c7.append(radarSvg(RAX,rser,{fmt:P}),radarLegend(rser),axisNote(RAX),leaderNote("risk",RAX));
-if(sf&&D.radar.risk[sf]){const rs=riskOf(sf);c7.append(el("div",{class:"note"},`Safest shortlisted plan (best average across the ${RAX.length} axes): <b>${name(sf)}</b> — E[NPV] ${M(rs.npv.mean)} vs ${M(riskOf(D.recommended).npv.mean)} recommended. Add it to the compare set to see it everywhere.`))}
-const c8=el("div",{class:"card"},`<h2>Fixed plan vs adaptive execution — ${name(focus)} <span class="badge b-sim">SIMULATED</span></h2>`);const fa=D.radar.risk_adaptive[focus];
-if(fa&&D.radar.risk[focus]){const fser=[{name:"Fixed plan",color:"var(--s1)",values:D.radar.risk[focus]},{name:"Adaptive (recourse)",color:"var(--s3)",values:fa,dash:"6 3"}];c8.append(radarSvg(RAX,fser,{fmt:P}),radarLegend(fser),el("div",{class:"note"},"Where the adaptive shape sits outside the fixed one, management recourse (gated starts, deferral, approved contingency) buys that confidence; inside means recourse costs it."))}
-else c8.append(el("div",{class:"note"},"Adaptive simulation runs for the strategic choices; pick one of them as focus."));
-gr.append(c7,c8);t.append(g,gr)}
+<div class=note>Adaptive = commitments first, gated starts (max ${D.assumptions.simulation.max_defer_months} months deferral), approved contingency ${P(D.assumptions.simulation.contingency_pct)} of capacity at $${D.assumptions.simulation.contingency_rate}/h. Never unlimited resources.</div>`:"Adaptive simulation runs for the strategic choices; pick one of them as focus."));g.append(c6);t.append(g);
+t.append(el("div",{class:"note"},"Risk spiders (risk trade-off across plans, fixed vs adaptive) are on the <a href='#' onclick='show(\"spider\");return false'>Spider views</a> tab."))}
+
 function hist(r){const h=r.histogram,W=600,H=300,m={l:56,r:16,t:12,b:40};const s=svgBox(W,H);const x=lin(h.edges[0],h.edges[h.edges.length-1],m.l,W-m.r),y=lin(0,Math.max(...h.counts),H-m.b,m.t);
 axes(s,W,H,m,x,y,"NPV ($)","futures",M,v=>F(v,0));h.counts.forEach((c,i)=>{const b=sv("rect",{x:x(h.edges[i])+1,y:y(c),width:Math.max(1,x(h.edges[i+1])-x(h.edges[i])-2),height:H-m.b-y(c),fill:"var(--s1)",rx:2});
 b.onmousemove=e=>showTip(e,`${M(h.edges[i])} – ${M(h.edges[i+1])}<br>${c} futures (${P(c/r.iterations)})`);b.onmouseleave=hideTip;s.append(b)});
@@ -327,12 +306,47 @@ const rb=riskOf(D.recommended);tb.innerHTML=`<tr><th>Scenario</th><th>Levers</th
 D.scenarios.map(s=>{if(s.status!="ok")return `<tr><td>${s.name}</td><td>${s.description}</td><td colspan=6 class=bad>${s.status}: ${s.note}</td><td class=small>${s.model_version}</td></tr>`;const r=s.recommended,b=s.baseline_plan||{};
 return `<tr><td><b>${s.name}</b><br><span class=small>${s.description}</span></td><td class=small>${Object.entries(s.levers).map(([k,v])=>k.replace(/_/g," ")+": "+JSON.stringify(v)).join("<br>")}</td><td>${r.name}<br><span class=small>${r.selected.length} initiatives · ${r.profile.replace("_"," ")}</span></td><td class=n>${M(r.expected_npv)}</td><td class=n>${M(r.p10_npv)}</td><td class=n>${P(r.within_budget)}</td><td class=n>${P(r.meet_key_dates)}</td>
 <td>${b.feasible?`<span class=ok>still feasible</span><br>E[NPV] ${M(b.expected_npv)} · P(budget) ${P(b.within_budget)}`:`<span class=bad>no longer feasible</span>`}</td><td class=small>${s.model_version}</td></tr>`}).join("");
-c.append(tb,el("div",{class:"note"},"Changing an assumption changes the model fingerprint; the optimization, frontier, Monte Carlo and recommendation are recomputed for it (and cached by fingerprint)."));t.append(c);
-const SC=Object.entries(D.radar.scenarios);if(SC.length){const SAX=D.radar.scenario_axes;const sser=SC.slice(0,4).map(([k,v],i)=>({name:v.name,color:SLOT[i],values:v.values,width:k=="baseline"?3:2}));
-const g=el("div",{class:"grid g2",style:"margin-top:14px"});const cr=el("div",{class:"card"},`<h2>What-if radar: return and risk of the best plan in each scenario <span class="badge b-sim">SIMULATED</span></h2>`);
-cr.append(radarSvg(SAX,sser,{fmt:P}),radarLegend(sser));if(SC.length>4)cr.append(el("div",{class:"note"},`Showing the first four of ${SC.length} scenarios; the table above lists all.`));
-const cn=el("div",{class:"card"},"<h2>How to read it</h2>");cn.append(axisNote(SAX),el("div",{class:"note"},"Each scenario is re-optimized and re-simulated, so its shape is the best plan available in that world. A scenario that collapses on budget or dates while keeping NPV is a plan that still pays but is harder to deliver; a uniformly smaller shape is a weaker world, not a worse plan."));
-g.append(cr,cn);t.append(g)}}
+c.append(tb,el("div",{class:"note"},"Changing an assumption changes the model fingerprint; the optimization, frontier, Monte Carlo and recommendation are recomputed for it (and cached by fingerprint)."));t.append(c)}
+
+// ---------------------------------------------------------------- tab: spider views (all radar charts)
+const PLAB={expected_npv:"Expected NPV",downside_risk:"Downside protection",budget_confidence:"Budget confidence",schedule_confidence:"Schedule confidence",strategic_alignment:"Alignment",okr_achievement:"OKR achievement",resource_resilience:"Resilience",time_to_value:"Speed to value"};
+function kpiCard(){const KA=D.radar.kpi_axes;const kser=sel.filter(id=>D.radar.kpi[id]).map(id=>({name:name(id),color:slotOf(id),values:D.radar.kpi[id],raw:A[id].objectives}));
+const ck=el("div",{class:"card"},`<h2>Optimization KPI radar <span class="badge b-proven">PROVEN</span></h2>`);ck.append(radarSvg(KA,kser,{W:600,H:460,R:155}),radarLegend(kser),
+el("div",{class:"note"},"Every optimization objective on one spider: 0 = nadir (worst efficient value), 1 = ideal (best value any plan reached on that objective alone). Lower-is-better objectives (cost, risk, peak load, time to value) are flipped so outward is always better. No plan reaches the outer ring everywhere — that gap is the trade-off."),leaderNote("kpi",KA));return ck}
+function smallMultCard(){const KA=D.radar.kpi_axes;const cm=el("div",{class:"card"},"<h2>KPI shape of each strategic choice</h2>");const gm=el("div",{class:"grid",style:"grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px"});
+const seenC={};choiceOrder.forEach(k=>{const c=D.choices[k];if(!c||!D.radar.kpi[c.alt_id]||seenC[c.alt_id])return;
+const ttl=choiceOrder.filter(j=>D.choices[j]&&D.choices[j].alt_id==c.alt_id).map(j=>D.choices[j].title.toUpperCase()).join(" = ");
+const col=slotOf(c.alt_id)||"var(--s1)";const ser=[];if(D.recommended&&c.alt_id!=D.recommended&&D.radar.kpi[D.recommended])ser.push({name:"Recommended",color:"var(--muted)",values:D.radar.kpi[D.recommended],fill:false,width:1.5,dash:"4 3"});
+ser.push({name:c.title,color:col,values:D.radar.kpi[c.alt_id],raw:A[c.alt_id].objectives});
+const box=el("div",{},`<h3>${ttl}${c.alt_id==D.recommended?" · RECOMMENDED":""}</h3>`);box.append(radarSvg(KA.map(a=>({...a,label:a.label.split(" ")[0]})),ser,{W:300,H:250,R:78,mini:true}));gm.append(box);seenC[c.alt_id]=box});
+cm.append(gm,el("div",{class:"note"},"Small multiples: same axes and scale as the KPI radar. The dashed outline is the recommended plan, for reference."));return cm}
+function riskRadarCard(){const RAX=D.radar.risk_axes;const rser=sel.filter(id=>D.radar.risk[id]).map(id=>({name:name(id),color:slotOf(id),values:D.radar.risk[id]}));
+const c7=el("div",{class:"card"},`<h2>Risk trade-off radar <span class="badge b-sim">SIMULATED</span></h2>`);const sf=D.radar.safest;if(sf&&!sel.includes(sf)&&D.radar.risk[sf])rser.push({name:"Safest shortlisted: "+name(sf),color:"var(--muted)",values:D.radar.risk[sf],dash:"5 3",fill:false});
+c7.append(radarSvg(RAX,rser,{fmt:P}),radarLegend(rser),axisNote(RAX),leaderNote("risk",RAX));
+if(sf&&D.radar.risk[sf]){const rs=riskOf(sf);c7.append(el("div",{class:"note"},`Safest shortlisted plan (best average across the ${RAX.length} axes): <b>${name(sf)}</b> — E[NPV] ${M(rs.npv.mean)} vs ${M(riskOf(D.recommended).npv.mean)} recommended. Add it to the compare set to see it everywhere.`))}return c7}
+function adaptiveCard(){const RAX=D.radar.risk_axes;const c8=el("div",{class:"card"},`<h2>Fixed plan vs adaptive execution — ${name(focus)} <span class="badge b-sim">SIMULATED</span></h2>`);const fa=D.radar.risk_adaptive[focus];
+if(fa&&D.radar.risk[focus]){const fser=[{name:"Fixed plan",color:"var(--s1)",values:D.radar.risk[focus]},{name:"Adaptive (recourse)",color:"var(--s3)",values:fa,dash:"6 3"}];c8.append(radarSvg(RAX,fser,{fmt:P}),radarLegend(fser),el("div",{class:"note"},"Where the adaptive shape sits outside the fixed one, management recourse (gated starts, deferral, approved contingency) buys that confidence; inside means recourse costs it. Change the focus portfolio above to compare another plan."))}
+else c8.append(el("div",{class:"note"},"Adaptive simulation runs for the strategic choices; pick one of them as focus."));return c8}
+function lensCard(){const lens=el("div",{class:"card"},`<h2>Risk appetite lens: what each profile weighs</h2>`);
+const PRO=Object.keys(D.radar.profiles);const pax=D.radar.profile_axes.map(k=>({key:k,label:PLAB[k]||k}));const pmax=Math.max(.05,...PRO.flatMap(p=>Object.values(D.radar.profiles[p].weights)));
+const pser=PRO.slice(0,4).map((p,i)=>({name:p.replace(/_/g," "),color:SLOT[i],values:D.radar.profiles[p].weights}));
+lens.append(radarSvg(pax,pser,{max:Math.ceil(pmax*20)/20,fmt:P}),radarLegend(pser),el("div",{class:"note"},"Spokes show the weight each risk preference puts on a criterion (weights sum to 100%). Further out = matters more. "+PRO.map(p=>`${p.replace(/_/g," ")} recommends <b>${name(D.radar.profiles[p].recommended)}</b>`).join("; ")+"."));return lens}
+function whatifRadarCard(){const SC=Object.entries(D.radar.scenarios);const cr=el("div",{class:"card"},`<h2>What-if radar: return and risk of the best plan in each scenario <span class="badge b-sim">SIMULATED</span></h2>`);
+if(!SC.length){cr.append(el("div",{class:"note"},"No what-if scenarios in this run."));return cr}const SAX=D.radar.scenario_axes;const sser=SC.slice(0,4).map(([k,v],i)=>({name:v.name,color:SLOT[i],values:v.values,width:k=="baseline"?3:2}));
+cr.append(radarSvg(SAX,sser,{fmt:P}),radarLegend(sser),axisNote(SAX));if(SC.length>4)cr.append(el("div",{class:"note"},`Showing the first four of ${SC.length} scenarios; the What-if tab lists all.`));return cr}
+function criteriaCard(){const rk=D.rankings.balanced||Object.values(D.rankings)[0];const rows=Object.fromEntries(rk.rows.map(r=>[r.alt_id,r]));
+const crit=["expected_npv","downside_risk","budget_confidence","schedule_confidence","strategic_alignment","okr_achievement","resource_resilience","time_to_value"];
+const c=el("div",{class:"card"},"<h2>Ranking criteria radar (balanced profile, 1 = best)</h2>");c.append(radar(crit,rows),el("div",{class:"legend"},sel.map((id,i)=>`<span><i style="background:${SLOT[i]}"></i>${i+1} ${name(id)}</span>`).join("")));return c}
+function readCard(){return el("div",{class:"card"},`<h2>How to read the spiders</h2><ul class=note style="padding-left:18px;line-height:1.5">
+<li><b>Outward is better</b> on every spoke; the outer ring is 1 (best). A bigger, rounder shape is a stronger plan; a dent is the price paid for it.</li>
+<li><b>Optimization KPIs</b> <span class="badge b-proven">PROVEN</span> come from the solver: each objective is scaled from the worst efficient value (0) to the best any plan reached (1).</li>
+<li><b>Risk spiders</b> <span class="badge b-sim">SIMULATED</span> show probabilities as simulated, never rescaled, so a spoke near the centre means that risk is genuinely likely.</li>
+<li><b>Ranking criteria</b> are what the balanced profile scores; the recommendation is the best weighted shape.</li>
+<li>Differences within ${F(D.radar.tie_tolerance*100,0)} percentage point are treated as ties. Choose the plans to compare with the chips at the top.</li>
+${D.assumptions.calibrated?"":'<li><span class="badge b-est">ESTIMATE</span> Uncertainty inputs are uncalibrated demonstration defaults; calibrate before relying on the risk spiders.</li>'}</ul>`)}
+function rSpider(){const t=$("#t-spider");t.innerHTML="";
+t.append(el("div",{class:"note",style:"margin:0 0 10px"},"Every spider: outward = better, outer ring = 1 (best). Plans shown are the compare set chosen above (default: the strategic choices). Definitions in docs/METHODS.md §7."));
+[[kpiCard(),riskRadarCard()],[smallMultCard(),adaptiveCard()],[lensCard(),whatifRadarCard()],[criteriaCard(),readCard()]].forEach((pair,i)=>{const g=el("div",{class:"grid g2",style:i?"margin-top:14px":""});pair.forEach(c=>g.append(c));t.append(g)})}
 // ---------------------------------------------------------------- tab: assurance
 function rAssure(){const t=$("#t-assurance");t.innerHTML="";const g=el("div",{class:"grid g2"});
 const sc=(rep,title)=>{const c=el("div",{class:"card"},`<h2>${title} <span class="badge b-proven">${rep.level.replace(/_/g," ")}</span></h2><div class=note>${rep.verdict}</div>`);const tb=el("table");

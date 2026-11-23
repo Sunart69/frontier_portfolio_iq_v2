@@ -1,10 +1,10 @@
 """CEO-ready decision deck (v2): a consulting-style story built entirely from the DecisionBundle.
 
   1 The Decision · 2 The Opportunity · 3 The Constraints · 4 The Efficient Frontier · 5 Four Strategic
-  Choices · 6 Trade-Off Radar · 7 Risk Under Uncertainty · 8 Execution Feasibility · 9 LOB Impact ·
+  Choices · 6 Trade-Off Radar (optimization KPIs and risk spiders) · 7 Risk Under Uncertainty · 8 Execution Feasibility · 9 LOB Impact ·
   10 Recommended Portfolio · 11 What-If Scenarios · 12 Leadership Decisions Required
   Appendices: A1 Solver validation · A2 Model and objectives · A3 Uncertainty assumptions · A4 Sensitivity ·
-  A5 Risk trade-off radar · A6 Optimization KPI radar · A7 Risk appetite and what-if radar
+  A5 Ranking criteria radar · A6 Risk detail (fixed vs adaptive, what-if radars) · A7 Risk appetite radar
 
 Labels distinguish *proven* optimization results, *simulated* probabilities and *estimated* inputs. The
 builder returns a manifest of every figure it placed (slide -> values), used by the tests to reconcile
@@ -263,44 +263,42 @@ class CEODeckBuilder(DeckBuilder):
         self.manifest["5"] = {k: {"alt": a.alt_id, "expected_npv": r["npv"]["mean"]} for k, a, r in zip(keys, alts, rk)}
 
     def s6_radar(self, n):
-        from .decision.recommend import CRITERIA
-        crit = ["expected_npv", "downside_risk", "budget_confidence", "schedule_confidence", "strategic_alignment",
-                "okr_achievement", "resource_resilience", "time_to_value"]
-        rows = {r["alt_id"]: r for r in self.B.rankings["balanced"].rows}
-        keys = [k for k in CHOICE_ORDER if k in self.B.choices]
-        s = self.slide()
-        winners = {}
-        for c in crit:
-            vals = {k: rows[self.B.choices[k]["alt_id"]]["criteria"][c]["normalized"] for k in keys}
-            best = max(keys, key=lambda k: vals[k])
-            if sum(1 for k in keys if vals[k] >= vals[best] - 1e-6) > 1 and \
-                    len({self.B.choices[k]["alt_id"] for k in keys if vals[k] >= vals[best] - 1e-6}) > 1:
-                continue        # a tie between different plans: nobody "wins" this criterion
-            winners.setdefault(self.B.choices[best]["title"], []).append(c.replace("_", " "))
-        top = max(winners.items(), key=lambda kv: len(kv[1])) if winners else ("No plan", [])
-        self.title(s, n, f"No plan wins everywhere: {top[0]} leads on {len(top[1])} of {len(crit)} criteria; "
-                         f"{len(crit) - sum(len(v) for v in winners.values())} are ties", "Trade-off radar")
-        short = {"expected_npv": "Expected NPV", "downside_risk": "Downside protection",
-                 "budget_confidence": "Budget confidence", "schedule_confidence": "Schedule confidence",
-                 "strategic_alignment": "Strategic alignment", "okr_achievement": "OKR achievement",
-                 "resource_resilience": "Resource resilience", "time_to_value": "Speed to value"}
-        cats = [short[c] for c in crit]
-        series = [(self.B.choices[k]["title"], [rows[self.B.choices[k]["alt_id"]]["criteria"][c]["normalized"] for c in crit])
-                  for k in keys]
-        ch = self.chart(s, XL_CHART_TYPE.RADAR, cats, series, 0.6, 1.7, 7.8, 5.25, [CHOICE_COLORS[k] for k in keys],
-                        fmt="0.0", legend=True)
-        try:
-            ch.value_axis.maximum_scale, ch.value_axis.minimum_scale = 1.0, 0.0
-        except Exception:
-            pass
-        self.text(s, 8.8, 1.9, 3.9, 4.8, ["Scales (1 = best):",
-                                         "Expected NPV, alignment: relative to the best plan",
-                                         "Probabilities: as simulated",
-                                         "Downside protection: 1 − CVaR ÷ expected NPV",
-                                         "Months to value: best ÷ this plan",
-                                         *[f"{t}: strongest on {', '.join(v[:3])}" for t, v in winners.items()]],
-                  size=12, color=TEXT_2, para_space=8)
-        self.manifest["6"] = {"criteria": crit, "winners": winners}
+        """Storyline slide 6: the optimization KPIs (proven) and the risk trade-off (simulated) as two spiders."""
+        RD, s = self.RD, self.slide()
+        kax, rax = RD["kpi_axes"], RD["risk_axes"]
+        plans = [(aid, t, c) for aid, t, c in self._choice_plans() if aid in RD["kpi"] and aid in RD["risk"]]
+        _, kby = self._leader_lines("kpi", kax)
+        r_ties = sum(1 for a in rax if RD["leaders"]["risk"].get(a["key"]) is None)
+        safest = RD.get("safest")
+        extra = safest if safest and safest not in {aid for aid, _, _ in plans} else None
+        ktop = max(kby.items(), key=lambda kv: len(kv[1])) if kby else ("No plan", [])
+        head = f"{ktop[0]} leads on {len(ktop[1])} of {len(kax)} optimization KPIs"
+        head += (", but all choices carry near-identical risk" if r_ties * 2 >= len(rax)
+                 else "; risk differs by choice")
+        self.title(s, n, head, "Trade-off radar")
+        self._radar(s, [a["label"] for a in kax], [(t, [RD["kpi"][aid][a["key"]] for a in kax]) for aid, t, _ in plans],
+                    0.4, 1.7, 6.3, 4.6, [c for *_, c in plans], fmt="0.00",
+                    title="Optimization KPIs (0 = nadir, 1 = ideal)")
+        series = [(t, [RD["risk"][aid][a["key"]] for a in rax]) for aid, t, _ in plans]
+        colors = [c for *_, c in plans]
+        if extra:
+            er = self.risk(extra)
+            series.append((f"Safest shortlisted ({_m(er['npv']['mean'])} E[NPV])", [RD["risk"][extra][a["key"]] for a in rax]))
+            colors.append(MUTED)
+        self._radar(s, [a["label"] for a in rax], series, 6.75, 1.7, 6.15, 4.6, colors,
+                    title=f"Risk trade-off (1 = safest; tied on {r_ties} of {len(rax)} axes)", dashed=(len(series) - 1,) if extra else ())
+        self.badge(s, 0.6, 6.4, "PROVEN", "proven")
+        self.badge(s, 6.9, 6.4, "SIMULATED", "simulated")
+        self.text(s, 2.15, 6.33, 4.5, 0.6, "Outward = better. Cost, risk, peak load and time to value are flipped so "
+                  "lower values point outward.", size=9, color=TEXT_2)
+        rec_npv = self.risk(self.rec.alt_id)["npv"]["mean"]
+        self.text(s, 8.45, 6.33, 4.3, 0.6, "Probabilities as simulated (not rescaled)." + (
+            f" The safest plan gives up {_m(rec_npv - self.risk(extra)['npv']['mean'])} of expected NPV versus the "
+            "recommendation." if extra else ""), size=9, color=TEXT_2)
+        self.manifest["6"] = {"kpi": {aid: RD["kpi"][aid] for aid, _, _ in plans},
+                              "risk": {aid: RD["risk"][aid] for aid, _, _ in plans},
+                              "kpi_leaders": RD["leaders"]["kpi"], "risk_leaders": RD["leaders"]["risk"],
+                              "safest_reference": extra}
 
     def s7_risk(self, n):
         rec, r = self.rec, self.risk(self.rec.alt_id)
@@ -601,69 +599,69 @@ class CEODeckBuilder(DeckBuilder):
             lines.append(f"Tied (within {self.RD['tie_tolerance']:.2f}): " + ", ".join(ties))
         return lines, by
 
-    def a5_risk_radar(self, n):
+    def a5_criteria_radar(self, n):
+        from .radar import _leaders
+        crit = ["expected_npv", "downside_risk", "budget_confidence", "schedule_confidence", "strategic_alignment",
+                "okr_achievement", "resource_resilience", "time_to_value"]
+        rows = {r["alt_id"]: r for r in self.B.rankings["balanced"].rows}
+        plans = [(aid, t, c) for aid, t, c in self._choice_plans() if aid in rows]
+        s = self.slide()
+        vals = {aid: {c: rows[aid]["criteria"][c]["normalized"] for c in crit} for aid, _, _ in plans}
+        lead = _leaders(vals, crit, self.RD["tie_tolerance"])
+        titles = {aid: t for aid, t, _ in plans}
+        short = {"expected_npv": "Expected NPV", "downside_risk": "Downside protection",
+                 "budget_confidence": "Budget confidence", "schedule_confidence": "Schedule confidence",
+                 "strategic_alignment": "Strategic alignment", "okr_achievement": "OKR achievement",
+                 "resource_resilience": "Resource resilience", "time_to_value": "Speed to value"}
+        winners = {}
+        for c in crit:
+            if lead[c]:
+                winners.setdefault(titles[lead[c]], []).append(short[c])
+        ties = [short[c] for c in crit if not lead[c]]
+        top = max(winners.items(), key=lambda kv: len(kv[1])) if winners else ("No plan", [])
+        self.title(s, n, f"A5 · Ranking criteria (balanced profile): {top[0]} leads on {len(top[1])} of {len(crit)}; "
+                         f"{len(ties)} are ties", "Appendix")
+        self._radar(s, [short[c] for c in crit], [(t, [vals[aid][c] for c in crit]) for aid, t, _ in plans],
+                    0.5, 1.6, 7.8, 5.25, [c for *_, c in plans], fmt="0.00")
+        self.text(s, 8.8, 1.9, 3.9, 4.8, ["Scales (1 = best):",
+                                         "Expected NPV, alignment: relative to the best plan",
+                                         "Probabilities: as simulated",
+                                         "Downside protection: 1 − CVaR ÷ expected NPV",
+                                         "Months to value: best ÷ this plan",
+                                         *[f"{t} leads on {', '.join(v)}" for t, v in winners.items()],
+                                         *([f"Tied (within {self.RD['tie_tolerance']:.2f}): {', '.join(ties)}"] if ties else [])],
+                  size=12, color=TEXT_2, para_space=8)
+        self.manifest["A5"] = {"criteria": crit, "winners": winners, "ties": ties}
+
+    def a6_risk_detail(self, n):
         RD, s = self.RD, self.slide()
-        axes = RD["risk_axes"]
-        plans = [(aid, t, c) for aid, t, c in self._choice_plans() if aid in RD["risk"]]
-        lines, by = self._leader_lines("risk", axes)
-        n_ties = sum(1 for a in axes if RD["leaders"]["risk"].get(a["key"]) is None)
-        safest = RD.get("safest")
-        extra = safest if safest and safest not in {aid for aid, _, _ in plans} else None
-        if n_ties * 2 >= len(axes):
-            headline = f"the strategic choices carry near-identical risk (tied on {n_ties} of {len(axes)} axes)"
-        else:
-            top = max(by.items(), key=lambda kv: len(kv[1]))
-            headline = f"{top[0]} is safest on {len(top[1])} of {len(axes)} risk axes"
-        if extra:
-            headline += "; a safer, lower-value plan exists"
-        self.title(s, n, "A5 · Risk trade-off radar: " + headline, "Appendix")
-        cats = [a["label"] for a in axes]
-        series = [(t, [RD["risk"][aid][a["key"]] for a in axes]) for aid, t, _ in plans]
-        colors = [c for *_, c in plans]
-        if extra:
-            er = self.risk(extra)
-            series.append((f"Safest shortlisted ({_m(er['npv']['mean'])} E[NPV])", [RD["risk"][extra][a["key"]] for a in axes]))
-            colors.append(MUTED)
-        self._radar(s, cats, series, 0.5, 1.6, 6.2, 4.75, colors, title="Strategic choices on risk (1 = safest)",
-                    dashed=(len(series) - 1,) if extra else ())
+        rax = RD["risk_axes"]
         rec = self.rec.alt_id
         adaptive = RD["risk_adaptive"].get(rec)
+        sc = list(RD["scenarios"].items())[:4]
+        worst = min(sc, key=lambda kv: kv[1]["values"]["expected_npv"]) if sc else None
+        head = "A6 · Risk detail: " + (f"in the {worst[1]['name'].lower()} scenario the best plan keeps "
+                                       f"{worst[1]['values']['expected_npv']:.0%} of the best scenario's expected NPV"
+                                       if worst else "fixed vs adaptive execution")
+        self.title(s, n, head, "Appendix")
         if adaptive:
-            self._radar(s, cats, [("Fixed plan", [RD["risk"][rec][a["key"]] for a in axes]),
-                                  ("Adaptive (recourse)", [adaptive[a["key"]] for a in axes])],
-                        6.8, 1.6, 6.0, 4.75, [CATEGORICAL[0], CATEGORICAL[2]], dashed=(1,),
+            self._radar(s, [a["label"] for a in rax], [("Fixed plan", [RD["risk"][rec][a["key"]] for a in rax]),
+                                                      ("Adaptive (recourse)", [adaptive[a["key"]] for a in rax])],
+                        0.4, 1.55, 6.3, 4.75, [CATEGORICAL[0], CATEGORICAL[2]], dashed=(1,),
                         title="Recommended plan: fixed vs adaptive execution")
+        if sc:
+            ax = RD["scenario_axes"]
+            self._radar(s, [a["label"] for a in ax], [(v["name"], [v["values"][a["key"]] for a in ax]) for _, v in sc],
+                        6.75, 1.55, 6.15, 4.75, CATEGORICAL[:len(sc)], title="Best plan in each what-if scenario (1 = best)")
         self.badge(s, 0.6, 6.4, "SIMULATED", "simulated")
-        self.text(s, 2.2, 6.35, 10.5, 0.7, "; ".join(lines) + ". Axes: " + "; ".join(
-            f"{a['label']} = {a['definition']}" for a in axes[6:]) + "; the rest are simulated probabilities.",
-            size=9, color=TEXT_2)
-        self.manifest["A5"] = {"axes": [a["key"] for a in axes], "safest_reference": extra,
-                               "plans": {aid: RD["risk"][aid] for aid, _, _ in plans},
-                               "adaptive": adaptive, "leaders": RD["leaders"]["risk"]}
+        self.text(s, 2.15, 6.33, 10.6, 0.7, ["Adaptive = gated starts, bounded deferral and approved contingency; never "
+                                             "unlimited resources. What-if axes: NPV and P10 relative to the best "
+                                             "scenario; the rest absolute. Each scenario is re-optimized and re-simulated."],
+                  size=9, color=TEXT_2)
+        self.manifest["A6"] = {"adaptive": adaptive, "fixed": RD["risk"].get(rec),
+                               "scenarios": {k: v["values"] for k, v in sc}}
 
-    def a6_kpi_radar(self, n):
-        RD, s = self.RD, self.slide()
-        axes = RD["kpi_axes"]
-        plans = [(aid, t, c) for aid, t, c in self._choice_plans() if aid in RD["kpi"]]
-        lines, by = self._leader_lines("kpi", axes)
-        top = max(by.items(), key=lambda kv: len(kv[1])) if by else ("No plan", [])
-        self.title(s, n, f"A6 · Optimization KPI radar: {top[0]} leads on {len(top[1])} of {len(axes)} objectives; "
-                         "no plan reaches the ideal everywhere", "Appendix")
-        self._radar(s, [a["label"] for a in axes], [(t, [RD["kpi"][aid][a["key"]] for a in axes]) for aid, t, _ in plans],
-                    0.5, 1.6, 7.6, 5.2, [c for *_, c in plans], fmt="0.00",
-                    title="Each objective: 0 = nadir, 1 = ideal (outward = better)")
-        self.badge(s, 8.4, 1.75, "PROVEN", "proven")
-        self.text(s, 8.4, 2.15, 4.3, 4.7, ["Scale: every objective from the nadir (0, worst efficient value) to the "
-                                           "ideal (1, best any plan reached on that objective alone). Cost, risk, peak "
-                                           "load and time to value are flipped so outward is always better.",
-                                           *lines,
-                                           "Values are the optimized plans' deterministic objectives, each plan "
-                                           "certified by the solver and the independent validator."],
-                  size=11, color=TEXT_2, para_space=8)
-        self.manifest["A6"] = {"axes": [a["key"] for a in axes], "plans": {aid: RD["kpi"][aid] for aid, _, _ in plans},
-                               "leaders": RD["leaders"]["kpi"]}
-
-    def a7_appetite_whatif_radar(self, n):
+    def a7_risk_appetite(self, n):
         RD, s = self.RD, self.slide()
         plab = {"expected_npv": "Expected NPV", "downside_risk": "Downside protection",
                 "budget_confidence": "Budget confidence", "schedule_confidence": "Schedule confidence",
@@ -671,30 +669,32 @@ class CEODeckBuilder(DeckBuilder):
                 "resource_resilience": "Resilience", "time_to_value": "Speed to value"}
         profs = list(RD["profiles"].items())[:4]
         same = len({v["recommended"] for _, v in profs}) == 1
-        self.title(s, n, "A7 · Risk appetite and what-if radar: " +
-                   ("every risk profile recommends the same plan" if same else
-                    "the recommendation changes with risk appetite"), "Appendix")
+        self.title(s, n, "A7 · Risk appetite: " + ("every risk profile recommends the same plan" if same else
+                                                   "the recommendation changes with risk appetite"), "Appendix")
         wmax = max([0.05] + [w for _, v in profs for w in v["weights"].values()])
         top = min(1.0, -(-wmax * 20 // 1) / 20)
         self._radar(s, [plab.get(k, k) for k in RD["profile_axes"]],
                     [(k.replace("_", " "), [v["weights"][a] for a in RD["profile_axes"]]) for k, v in profs],
-                    0.5, 1.6, 6.2, 4.6, CATEGORICAL[:len(profs)], top=top,
+                    0.4, 1.55, 6.3, 4.9, CATEGORICAL[:len(profs)], top=top,
                     title="Weight each risk profile puts on a criterion")
-        sc = list(RD["scenarios"].items())[:4]
-        if sc:
-            ax = RD["scenario_axes"]
-            self._radar(s, [a["label"] for a in ax], [(v["name"], [v["values"][a["key"]] for a in ax]) for _, v in sc],
-                        6.8, 1.6, 6.0, 4.6, CATEGORICAL[:len(sc)],
-                        title="Best plan in each what-if scenario (1 = best)")
-        self.badge(s, 0.6, 6.3, "SIMULATED", "simulated")
-        self.text(s, 2.2, 6.25, 10.5, 0.8, ["; ".join(f"{k.replace('_', ' ')} recommends "
-                                                      f"{self.B.alt(v['recommended']).name or v['recommended']}"
-                                                      for k, v in profs if v["recommended"]) + ".",
-                                            "What-if axes: NPV and P10 relative to the best scenario; the rest are "
-                                            "absolute probabilities and ratios. Each scenario is re-optimized and "
-                                            "re-simulated."], size=9, color=TEXT_2)
+        rows = [["Profile", "Recommends", "E[NPV]", "P(budget)", "Utility"]]
+        for k, v in profs:
+            rk = self.B.rankings[k]
+            row = next((r for r in rk.rows if r["alt_id"] == v["recommended"]), {})
+            r = self.risk(v["recommended"]) if v["recommended"] else None
+            rows.append([k.replace("_", " "), (self.B.alt(v["recommended"]).name or v["recommended"])[:34]
+                         if v["recommended"] else "none eligible",
+                         _m(r["npv"]["mean"]) if r else "—",
+                         pct(r["probabilities"]["within_budget"]["p"]) if r else "—",
+                         _m(row.get("utility")) if row.get("utility") is not None else "—"])
+        self.table(s, rows, 6.85, 1.9, 6.0, [1.05, 2.6, 0.8, 0.8, 0.75], font=10, row_h=0.42)
+        self.text(s, 6.95, 4.0, 5.8, 2.2, ["Utility = E[NPV] − λ·CVaR (λ = " + ", ".join(
+            f"{k.replace('_', ' ')} {v['lambda']:.2f}" for k, v in profs) + ").",
+            "Further out on a spoke = that criterion matters more to the profile; weights sum to 100%."],
+            size=10, color=TEXT_2, para_space=6)
+        self.badge(s, 0.6, 6.5, "SIMULATED", "simulated")
         self.manifest["A7"] = {"profiles": {k: v["weights"] for k, v in profs},
-                               "scenarios": {k: v["values"] for k, v in sc}}
+                               "recommended": {k: v["recommended"] for k, v in profs}}
 
     def build(self, path: str) -> Dict[str, Dict]:
         from .radar import radar_profiles
@@ -702,7 +702,7 @@ class CEODeckBuilder(DeckBuilder):
         steps = [self.s1_decision, self.s2_opportunity, self.s3_constraints, self.s4_frontier, self.s5_choices,
                  self.s6_radar, self.s7_risk, self.s8_execution, self.s9_lob, self.s10_recommended, self.s11_whatif,
                  self.s12_decisions, self.a1_solvers, self.a2_model, self.a3_uncertainty, self.a4_sensitivity,
-                 self.a5_risk_radar, self.a6_kpi_radar, self.a7_appetite_whatif_radar]
+                 self.a5_criteria_radar, self.a6_risk_detail, self.a7_risk_appetite]
         for k, fn in enumerate(steps, 1):
             fn(k)
         self.prs.save(path)

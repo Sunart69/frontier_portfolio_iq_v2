@@ -2,7 +2,7 @@
 
 This is the full suite as executed when the repository was built. Nothing below is estimated.
 
-**Result: 167 passed, 0 failed, 3 warnings, in 874.4 s (14 min 34 s).** (Latest run, after the radar views were added.)
+**Result: 167 passed, 0 failed, 3 warnings, in 874.2 s (14 min 34 s).** (Latest run, after the spider charts were moved into slide 6 and the dashboard's first screen.)
 
 Command: `python -m pytest -q --durations=25` (with `--junitxml` for the per-file table).
 
@@ -20,17 +20,17 @@ full decision-intelligence bundle) are charged to the first test that uses them.
 | `test_capacity_rules.py` | 22 | 0 | v1: ring-fencing, shared capacity, transfers, budgets, benefit attribution |
 | `test_integration.py` | 18 | 0 | v1: tiers, 12 scenarios, workbook and dashboard on the sample |
 | `test_intake.py` | 12 | 1 | Excel intake, validation, optional v2 sheets, round trip and fingerprint |
-| `test_deck.py` | 11 | 115 | v1 executive deck |
+| `test_deck.py` | 11 | 116 | v1 executive deck |
 | `test_cadence.py` | 20 | 124 | Cadence agent: schedule, issues, reminders, run (now with v2 outputs), LT pre-read |
 | `test_decision.py` | 14 | 25 | LT decision record, `alternative:` adoption, preserve mode, memo and register |
-| `test_solvers.py` | 13 | 64 | HiGHS/SCIP agreement, CBC, CP-SAT reformulation, OSQP, validator, confidence report, timeouts |
-| `test_pareto.py` | 11 | 136 | Objective linearizations, epsilon-constraint, weighted sum, NSGA-II labelling, dominance, scope |
+| `test_solvers.py` | 13 | 51 | HiGHS/SCIP agreement, CBC, CP-SAT reformulation, OSQP, validator, confidence report, timeouts |
+| `test_pareto.py` | 11 | 139 | Objective linearizations, epsilon-constraint, weighted sum, NSGA-II labelling, dominance, scope |
 | `test_montecarlo.py` | 23 | 8 | Distributions, correlation repair, CRN, reproducibility, fixed vs adaptive, VaR/CVaR, convergence |
-| `test_decision_intelligence.py` | 16 | 318 | End to end: intake → validated optimization → frontier → MC → recommendation → what-if → dashboard and CEO deck, including the radar views reconciled between dashboard, deck and bundle |
-| `test_performance.py` | 7 | 82 | Synthetic generator at 25–500 × 12–36, small end of the grid solved and simulated, benchmark report coverage |
+| `test_decision_intelligence.py` | 16 | 326 | End to end: intake → validated optimization → frontier → MC → recommendation → what-if → dashboard and CEO deck, including the radar views reconciled between dashboard, deck and bundle |
+| `test_performance.py` | 7 | 83 | Synthetic generator at 25–500 × 12–36, small end of the grid solved and simulated, benchmark report coverage |
 | **Total** | **167** | | |
 
-## Slowest steps
+## Slowest steps (previous run; within a few seconds of the latest)
 
 | Seconds | Step |
 |---:|---|
