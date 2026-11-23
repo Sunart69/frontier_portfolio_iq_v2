@@ -104,6 +104,6 @@ jobs:
             git push -u origin "$branch" --force-with-lease
             gh pr create --base "${GITHUB_REF_NAME}" --head "$branch" \
               --title "Portfolio ${out_cycle}: LT pre-read" \
-              --body "Optimization outputs for ${out_cycle}: executive deck, LOB dashboard, results workbook and summary in \`cycles/${out_cycle}/outputs/\`. Review before the pre-read milestone and merge. After the LT meeting, fill in \`cycles/${out_cycle}/decision/lt_decision.yaml\` on main; the approved-portfolio memo is then published to \`cycles/${out_cycle}/published/\`." \
+              --body "LT pre-read for ${out_cycle} in \`cycles/${out_cycle}/outputs/\`: CEO decision deck (\`ceo_decision_deck_${out_cycle}.pptx\`, spider charts on slide 6), decision dashboard (\`decision_dashboard.html\`), results workbooks (\`decision_results.xlsx\` with the Spider views sheet), \`decision_intelligence.json\`, \`solver_confidence.md\`, and the LOB dashboard and executive deck. Review before the pre-read milestone and merge. After the LT meeting, fill in \`cycles/${out_cycle}/decision/lt_decision.yaml\` on main; the approved-portfolio memo is then published to \`cycles/${out_cycle}/published/\`." \
               || echo "::warning::Could not open the pull request. Allow GitHub Actions to create pull requests (Settings → Actions → General), or open it from branch ${branch}."
           fi

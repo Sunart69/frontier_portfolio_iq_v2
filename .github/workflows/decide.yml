@@ -1,0 +1,68 @@
+# On-demand decision-intelligence run (what-ifs, a different risk appetite, a re-run on a cycle's inputs).
+# Run it from Actions → "Decision intelligence run" → Run workflow. The outputs (decision dashboard, CEO
+# deck, results workbook with the Spider views sheet, JSON bundle, solver confidence) are attached to the
+# run as the artifact "decision-outputs": download it and file it where the leadership team reads it.
+# Nothing is committed and no issue is touched.
+name: Decision intelligence run
+
+on:
+  workflow_dispatch:
+    inputs:
+      input:
+        description: "Intake workbook in the repo, e.g. cycles/2027-H2/merged_intake.xlsx (blank = sample portfolio)"
+        required: false
+        default: ""
+      config:
+        description: "Decision configuration YAML (what-ifs, rules, profiles)"
+        required: false
+        default: "config/decision.yaml"
+      profile:
+        description: "Risk profile for the recommendation"
+        type: choice
+        options: [balanced, risk_neutral, risk_averse]
+        default: balanced
+      rules:
+        description: "Rule sets, space separated (npv_budget80 okr_dates85 mandatory downside_protected)"
+        required: false
+        default: ""
+      quick:
+        description: "Quick run (smaller frontier, 2,000 iterations) for a fast first look"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  decide:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -e .
+      - name: Run decision intelligence
+        env:
+          INPUT: ${{ github.event.inputs.input }}
+          CONFIG: ${{ github.event.inputs.config }}
+          PROFILE: ${{ github.event.inputs.profile }}
+          RULES: ${{ github.event.inputs.rules }}
+          QUICK: ${{ github.event.inputs.quick }}
+        run: |
+          args=(--out decision-outputs --profile "$PROFILE" --cache "")
+          [ -n "$INPUT" ] && args+=(--input "$INPUT")
+          [ -n "$CONFIG" ] && args+=(--config "$CONFIG")
+          [ -n "$RULES" ] && args+=(--rules $RULES)
+          [ "$QUICK" = "true" ] && args+=(--quick)
+          python -m frontier_portfolio_iq decide "${args[@]}" | tee decide.log
+          echo "## Decision intelligence run" >> "$GITHUB_STEP_SUMMARY"
+          tail -n 5 decide.log | sed 's/^/    /' >> "$GITHUB_STEP_SUMMARY"
+          cat decision-outputs/solver_confidence.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: decision-outputs
+          path: decision-outputs/
+          retention-days: 30

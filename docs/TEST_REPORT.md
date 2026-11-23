@@ -2,7 +2,7 @@
 
 This is the full suite as executed when the repository was built. Nothing below is estimated.
 
-**Result: 167 passed, 0 failed, 3 warnings, in 874.2 s (14 min 34 s).** (Latest run, after the spider charts were moved into slide 6 and the dashboard's first screen.)
+**Result: 167 passed, 0 failed, 3 warnings, in 884.7 s (14 min 45 s).** (Latest run, after the Spider views sheet was added to the results workbook. Per-file times below are from the run before it, within a few seconds.)
 
 Command: `python -m pytest -q --durations=25` (with `--junitxml` for the per-file table).
 

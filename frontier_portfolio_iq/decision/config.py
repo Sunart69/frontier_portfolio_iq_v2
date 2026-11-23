@@ -173,5 +173,31 @@ def write_decision_workbook(b, path: str) -> str:
            *[[f"Driver {d.driver_id}", f"{d.dist.describe()} on {d.effect} ({d.mode}) for {d.applies_to}"]
              for d in b.uncertainty.drivers],
            *[[f"Simulation {k}", v] for k, v in dataclasses.asdict(b.uncertainty.settings).items()]])
+    # the numbers behind every spider (radar) chart in the dashboard and the CEO deck, one row per spoke
+    from ..radar import radar_profiles
+    rd = radar_profiles(b)
+    titles = {}
+    for k, c in b.choices.items():
+        titles.setdefault(c["alt_id"], []).append(c["title"])
+    nm = lambda aid: (b.alt(aid).name if aid and b.frontier.get(aid) else aid) or aid
+    spider = []
+    for fam, axes, src in (("Risk trade-off (simulated)", rd["risk_axes"], rd["risk"]),
+                           ("Risk trade-off, adaptive execution (simulated)", rd["risk_axes"], rd["risk_adaptive"]),
+                           ("Optimization KPIs (proven)", rd["kpi_axes"], rd["kpi"])):
+        for aid, vals in src.items():
+            for a in axes:
+                if a["key"] in vals:
+                    spider.append([fam, aid, nm(aid), " = ".join(titles.get(aid, [])), a["label"], vals[a["key"]],
+                                   a["definition"]])
+    for key, v in rd["scenarios"].items():
+        for a in rd["scenario_axes"]:
+            spider.append(["What-if (simulated)", v["alt_id"], v["name"], "", a["label"], v["values"][a["key"]],
+                           a["definition"]])
+    for prof, v in rd["profiles"].items():
+        for c in rd["profile_axes"]:
+            spider.append(["Risk appetite weights", v["recommended"], prof.replace("_", " "), "", c.replace("_", " "),
+                           v["weights"][c], "weight in the profile's score (weights sum to 1)"])
+    sheet("Spider views", ["Spider", "Plan ID", "Plan / scenario / profile", "Strategic choice", "Spoke",
+                           "Value (0-1, 1 = best)", "Definition"], spider)
     wb.save(path)
     return path

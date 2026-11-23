@@ -69,11 +69,19 @@ contains the decision dashboard and the CEO deck. GitHub-hosted runners have 2 C
 for portfolios up to several hundred initiatives (see the measured peak memory in PERFORMANCE.md).
 Self-hosted runners need no extra setup beyond Python.
 
+The **Decision intelligence run** workflow (`.github/workflows/decide.yml`, run manually) runs `decide` on
+the sample or on any intake workbook in the repository, with a chosen risk profile, rule sets and
+configuration (for what-ifs), and attaches the outputs as the artifact `decision-outputs`. It commits
+nothing.
+
 ## 4. The agent
 
 `.github/agents/portfolio-cycle.agent.md` works in VS Code agent mode (including the free Copilot plan),
 the Copilot CLI, or the Copilot cloud agent (paid plans). Everything scheduled runs in GitHub Actions
-without Copilot. [COPILOT_SETUP_PROMPT.md](COPILOT_SETUP_PROMPT.md) walks Copilot through setup.
+without Copilot. [COPILOT_SETUP_PROMPT.md](COPILOT_SETUP_PROMPT.md) walks GitHub Copilot through setup.
+For Microsoft 365, [COPILOT_COWORK_SETUP_PROMPT.md](COPILOT_COWORK_SETUP_PROMPT.md) sets up Copilot Cowork as
+the people-facing side of the cycle (owner register, calendar, reminders, pre-read, decision record,
+distribution) while the engine keeps running in GitHub Actions.
 
 ## 5. Tests and benchmark
 

@@ -78,7 +78,8 @@ self-contained file and needs no server. The spider charts are on the first scre
 | [docs/V1_MODEL.md](docs/V1_MODEL.md) | The v1 MILP, tiers and classification that v2 builds on |
 | [docs/CADENCE.md](docs/CADENCE.md) | The semi-annual cycle: setup, follow-ups, LT decision, publishing |
 | [docs/explainer/how-the-decision-intelligence-works.md](docs/explainer/how-the-decision-intelligence-works.md) | Plain-language explainer for the leadership team |
-| [docs/COPILOT_SETUP_PROMPT.md](docs/COPILOT_SETUP_PROMPT.md) | A phased prompt for Copilot agent mode to set this up for your organization |
+| [docs/COPILOT_SETUP_PROMPT.md](docs/COPILOT_SETUP_PROMPT.md) | A phased prompt for GitHub Copilot agent mode to set this up for your organization |
+| [docs/COPILOT_COWORK_SETUP_PROMPT.md](docs/COPILOT_COWORK_SETUP_PROMPT.md) | A phased prompt for Microsoft 365 Copilot Cowork: owner register, calendar, reminders, LT pre-read, decision record and distribution in Microsoft 365, with the engine in GitHub Actions |
 
 ## Semi-annual cadence and the agent
 
