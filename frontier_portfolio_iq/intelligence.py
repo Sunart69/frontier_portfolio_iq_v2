@@ -125,6 +125,7 @@ class DecisionBundle:
 
     def to_dict(self) -> Dict:
         from .metrics import portfolio_metrics
+        from .radar import radar_profiles
         data = self.data
         alts = []
         for a in self.frontier.alternatives:
@@ -178,6 +179,7 @@ class DecisionBundle:
                                           "productivity": u.productivity.describe(), "source": u.source}
                                       for k, u in um.pools.items()},
                             "simulation": dataclasses.asdict(um.settings)},
+            "radar": radar_profiles(self),
             "timings": self.timings, "cache": self.cache, "consistency_issues": self.consistency(),
         }
 

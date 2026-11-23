@@ -20,8 +20,9 @@ the LOB dashboard and the CEO deck, and the semi-annual cycle agent with its LT 
    decision rules (e.g. max E[NPV] s.t. P(within budget) ≥ 80%), four strategic choices, and a
    scenario-based stochastic CVaR MILP for risk-aware optimization.
 5. **What-if analysis** across optimization, frontier and risk, cached by model fingerprint.
-6. **A decision dashboard and a 12-slide CEO decision deck** (plus technical appendices), built from the
-   live run, with PROVEN / SIMULATED / ESTIMATE labels throughout.
+6. **A decision dashboard and a 12-slide CEO decision deck** (plus seven technical appendices), built from
+   the live run, with PROVEN / SIMULATED / ESTIMATE labels throughout. Radar (spider) views show the risk
+   trade-off, the optimization KPIs, risk appetite and what-if shapes side by side (`docs/METHODS.md` §7).
 
 All stages work on one canonical, versioned portfolio model.
 

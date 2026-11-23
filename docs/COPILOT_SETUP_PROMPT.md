@@ -120,7 +120,7 @@ Then summarize in at most 10 bullets:
 3. Confirm every engine loads: `python -c "from frontier_portfolio_iq.solvers import engine_inventory; print(engine_inventory())"`.
    HiGHS, SCIP, CP-SAT and CBC must show as available; IPOPT and OSQP are optional.
 4. Run the fast tests: `pytest -m "not integration" -q`.
-5. Run the full suite: `pytest -q`. 166 tests are expected to pass; it took about 15 minutes on a
+5. Run the full suite: `pytest -q`. 167 tests are expected to pass; it took about 15 minutes on a
    2-vCPU machine (`docs/TEST_REPORT.md`).
 
 Report the pass/fail counts. If anything fails, stop and show me the first failure in full.

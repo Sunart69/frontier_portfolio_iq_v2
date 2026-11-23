@@ -187,6 +187,11 @@ def test_dashboard_is_built_from_live_bundle_data(di_bundle, tmp_path):
     for label in ("PROVEN", "SIMULATED", "ESTIMATE"):
         assert label in html
     assert "NaN" not in json.dumps(D)
+    assert D["radar"]["risk"][di_bundle.recommended_id]["budget_confidence"] == \
+        pytest.approx(r["probabilities"]["within_budget"]["p"])
+    for title in ("Risk trade-off radar", "Optimization KPI radar", "Risk appetite lens", "What-if radar",
+                  "Fixed plan vs adaptive execution", "KPI shape of each strategic choice"):
+        assert title in html
 
 
 def test_ceo_deck_reconciles_with_bundle(di_bundle, tmp_path):
@@ -196,7 +201,7 @@ def test_ceo_deck_reconciles_with_bundle(di_bundle, tmp_path):
     p = str(tmp_path / "ceo.pptx")
     m = build_ceo_deck(di_bundle, p)
     prs = Presentation(p)
-    assert len(prs.slides) == 16
+    assert len(prs.slides) == 19                        # 12 storyline slides + appendices A1-A7
     r = di_bundle.risk[di_bundle.recommended_id]
     assert m["1"]["alt"] == di_bundle.recommended_id and m["1"]["expected_npv"] == pytest.approx(r["npv"]["mean"])
     s1 = " ".join(sh.text_frame.text for sh in prs.slides[0].shapes if sh.has_text_frame)
@@ -209,6 +214,40 @@ def test_ceo_deck_reconciles_with_bundle(di_bundle, tmp_path):
     assert m["5"]["balanced"]["alt"] == di_bundle.choices["balanced"]["alt_id"]
     assert m["10"]["selected"] == sorted(di_bundle.recommended.starts)
     assert m["A1"]["level"] == di_bundle.confidence.level
+    # radar appendices reconcile with the shared radar profiles and are native radar charts
+    from frontier_portfolio_iq.radar import radar_profiles
+    rd = radar_profiles(di_bundle)
+    for aid, vals in m["A5"]["plans"].items():
+        assert vals == pytest.approx(rd["risk"][aid])
+    for aid, vals in m["A6"]["plans"].items():
+        assert vals == pytest.approx(rd["kpi"][aid])
+    assert set(m["A6"]["plans"]) == {c["alt_id"] for c in di_bundle.choices.values()}
+    assert m["A7"]["profiles"]["balanced"] == pytest.approx(rd["profiles"]["balanced"]["weights"])
+    radars = [sh for sl in list(prs.slides)[16:] for sh in sl.shapes if sh.has_chart]
+    assert len(radars) >= 4 and all("radar" in str(sh.chart.chart_type).lower() for sh in radars)
+
+
+def test_radar_profiles_are_bounded_and_consistent(di_bundle):
+    from frontier_portfolio_iq.radar import RISK_AXES, radar_profiles, risk_profile
+    rd = radar_profiles(di_bundle)
+    for fam in ("risk", "risk_adaptive", "kpi"):
+        for vals in rd[fam].values():
+            assert all(0.0 <= v <= 1.0 for v in vals.values())
+    rec = di_bundle.recommended_id
+    r = di_bundle.risk[rec]
+    rp = risk_profile(r)
+    assert set(rp) == {k for k, _, _ in RISK_AXES}
+    assert rp["budget_confidence"] == pytest.approx(r["probabilities"]["within_budget"]["p"])
+    assert rp["capacity"] == pytest.approx(1 - r["probabilities"]["capability_shortage"]["p"])
+    # KPI axes: the ideal is reached by some efficient plan on every objective it was optimized for
+    for k in di_bundle.frontier.objective_keys:
+        assert max(v.get(k, 0) for v in rd["kpi"].values()) <= 1.0
+    # what-if radar: baseline first, monetary axes relative to the best scenario
+    sc = rd["scenarios"]
+    assert next(iter(sc)) == "baseline" and max(v["values"]["expected_npv"] for v in sc.values()) == pytest.approx(1.0)
+    # leaders are a plan among the strategic choices, or None for a tie
+    plans = {c["alt_id"] for c in di_bundle.choices.values()}
+    assert all(v is None or v in plans for v in rd["leaders"]["risk"].values())
 
 
 def test_cli_decide_end_to_end(tmp_path):

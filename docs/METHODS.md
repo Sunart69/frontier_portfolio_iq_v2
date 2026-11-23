@@ -214,3 +214,20 @@ optimization, frontier, Monte Carlo and recommendation are recomputed for it; th
 recommendation is re-evaluated under the scenario (still feasible? its risk there). Results are cached
 by (stage, model fingerprint, uncertainty, configuration, code version), so unchanged inputs are reused
 and any change forces recomputation.
+
+## 7. Radar (spider) views
+
+`radar.py` computes every radar the dashboard and the CEO deck draw, so both show the same numbers (the
+deck manifest records them and the tests reconcile the two). Every axis runs 0–1 with 1 = best.
+
+| Radar | Where | Axes and scale |
+|---|---|---|
+| Trade-off radar (risk-adjusted criteria) | Compare tab, slide 6 | The ranking's normalized criteria (expected NPV and alignment relative to the best plan; probabilities as simulated; downside protection 1 − CVaR ÷ E[NPV]; months to value best ÷ this plan) |
+| Risk trade-off radar | Risk tab, A5 | Budget confidence P(cost ≤ plan + reserve); LOB budgets held 1 − P(any LOB over budget); committed dates met; OKR targets held; capacity sufficient 1 − P(capability shortage); value floor met; downside protection 1 − CVaR ÷ E[NPV]; value certainty P10 ÷ E[NPV]. **Absolute** scales: a probability is never stretched relative to other plans. The safest shortlisted plan (best average across the eight axes) is drawn dashed for reference |
+| Fixed vs adaptive execution | Risk tab, A5 | Same eight axes for one plan, fixed-plan vs adaptive (recourse) simulation |
+| Optimization KPI radar and small multiples | Frontier tab, A6 | Every frontier objective normalized from the nadir (0) to the ideal (1), direction-aware, so cost, risk, peak load and time to value point outward when lower. Deterministic and solver-certified |
+| Risk appetite lens | Choices tab, A7 | The weight each risk profile places on each criterion (weights sum to 100%) and the plan it recommends |
+| What-if radar | What-if tab, A7 | Today's recommendation (baseline) and the best plan in each scenario: E[NPV] and P10 NPV relative to the best scenario; budget, dates, capacity, downside protection and value certainty absolute |
+
+"Leads on" statements (which strategic choice is best on an axis) treat differences within 0.01 as ties,
+because simulated probabilities carry sampling error; coinciding choices count as one plan.

@@ -52,6 +52,21 @@ Is the plan feasible under every rule (capacity, ring-fencing, budgets, dependen
 
 Two choices can coincide; the deck says so.
 
+## Reading the spider charts
+
+Every spider (radar) chart in the dashboard and the deck uses the same rule: **outward is better, the outer
+ring is 1 (best)**. A bigger, rounder shape is a stronger plan; a dent shows the price paid for it.
+
+* **Risk trade-off** — eight safety measures (budget, LOB budgets, dates, OKRs, capacity, value floor,
+  downside, certainty). These are real probabilities, not rescaled, so a shape near the centre on one
+  spoke means that risk is genuinely likely. A dashed outline shows the safest plan on the shortlist, so
+  you can see how much safety is available and what it would cost in value.
+* **Optimization KPIs** — every objective the solver traded off. 1 is the best any plan achieved on that
+  objective alone; nobody reaches 1 everywhere, and the dents are the trade-off.
+* **Risk appetite** — how much weight each risk profile places on each criterion, and which plan it picks.
+* **What-if** — the best plan in each scenario, so you see which world weakens value and which weakens
+  delivery confidence.
+
 ## What "risk" means here
 
 * **P10 / P50 / P90**: in 10% of simulated futures NPV is below P10; half the futures are below P50.

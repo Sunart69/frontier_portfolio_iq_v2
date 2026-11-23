@@ -1,6 +1,6 @@
 {
  "schema": "fpiq-decision-intelligence/2.0",
- "run_id": "2026-11-22 16:41",
+ "run_id": "2026-11-22 18:00",
  "model_version": "baseline@d344768e8c628fb3",
  "fingerprint": "d344768e8c628fb3",
  "horizon": 12,
@@ -701,7 +701,7 @@
   "chosen_engine": "HiGHS",
   "certified_gap": 0.008117671417012156,
   "best_bound": 27990.84439645353,
-  "build_seconds": 0.048,
+  "build_seconds": 0.061,
   "settings": {
    "time_limit": 20,
    "mip_gap": 0.01,
@@ -724,7 +724,7 @@
     "objective": 27765.45356764706,
     "bound": 28024.056200764353,
     "gap": 0.009313827072453231,
-    "runtime_s": 3.463,
+    "runtime_s": 2.905,
     "nodes": 42,
     "message": "Optimal",
     "role": "primary",
@@ -755,7 +755,7 @@
     "objective": 27765.453567647062,
     "bound": 27990.84439645353,
     "gap": 0.008117671417012156,
-    "runtime_s": 6.401,
+    "runtime_s": 5.913,
     "nodes": 294,
     "message": "gaplimit",
     "role": "validation",
@@ -781,14 +781,14 @@
    },
    {
     "engine": "CP-SAT",
-    "status": "feasible",
-    "proof": "feasible",
+    "status": "optimal",
+    "proof": "optimal",
     "objective": 27765.45356764706,
-    "bound": 29812.4,
-    "gap": 0.07359531847850556,
-    "runtime_s": 20.004,
+    "bound": 27768.75,
+    "gap": 0.0,
+    "runtime_s": 18.016,
     "nodes": null,
-    "message": "FEASIBLE",
+    "message": "OPTIMAL",
     "cp_objective_scaled": 27768.75,
     "integer_vars": 1300,
     "bound_note": "bound from integer-scaled model (approximate)",
@@ -826,7 +826,7 @@
    {
     "pair": "HiGHS vs CP-SAT",
     "difference": 0.0,
-    "allowed": 2043.4351634647114,
+    "allowed": 277.68230113003824,
     "consistent": true,
     "problems": [],
     "same_selection": true
@@ -848,7 +848,7 @@
   "chosen_engine": "HiGHS",
   "certified_gap": 0.0,
   "best_bound": 27765.45356764706,
-  "build_seconds": 0.044,
+  "build_seconds": 0.032,
   "settings": {
    "time_limit": 20,
    "mip_gap": 0.01,
@@ -871,7 +871,7 @@
     "objective": 27765.45356764706,
     "bound": 27765.45356764706,
     "gap": 0.0,
-    "runtime_s": 0.012,
+    "runtime_s": 0.008,
     "nodes": 1,
     "message": "Optimal",
     "role": "primary",
@@ -902,7 +902,7 @@
     "objective": 27765.453567647073,
     "bound": 27765.453567647073,
     "gap": 0.0,
-    "runtime_s": 0.013,
+    "runtime_s": 0.011,
     "nodes": 1,
     "message": "optimal",
     "role": "validation",
@@ -933,7 +933,7 @@
     "objective": 27765.45356764706,
     "bound": 27768.75,
     "gap": 0.0,
-    "runtime_s": 0.053,
+    "runtime_s": 0.051,
     "nodes": null,
     "message": "OPTIMAL",
     "cp_objective_scaled": 27768.75,
@@ -1246,7 +1246,7 @@
      "bound": 27750.90556203018,
      "validated": true,
      "failures": [],
-     "runtime": 3.978935718536377,
+     "runtime": 3.0846714973449707,
      "certified": true
     },
     "provenance": {
@@ -1551,7 +1551,7 @@
      "bound": 27760.889455793877,
      "validated": true,
      "failures": [],
-     "runtime": 4.99626898765564,
+     "runtime": 4.068284749984741,
      "certified": true
     },
     "provenance": {
@@ -1836,7 +1836,7 @@
      "bound": -167.2505,
      "validated": true,
      "failures": [],
-     "runtime": 0.07169580459594727,
+     "runtime": 0.06496596336364746,
      "certified": true
     },
     "provenance": {
@@ -2050,7 +2050,7 @@
      "bound": -9.420241648756763,
      "validated": true,
      "failures": [],
-     "runtime": 3.6452202796936035,
+     "runtime": 2.8169302940368652,
      "certified": true
     },
     "provenance": {
@@ -2352,7 +2352,7 @@
      "bound": 27859.27423003576,
      "validated": true,
      "failures": [],
-     "runtime": 4.326431751251221,
+     "runtime": 3.4590070247650146,
      "certified": true
     },
     "provenance": {
@@ -2663,7 +2663,7 @@
      "bound": 22227.354214981377,
      "validated": true,
      "failures": [],
-     "runtime": 6.637904644012451,
+     "runtime": 4.516359806060791,
      "certified": true
     },
     "provenance": {
@@ -2954,11 +2954,11 @@
      "engine": "HiGHS",
      "status": "feasible",
      "proof": "feasible",
-     "gap": 0.04571023942449658,
-     "bound": 14694.37036666412,
+     "gap": 0.04516161452734842,
+     "bound": 14686.661063334064,
      "validated": true,
      "failures": [],
-     "runtime": 10.009378910064697,
+     "runtime": 10.004856586456299,
      "certified": true
     },
     "provenance": {
@@ -3215,11 +3215,11 @@
      "engine": "HiGHS",
      "status": "feasible",
      "proof": "feasible",
-     "gap": 0.04089392235444872,
-     "bound": 14661.085575178558,
+     "gap": 0.03848721283072647,
+     "bound": 14627.186852624702,
      "validated": true,
      "failures": [],
-     "runtime": 10.012506484985352,
+     "runtime": 10.00941514968872,
      "certified": true
     },
     "provenance": {
@@ -3481,7 +3481,7 @@
      "bound": 14027.55452185792,
      "validated": true,
      "failures": [],
-     "runtime": 5.075572967529297,
+     "runtime": 3.6034741401672363,
      "certified": true
     },
     "provenance": {
@@ -3726,7 +3726,7 @@
      "bound": 3085.3249463158872,
      "validated": true,
      "failures": [],
-     "runtime": 0.011914491653442383,
+     "runtime": 0.011171340942382812,
      "certified": true
     },
     "provenance": {
@@ -3939,13 +3939,13 @@
     },
     "evidence": {
      "engine": "HiGHS",
-     "status": "feasible",
-     "proof": "feasible",
-     "gap": 0.013419998822329597,
-     "bound": 24268.139967826446,
+     "status": "optimal",
+     "proof": "within_gap",
+     "gap": 0.009990204448809159,
+     "bound": 24186.007456119372,
      "validated": true,
      "failures": [],
-     "runtime": 10.012217044830322,
+     "runtime": 6.135291814804077,
      "certified": true
     },
     "provenance": {
@@ -4236,7 +4236,7 @@
      "bound": 18009.513879215818,
      "validated": true,
      "failures": [],
-     "runtime": 5.843125820159912,
+     "runtime": 4.047652721405029,
      "certified": true
     },
     "provenance": {
@@ -4510,7 +4510,7 @@
      "bound": 9887.767541862167,
      "validated": true,
      "failures": [],
-     "runtime": 0.2055501937866211,
+     "runtime": 0.16956138610839844,
      "certified": true
     },
     "provenance": {
@@ -4758,7 +4758,7 @@
      "bound": 14196.891774904632,
      "validated": true,
      "failures": [],
-     "runtime": 3.941816568374634,
+     "runtime": 2.7628748416900635,
      "certified": true
     },
     "provenance": {
@@ -5028,7 +5028,7 @@
      "bound": 22064.895973583014,
      "validated": true,
      "failures": [],
-     "runtime": 3.1591970920562744,
+     "runtime": 2.4382729530334473,
      "certified": true
     },
     "provenance": {
@@ -5324,13 +5324,13 @@
     },
     "evidence": {
      "engine": "HiGHS",
-     "status": "feasible",
-     "proof": "feasible",
-     "gap": 0.02308367029014369,
-     "bound": 27937.474645688355,
+     "status": "optimal",
+     "proof": "within_gap",
+     "gap": 0.009749211913293926,
+     "bound": 27573.34891126863,
      "validated": true,
      "failures": [],
-     "runtime": 10.01323413848877,
+     "runtime": 6.473222017288208,
      "certified": true
     },
     "provenance": {
@@ -5629,11 +5629,11 @@
      "engine": "HiGHS",
      "status": "feasible",
      "proof": "feasible",
-     "gap": 0.035145205681692056,
-     "bound": 16257.14766586051,
+     "gap": 0.01794691074081835,
+     "bound": 15987.045250353809,
      "validated": true,
      "failures": [],
-     "runtime": 10.010173559188843,
+     "runtime": 10.018579721450806,
      "certified": true
     },
     "provenance": {
@@ -5905,7 +5905,7 @@
      "bound": 11700.868562493055,
      "validated": true,
      "failures": [],
-     "runtime": 3.042149305343628,
+     "runtime": 2.320871114730835,
      "certified": true
     },
     "provenance": {
@@ -6151,7 +6151,7 @@
      "bound": 6636.536395637318,
      "validated": true,
      "failures": [],
-     "runtime": 0.09818530082702637,
+     "runtime": 0.08024477958679199,
      "certified": true
     },
     "provenance": {
@@ -6379,7 +6379,7 @@
      "bound": 14153.141780799737,
      "validated": true,
      "failures": [],
-     "runtime": 5.668735980987549,
+     "runtime": 3.5584516525268555,
      "certified": true
     },
     "provenance": {
@@ -6635,13 +6635,13 @@
     },
     "evidence": {
      "engine": "HiGHS",
-     "status": "feasible",
-     "proof": "feasible",
-     "gap": 0.01296308475219593,
-     "bound": 17978.959438742702,
+     "status": "optimal",
+     "proof": "within_gap",
+     "gap": 0.009961469229478095,
+     "bound": 17925.684127385382,
      "validated": true,
      "failures": [],
-     "runtime": 10.015958547592163,
+     "runtime": 6.779157876968384,
      "certified": true
     },
     "provenance": {
@@ -6932,7 +6932,7 @@
      "bound": 1.0071232274705957,
      "validated": true,
      "failures": [],
-     "runtime": 6.373615264892578,
+     "runtime": 4.625180721282959,
      "certified": true
     },
     "provenance": {
@@ -7231,7 +7231,7 @@
      "bound": 0.6944440804724903,
      "validated": true,
      "failures": [],
-     "runtime": 1.9598388671875,
+     "runtime": 1.8299272060394287,
      "certified": true
     },
     "provenance": {
@@ -7479,7 +7479,7 @@
      "bound": 0.9995479792797214,
      "validated": true,
      "failures": [],
-     "runtime": 0.08810305595397949,
+     "runtime": 0.072509765625,
      "certified": true
     },
     "provenance": {
@@ -7689,7 +7689,7 @@
      "bound": 0.5746155513323887,
      "validated": true,
      "failures": [],
-     "runtime": 0.38558173179626465,
+     "runtime": 0.3321497440338135,
      "certified": true
     },
     "provenance": {
@@ -7961,7 +7961,7 @@
      "bound": 1.0067828106553358,
      "validated": true,
      "failures": [],
-     "runtime": 5.464414596557617,
+     "runtime": 3.8534138202667236,
      "certified": true
     },
     "provenance": {
@@ -8273,7 +8273,7 @@
      "bound": null,
      "validated": true,
      "failures": [],
-     "runtime": 5.732897043228149,
+     "runtime": 4.083240032196045,
      "certified": true
     },
     "provenance": {
@@ -8523,8 +8523,8 @@
    "mode": "fixed",
    "seed": 20270101,
    "chunks": 4,
-   "seconds": 1.6244113445281982,
-   "throughput": 6156.076189497709,
+   "seconds": 1.4882535934448242,
+   "throughput": 6719.284968668037,
    "reference": {
     "npv": 18133.001819879923,
     "value": 27693.75,
@@ -9295,8 +9295,8 @@
    "mode": "fixed",
    "seed": 20270101,
    "chunks": 4,
-   "seconds": 1.5470316410064697,
-   "throughput": 6463.991902256238,
+   "seconds": 1.5265884399414062,
+   "throughput": 6550.553992393537,
    "reference": {
     "npv": 18023.7699991395,
     "value": 27521.25,
@@ -10067,8 +10067,8 @@
    "mode": "fixed",
    "seed": 20270101,
    "chunks": 4,
-   "seconds": 0.6699309349060059,
-   "throughput": 14926.91183368483,
+   "seconds": 0.6936891078948975,
+   "throughput": 14415.67971327456,
    "reference": {
     "npv": 2206.921488436454,
     "value": 3163.75,
@@ -10664,8 +10664,8 @@
    "mode": "fixed",
    "seed": 20270101,
    "chunks": 4,
-   "seconds": 1.476325511932373,
-   "throughput": 6773.573930122584,
+   "seconds": 1.2576487064361572,
+   "throughput": 7951.345990994057,
    "reference": {
     "npv": 17276.426265565955,
     "value": 26258.75,
@@ -11434,8 +11434,8 @@
    "mode": "fixed",
    "seed": 20270101,
    "chunks": 4,
-   "seconds": 0.9339125156402588,
-   "throughput": 10707.641061159073,
+   "seconds": 0.8255043029785156,
+   "throughput": 12113.80723748966,
    "reference": {
     "npv": 4726.77953180917,
     "value": 6732.5,
@@ -12090,8 +12090,8 @@
    "mode": "fixed",
    "seed": 20270101,
    "chunks": 4,
-   "seconds": 1.1335911750793457,
-   "throughput": 8821.52244992561,
+   "seconds": 1.0859317779541016,
+   "throughput": 9208.681616114069,
    "reference": {
     "npv": 7853.331798396084,
     "value": 11677.5,
@@ -12793,8 +12793,8 @@
    "mode": "fixed",
    "seed": 20270101,
    "chunks": 4,
-   "seconds": 1.1832330226898193,
-   "throughput": 8451.42064854411,
+   "seconds": 1.1199612617492676,
+   "throughput": 8928.880258216252,
    "reference": {
     "npv": 9019.33350483171,
     "value": 13598.75,
@@ -13515,8 +13515,8 @@
    "mode": "fixed",
    "seed": 20270101,
    "chunks": 4,
-   "seconds": 1.2437729835510254,
-   "throughput": 8040.052430990718,
+   "seconds": 0.9780888557434082,
+   "throughput": 10224.019976589325,
    "reference": {
     "npv": 9202.657483780431,
     "value": 14177.5,
@@ -14237,8 +14237,8 @@
    "mode": "fixed",
    "seed": 20270101,
    "chunks": 4,
-   "seconds": 1.2218825817108154,
-   "throughput": 8184.092440370603,
+   "seconds": 1.352668046951294,
+   "throughput": 7392.7967933732625,
    "reference": {
     "npv": 12074.645015840822,
     "value": 17925.0,
@@ -14974,8 +14974,8 @@
    "mode": "fixed",
    "seed": 20270101,
    "chunks": 4,
-   "seconds": 1.3844845294952393,
-   "throughput": 7222.904833502068,
+   "seconds": 1.457690715789795,
+   "throughput": 6860.165803129147,
    "reference": {
     "npv": 15998.688221415252,
     "value": 24045.0,
@@ -15743,13 +15743,473 @@
   }
  },
  "risk_adaptive": {
+  "ALT-5072212F": {
+   "iterations": 10000,
+   "mode": "adaptive",
+   "seed": 20270101,
+   "chunks": 4,
+   "seconds": 1.5330665111541748,
+   "throughput": 6522.874204897648,
+   "reference": {
+    "npv": 17276.426265565955,
+    "value": 26258.75,
+    "cost": 8870.105882352942,
+    "min_acceptable_value": 21007.0
+   },
+   "npv": {
+    "mean": 14932.722293208939,
+    "sd": 1210.2312428702742,
+    "se": 11.159517165764541,
+    "p10": 13198.296253737457,
+    "p50": 15218.12277791249,
+    "p90": 16188.633271822888,
+    "p5": 12555.152350528275,
+    "p95": 16421.774657885373,
+    "min": 8154.044458397797,
+    "max": 17688.76165106897,
+    "p10_ci": [
+     13123.87770083977,
+     13258.174327967066
+    ],
+    "p50_ci": [
+     15198.946031493928,
+     15241.96093995634
+    ],
+    "p90_ci": [
+     16165.73733915622,
+     16215.723546868236
+    ],
+    "downside": "p10"
+   },
+   "value": {
+    "mean": 23895.34325892329,
+    "sd": 1197.7511600558105,
+    "se": 11.656161892566718,
+    "p10": 22154.025368662842,
+    "p50": 24204.7852781132,
+    "p90": 25094.437226292313,
+    "p5": 21479.858423867438,
+    "p95": 25316.38661793524,
+    "min": 17099.422787962056,
+    "max": 26326.001701966492,
+    "p10_ci": [
+     22100.869393707697,
+     22208.859167837865
+    ],
+    "p50_ci": [
+     24181.677534128416,
+     24227.082115805133
+    ],
+    "p90_ci": [
+     25075.208265955,
+     25116.523542837116
+    ],
+    "downside": "p10"
+   },
+   "cost": {
+    "mean": 9146.374051152658,
+    "sd": 293.95253275905355,
+    "se": 2.9408250306361996,
+    "p10": 8775.447084428233,
+    "p50": 9137.629841934002,
+    "p90": 9521.157362878412,
+    "p5": 8673.97659052077,
+    "p95": 9646.908222367098,
+    "min": 8016.394845133873,
+    "max": 10453.270035519241,
+    "p10_ci": [
+     8765.685467355002,
+     8785.337512644943
+    ],
+    "p50_ci": [
+     9130.125059560809,
+     9145.394049418997
+    ],
+    "p90_ci": [
+     9511.866205713719,
+     9532.740592698145
+    ],
+    "downside": "p90"
+   },
+   "roi": {
+    "mean": 1.6152591862575119,
+    "sd": 0.1560623900970778,
+    "se": 0.001445979313158984,
+    "p10": 1.4052922920083606,
+    "p50": 1.633627157706885,
+    "p90": 1.7975333045871464,
+    "p5": 1.330345807182385,
+    "p95": 1.8404483706609596,
+    "min": 0.8497417700306799,
+    "max": 2.102731441350214,
+    "p10_ci": [
+     1.397231335214115,
+     1.411733299761052
+    ],
+    "p50_ci": [
+     1.6299997035028282,
+     1.6375515178383824
+    ],
+    "p90_ci": [
+     1.7937318121925712,
+     1.8017777612454122
+    ],
+    "downside": "p10"
+   },
+   "completion": {
+    "mean": 13.8051,
+    "sd": 0.9310213048405536,
+    "se": 0.01053862569688036,
+    "p10": 13.0,
+    "p50": 14.0,
+    "p90": 15.0,
+    "p5": 13.0,
+    "p95": 15.0,
+    "min": 12.0,
+    "max": 18.0,
+    "p10_ci": [
+     13.0,
+     13.0
+    ],
+    "p50_ci": [
+     14.0,
+     14.0
+    ],
+    "p90_ci": [
+     15.0,
+     15.0
+    ],
+    "downside": "p90"
+   },
+   "completion_within_horizon": {
+    "p": 0.0257,
+    "se": 0.0015823877527331915
+   },
+   "probabilities": {
+    "cost_overrun": {
+     "p": 0.28,
+     "se": 0.00448998886412873
+    },
+    "lob_budget_breach": {
+     "p": 0.0003,
+     "se": 0.00017317909804592468
+    },
+    "within_budget": {
+     "p": 0.72,
+     "se": 0.00448998886412873
+    },
+    "miss_key_date": {
+     "p": 0.9561,
+     "se": 0.0020487261896114874
+    },
+    "meet_key_dates": {
+     "p": 0.0439,
+     "se": 0.002048726189611486
+    },
+    "okr_all_targets": {
+     "p": 0.0,
+     "se": 0.0
+    },
+    "okr_plan_targets": {
+     "p": 0.0155,
+     "se": 0.0012353036064061337
+    },
+    "capability_shortage": {
+     "p": 0.725,
+     "se": 0.004465142774872938
+    },
+    "min_acceptable_value": {
+     "p": 0.9712,
+     "se": 0.0016724401334576985
+    },
+    "npv_negative": {
+     "p": 0.0,
+     "se": 0.0
+    }
+   },
+   "okr_targets": {
+    "LOB-A|A-KR1 Digital acquisition": {
+     "p": 0.9493,
+     "se": 0.002193843886879829
+    },
+    "LOB-A|A-KR4 Fraud loss reduction": {
+     "p": 0.0,
+     "se": 0.0
+    },
+    "LOB-B|B-KR1 Loan cycle time": {
+     "p": 0.8688,
+     "se": 0.003376189568137429
+    },
+    "LOB-C|C-KR1 Advisor productivity": {
+     "p": 0.0907,
+     "se": 0.0028718201545361436
+    },
+    "LOB-C|C-KR2 AUM growth": {
+     "p": 0.1506,
+     "se": 0.003576585522534027
+    }
+   },
+   "capability_shortage": {
+    "AI Engineering": {
+     "p": 0.3208,
+     "se": 0.00466784061424552
+    },
+    "Data Engineering": {
+     "p": 0.23,
+     "se": 0.004208325082500163
+    },
+    "Integration Engineering": {
+     "p": 0.4031,
+     "se": 0.004905205296417267
+    },
+    "Software Engineering": {
+     "p": 0.2995,
+     "se": 0.004580390267215229
+    },
+    "Solution Architecture": {
+     "p": 0.0057,
+     "se": 0.0007528286657666537
+    }
+   },
+   "expected_shortage_hours": {
+    "AI Engineering": 12.962039769538462,
+    "Data Engineering": 19.62511282270038,
+    "Integration Engineering": 37.18101117533561,
+    "Software Engineering": 31.920215540161006,
+    "Solution Architecture": 0.04861490874474003
+   },
+   "late_by_project": {
+    "C03": {
+     "p": 0.0935,
+     "se": 0.0029113184298527016
+    },
+    "A03": {
+     "p": 0.1954,
+     "se": 0.0039650831012729105
+    },
+    "E04": {
+     "p": 0.827,
+     "se": 0.0037824727361872685
+    },
+    "B03": {
+     "p": 0.7302,
+     "se": 0.004438557873904542
+    }
+   },
+   "var_cvar": {
+    "alpha": 0.95,
+    "var": 4721.273915037679,
+    "cvar": 5586.906425288135
+   },
+   "contributions": [],
+   "drivers": [],
+   "sensitivity": [],
+   "convergence": {
+    "iterations": 10000,
+    "mean_npv": 14932.722293208939,
+    "se_mean_npv": 11.159517165764541,
+    "rel_se": 0.0007473196746476451,
+    "max_probability_se": 0.00448998886412873,
+    "half_sample_shift": 4.396527369313844,
+    "trace": [
+     {
+      "n": 100,
+      "mean": 14965.740236250822,
+      "se": 122.24951539980366
+     },
+     {
+      "n": 151,
+      "mean": 14978.152518250216,
+      "se": 98.43390060941697
+     },
+     {
+      "n": 231,
+      "mean": 15019.206233949768,
+      "se": 76.0597470660364
+     },
+     {
+      "n": 351,
+      "mean": 15003.266329648968,
+      "se": 62.095682060805586
+     },
+     {
+      "n": 533,
+      "mean": 15041.052275051288,
+      "se": 50.246881706994714
+     },
+     {
+      "n": 811,
+      "mean": 15015.96847197825,
+      "se": 41.47467583190527
+     },
+     {
+      "n": 1232,
+      "mean": 15007.35895916459,
+      "se": 33.03259236363025
+     },
+     {
+      "n": 1873,
+      "mean": 14967.849332788723,
+      "se": 27.59965254761034
+     },
+     {
+      "n": 2848,
+      "mean": 14938.548591037046,
+      "se": 22.87639503523526
+     },
+     {
+      "n": 4328,
+      "mean": 14936.60115846076,
+      "se": 18.414573727707303
+     },
+     {
+      "n": 6579,
+      "mean": 14929.87352495674,
+      "se": 14.941429611782977
+     },
+     {
+      "n": 10000,
+      "mean": 14932.722293208939,
+      "se": 12.102312428702742
+     }
+    ],
+    "converged": true,
+    "criteria": {
+     "rel_se": 0.01,
+     "prob_se": 0.01
+    }
+   },
+   "contingency_hours": 645.967048783587,
+   "deferred_months": 0.0,
+   "share_late": 0.2832214285714285,
+   "project_finish": {},
+   "histogram": {
+    "counts": [
+     1,
+     0,
+     4,
+     3,
+     2,
+     11,
+     15,
+     22,
+     29,
+     48,
+     55,
+     70,
+     117,
+     164,
+     227,
+     276,
+     325,
+     380,
+     465,
+     548,
+     807,
+     1111,
+     1482,
+     1463,
+     1125,
+     743,
+     358,
+     117,
+     27,
+     5
+    ],
+    "edges": [
+     8154.044458397797,
+     8471.86836482017,
+     8789.692271242542,
+     9107.516177664915,
+     9425.340084087287,
+     9743.16399050966,
+     10060.98789693203,
+     10378.811803354403,
+     10696.635709776776,
+     11014.459616199149,
+     11332.283522621521,
+     11650.107429043894,
+     11967.931335466266,
+     12285.755241888639,
+     12603.579148311012,
+     12921.403054733382,
+     13239.226961155757,
+     13557.050867578128,
+     13874.874774000502,
+     14192.698680422873,
+     14510.522586845245,
+     14828.346493267618,
+     15146.17039968999,
+     15463.994306112363,
+     15781.818212534736,
+     16099.642118957108,
+     16417.46602537948,
+     16735.289931801854,
+     17053.113838224224,
+     17370.937744646595,
+     17688.76165106897
+    ]
+   },
+   "cdf_completion": {
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18
+    ],
+    "p": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0257,
+     0.4334,
+     0.7905,
+     0.9547,
+     0.9915,
+     0.9991,
+     1.0
+    ]
+   },
+   "definitions": {
+    "percentiles": "Pxx = xx-th percentile; for value/NPV P10 is the downside, for cost/completion P90",
+    "var_cvar": "loss = plan NPV - simulated NPV; VaR95 = 95% quantile of loss; CVaR = mean loss in the worst 5%",
+    "cost_overrun": "total cost > planned cost x (1 + 5%)",
+    "lob_budget_breach": "any LOB/funding source spends more than its horizon budget within the horizon",
+    "key_dates": "deadline, or planned finish + 1 month(s) for mandatory/compliance/critical",
+    "okr": "realized attributed benefit delivered within the horizon >= KPI target; okr_plan_targets covers the targets the deterministic plan itself meets",
+    "capability_shortage": "any month with > 1 unmet hours for an active initiative",
+    "min_acceptable_value": "realized business value >= 80% of plan value"
+   }
+  },
   "ALT-17179BCF": {
    "iterations": 10000,
    "mode": "adaptive",
    "seed": 20270101,
    "chunks": 4,
-   "seconds": 1.1957223415374756,
-   "throughput": 8363.145567006692,
+   "seconds": 1.5139853954315186,
+   "throughput": 6605.083529983315,
    "reference": {
     "npv": 15998.688221415252,
     "value": 24045.0,
@@ -16205,473 +16665,13 @@
     "min_acceptable_value": "realized business value >= 80% of plan value"
    }
   },
-  "ALT-5072212F": {
-   "iterations": 10000,
-   "mode": "adaptive",
-   "seed": 20270101,
-   "chunks": 4,
-   "seconds": 1.2417809963226318,
-   "throughput": 8052.949779078324,
-   "reference": {
-    "npv": 17276.426265565955,
-    "value": 26258.75,
-    "cost": 8870.105882352942,
-    "min_acceptable_value": 21007.0
-   },
-   "npv": {
-    "mean": 14932.722293208939,
-    "sd": 1210.2312428702742,
-    "se": 11.159517165764541,
-    "p10": 13198.296253737457,
-    "p50": 15218.12277791249,
-    "p90": 16188.633271822888,
-    "p5": 12555.152350528275,
-    "p95": 16421.774657885373,
-    "min": 8154.044458397797,
-    "max": 17688.76165106897,
-    "p10_ci": [
-     13123.87770083977,
-     13258.174327967066
-    ],
-    "p50_ci": [
-     15198.946031493928,
-     15241.96093995634
-    ],
-    "p90_ci": [
-     16165.73733915622,
-     16215.723546868236
-    ],
-    "downside": "p10"
-   },
-   "value": {
-    "mean": 23895.34325892329,
-    "sd": 1197.7511600558105,
-    "se": 11.656161892566718,
-    "p10": 22154.025368662842,
-    "p50": 24204.7852781132,
-    "p90": 25094.437226292313,
-    "p5": 21479.858423867438,
-    "p95": 25316.38661793524,
-    "min": 17099.422787962056,
-    "max": 26326.001701966492,
-    "p10_ci": [
-     22100.869393707697,
-     22208.859167837865
-    ],
-    "p50_ci": [
-     24181.677534128416,
-     24227.082115805133
-    ],
-    "p90_ci": [
-     25075.208265955,
-     25116.523542837116
-    ],
-    "downside": "p10"
-   },
-   "cost": {
-    "mean": 9146.374051152658,
-    "sd": 293.95253275905355,
-    "se": 2.9408250306361996,
-    "p10": 8775.447084428233,
-    "p50": 9137.629841934002,
-    "p90": 9521.157362878412,
-    "p5": 8673.97659052077,
-    "p95": 9646.908222367098,
-    "min": 8016.394845133873,
-    "max": 10453.270035519241,
-    "p10_ci": [
-     8765.685467355002,
-     8785.337512644943
-    ],
-    "p50_ci": [
-     9130.125059560809,
-     9145.394049418997
-    ],
-    "p90_ci": [
-     9511.866205713719,
-     9532.740592698145
-    ],
-    "downside": "p90"
-   },
-   "roi": {
-    "mean": 1.6152591862575119,
-    "sd": 0.1560623900970778,
-    "se": 0.001445979313158984,
-    "p10": 1.4052922920083606,
-    "p50": 1.633627157706885,
-    "p90": 1.7975333045871464,
-    "p5": 1.330345807182385,
-    "p95": 1.8404483706609596,
-    "min": 0.8497417700306799,
-    "max": 2.102731441350214,
-    "p10_ci": [
-     1.397231335214115,
-     1.411733299761052
-    ],
-    "p50_ci": [
-     1.6299997035028282,
-     1.6375515178383824
-    ],
-    "p90_ci": [
-     1.7937318121925712,
-     1.8017777612454122
-    ],
-    "downside": "p10"
-   },
-   "completion": {
-    "mean": 13.8051,
-    "sd": 0.9310213048405536,
-    "se": 0.01053862569688036,
-    "p10": 13.0,
-    "p50": 14.0,
-    "p90": 15.0,
-    "p5": 13.0,
-    "p95": 15.0,
-    "min": 12.0,
-    "max": 18.0,
-    "p10_ci": [
-     13.0,
-     13.0
-    ],
-    "p50_ci": [
-     14.0,
-     14.0
-    ],
-    "p90_ci": [
-     15.0,
-     15.0
-    ],
-    "downside": "p90"
-   },
-   "completion_within_horizon": {
-    "p": 0.0257,
-    "se": 0.0015823877527331915
-   },
-   "probabilities": {
-    "cost_overrun": {
-     "p": 0.28,
-     "se": 0.00448998886412873
-    },
-    "lob_budget_breach": {
-     "p": 0.0003,
-     "se": 0.00017317909804592468
-    },
-    "within_budget": {
-     "p": 0.72,
-     "se": 0.00448998886412873
-    },
-    "miss_key_date": {
-     "p": 0.9561,
-     "se": 0.0020487261896114874
-    },
-    "meet_key_dates": {
-     "p": 0.0439,
-     "se": 0.002048726189611486
-    },
-    "okr_all_targets": {
-     "p": 0.0,
-     "se": 0.0
-    },
-    "okr_plan_targets": {
-     "p": 0.0155,
-     "se": 0.0012353036064061337
-    },
-    "capability_shortage": {
-     "p": 0.725,
-     "se": 0.004465142774872938
-    },
-    "min_acceptable_value": {
-     "p": 0.9712,
-     "se": 0.0016724401334576985
-    },
-    "npv_negative": {
-     "p": 0.0,
-     "se": 0.0
-    }
-   },
-   "okr_targets": {
-    "LOB-A|A-KR1 Digital acquisition": {
-     "p": 0.9493,
-     "se": 0.002193843886879829
-    },
-    "LOB-A|A-KR4 Fraud loss reduction": {
-     "p": 0.0,
-     "se": 0.0
-    },
-    "LOB-B|B-KR1 Loan cycle time": {
-     "p": 0.8688,
-     "se": 0.003376189568137429
-    },
-    "LOB-C|C-KR1 Advisor productivity": {
-     "p": 0.0907,
-     "se": 0.0028718201545361436
-    },
-    "LOB-C|C-KR2 AUM growth": {
-     "p": 0.1506,
-     "se": 0.003576585522534027
-    }
-   },
-   "capability_shortage": {
-    "AI Engineering": {
-     "p": 0.3208,
-     "se": 0.00466784061424552
-    },
-    "Data Engineering": {
-     "p": 0.23,
-     "se": 0.004208325082500163
-    },
-    "Integration Engineering": {
-     "p": 0.4031,
-     "se": 0.004905205296417267
-    },
-    "Software Engineering": {
-     "p": 0.2995,
-     "se": 0.004580390267215229
-    },
-    "Solution Architecture": {
-     "p": 0.0057,
-     "se": 0.0007528286657666537
-    }
-   },
-   "expected_shortage_hours": {
-    "AI Engineering": 12.962039769538462,
-    "Data Engineering": 19.62511282270038,
-    "Integration Engineering": 37.18101117533561,
-    "Software Engineering": 31.920215540161006,
-    "Solution Architecture": 0.04861490874474003
-   },
-   "late_by_project": {
-    "C03": {
-     "p": 0.0935,
-     "se": 0.0029113184298527016
-    },
-    "A03": {
-     "p": 0.1954,
-     "se": 0.0039650831012729105
-    },
-    "E04": {
-     "p": 0.827,
-     "se": 0.0037824727361872685
-    },
-    "B03": {
-     "p": 0.7302,
-     "se": 0.004438557873904542
-    }
-   },
-   "var_cvar": {
-    "alpha": 0.95,
-    "var": 4721.273915037679,
-    "cvar": 5586.906425288135
-   },
-   "contributions": [],
-   "drivers": [],
-   "sensitivity": [],
-   "convergence": {
-    "iterations": 10000,
-    "mean_npv": 14932.722293208939,
-    "se_mean_npv": 11.159517165764541,
-    "rel_se": 0.0007473196746476451,
-    "max_probability_se": 0.00448998886412873,
-    "half_sample_shift": 4.396527369313844,
-    "trace": [
-     {
-      "n": 100,
-      "mean": 14965.740236250822,
-      "se": 122.24951539980366
-     },
-     {
-      "n": 151,
-      "mean": 14978.152518250216,
-      "se": 98.43390060941697
-     },
-     {
-      "n": 231,
-      "mean": 15019.206233949768,
-      "se": 76.0597470660364
-     },
-     {
-      "n": 351,
-      "mean": 15003.266329648968,
-      "se": 62.095682060805586
-     },
-     {
-      "n": 533,
-      "mean": 15041.052275051288,
-      "se": 50.246881706994714
-     },
-     {
-      "n": 811,
-      "mean": 15015.96847197825,
-      "se": 41.47467583190527
-     },
-     {
-      "n": 1232,
-      "mean": 15007.35895916459,
-      "se": 33.03259236363025
-     },
-     {
-      "n": 1873,
-      "mean": 14967.849332788723,
-      "se": 27.59965254761034
-     },
-     {
-      "n": 2848,
-      "mean": 14938.548591037046,
-      "se": 22.87639503523526
-     },
-     {
-      "n": 4328,
-      "mean": 14936.60115846076,
-      "se": 18.414573727707303
-     },
-     {
-      "n": 6579,
-      "mean": 14929.87352495674,
-      "se": 14.941429611782977
-     },
-     {
-      "n": 10000,
-      "mean": 14932.722293208939,
-      "se": 12.102312428702742
-     }
-    ],
-    "converged": true,
-    "criteria": {
-     "rel_se": 0.01,
-     "prob_se": 0.01
-    }
-   },
-   "contingency_hours": 645.967048783587,
-   "deferred_months": 0.0,
-   "share_late": 0.2832214285714285,
-   "project_finish": {},
-   "histogram": {
-    "counts": [
-     1,
-     0,
-     4,
-     3,
-     2,
-     11,
-     15,
-     22,
-     29,
-     48,
-     55,
-     70,
-     117,
-     164,
-     227,
-     276,
-     325,
-     380,
-     465,
-     548,
-     807,
-     1111,
-     1482,
-     1463,
-     1125,
-     743,
-     358,
-     117,
-     27,
-     5
-    ],
-    "edges": [
-     8154.044458397797,
-     8471.86836482017,
-     8789.692271242542,
-     9107.516177664915,
-     9425.340084087287,
-     9743.16399050966,
-     10060.98789693203,
-     10378.811803354403,
-     10696.635709776776,
-     11014.459616199149,
-     11332.283522621521,
-     11650.107429043894,
-     11967.931335466266,
-     12285.755241888639,
-     12603.579148311012,
-     12921.403054733382,
-     13239.226961155757,
-     13557.050867578128,
-     13874.874774000502,
-     14192.698680422873,
-     14510.522586845245,
-     14828.346493267618,
-     15146.17039968999,
-     15463.994306112363,
-     15781.818212534736,
-     16099.642118957108,
-     16417.46602537948,
-     16735.289931801854,
-     17053.113838224224,
-     17370.937744646595,
-     17688.76165106897
-    ]
-   },
-   "cdf_completion": {
-    "months": [
-     1,
-     2,
-     3,
-     4,
-     5,
-     6,
-     7,
-     8,
-     9,
-     10,
-     11,
-     12,
-     13,
-     14,
-     15,
-     16,
-     17,
-     18
-    ],
-    "p": [
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0,
-     0.0257,
-     0.4334,
-     0.7905,
-     0.9547,
-     0.9915,
-     0.9991,
-     1.0
-    ]
-   },
-   "definitions": {
-    "percentiles": "Pxx = xx-th percentile; for value/NPV P10 is the downside, for cost/completion P90",
-    "var_cvar": "loss = plan NPV - simulated NPV; VaR95 = 95% quantile of loss; CVaR = mean loss in the worst 5%",
-    "cost_overrun": "total cost > planned cost x (1 + 5%)",
-    "lob_budget_breach": "any LOB/funding source spends more than its horizon budget within the horizon",
-    "key_dates": "deadline, or planned finish + 1 month(s) for mandatory/compliance/critical",
-    "okr": "realized attributed benefit delivered within the horizon >= KPI target; okr_plan_targets covers the targets the deterministic plan itself meets",
-    "capability_shortage": "any month with > 1 unmet hours for an active initiative",
-    "min_acceptable_value": "realized business value >= 80% of plan value"
-   }
-  },
   "ALT-D71AA2BD": {
    "iterations": 10000,
    "mode": "adaptive",
    "seed": 20270101,
    "chunks": 4,
-   "seconds": 1.4425299167633057,
-   "throughput": 6932.2652402507,
+   "seconds": 1.6737456321716309,
+   "throughput": 5974.6235077700085,
    "reference": {
     "npv": 18133.001819879923,
     "value": 27693.75,
@@ -20292,7 +20292,7 @@
   "status": "optimal",
   "proof": "within_gap",
   "gap": 0.009973945473178748,
-  "runtime": 5.732897043228149,
+  "runtime": 4.083240032196045,
   "objective": 24568.561688160073,
   "size": {
    "variables": 1341,
@@ -20952,17 +20952,642 @@
    "shortage_threshold_hours": 1.0
   }
  },
+ "radar": {
+  "scale": "0-1 on every axis, 1 = best",
+  "tie_tolerance": 0.01,
+  "safest": "ALT-B489601E",
+  "safest_score": 0.9000255682709268,
+  "risk_axes": [
+   {
+    "key": "budget_confidence",
+    "label": "Budget confidence",
+    "definition": "P(total cost within plan + reserve)"
+   },
+   {
+    "key": "lob_budgets",
+    "label": "LOB budgets held",
+    "definition": "1 - P(any LOB over its budget)"
+   },
+   {
+    "key": "committed_dates",
+    "label": "Committed dates met",
+    "definition": "P(every deadline and commitment met within grace)"
+   },
+   {
+    "key": "okr_targets",
+    "label": "OKR targets held",
+    "definition": "P(the OKR targets the plan meets stay met)"
+   },
+   {
+    "key": "capacity",
+    "label": "Capacity sufficient",
+    "definition": "1 - P(capability shortage in any month)"
+   },
+   {
+    "key": "value_floor",
+    "label": "Value floor met",
+    "definition": "P(value >= minimum acceptable)"
+   },
+   {
+    "key": "downside_protection",
+    "label": "Downside protection",
+    "definition": "1 - CVaR / expected NPV"
+   },
+   {
+    "key": "value_certainty",
+    "label": "Value certainty",
+    "definition": "P10 NPV / expected NPV"
+   }
+  ],
+  "kpi_axes": [
+   {
+    "key": "value",
+    "label": "Business value",
+    "definition": "Business value (time-adjusted, net) (max), nadir = 0, ideal = 1"
+   },
+   {
+    "key": "npv",
+    "label": "NPV",
+    "definition": "Financial NPV (max), nadir = 0, ideal = 1"
+   },
+   {
+    "key": "alignment",
+    "label": "Strategic alignment",
+    "definition": "Strategic alignment (max), nadir = 0, ideal = 1"
+   },
+   {
+    "key": "okr",
+    "label": "OKR coverage",
+    "definition": "Measurable OKR contribution (max), nadir = 0, ideal = 1"
+   },
+   {
+    "key": "acceleration",
+    "label": "Acceleration",
+    "definition": "Outcome acceleration (max), nadir = 0, ideal = 1"
+   },
+   {
+    "key": "compliance",
+    "label": "Compliance",
+    "definition": "Compliance and mandatory coverage (max), nadir = 0, ideal = 1"
+   },
+   {
+    "key": "cost",
+    "label": "Cost",
+    "definition": "Total portfolio cost (min), nadir = 0, ideal = 1"
+   },
+   {
+    "key": "risk",
+    "label": "Execution risk",
+    "definition": "Execution risk exposure (min), nadir = 0, ideal = 1"
+   },
+   {
+    "key": "overload",
+    "label": "Peak load",
+    "definition": "Peak capability load (min), nadir = 0, ideal = 1"
+   },
+   {
+    "key": "time_to_value",
+    "label": "Time to value",
+    "definition": "Time to business value (min), nadir = 0, ideal = 1"
+   },
+   {
+    "key": "diversification",
+    "label": "Diversification",
+    "definition": "LOB diversification (max), nadir = 0, ideal = 1"
+   }
+  ],
+  "scenario_axes": [
+   {
+    "key": "expected_npv",
+    "label": "Expected NPV",
+    "definition": "expected NPV / best scenario's expected NPV"
+   },
+   {
+    "key": "p10_npv",
+    "label": "P10 NPV",
+    "definition": "P10 NPV / best scenario's P10 NPV"
+   },
+   {
+    "key": "budget_confidence",
+    "label": "Budget confidence",
+    "definition": "P(total cost within plan + reserve)"
+   },
+   {
+    "key": "committed_dates",
+    "label": "Committed dates met",
+    "definition": "P(every deadline and commitment met within grace)"
+   },
+   {
+    "key": "capacity",
+    "label": "Capacity sufficient",
+    "definition": "1 - P(capability shortage in any month)"
+   },
+   {
+    "key": "downside_protection",
+    "label": "Downside protection",
+    "definition": "1 - CVaR / expected NPV"
+   },
+   {
+    "key": "value_certainty",
+    "label": "Value certainty",
+    "definition": "P10 NPV / expected NPV"
+   }
+  ],
+  "profile_axes": [
+   "expected_npv",
+   "downside_risk",
+   "budget_confidence",
+   "schedule_confidence",
+   "strategic_alignment",
+   "okr_achievement",
+   "resource_resilience",
+   "time_to_value"
+  ],
+  "risk": {
+   "ALT-D71AA2BD": {
+    "budget_confidence": 0.8181,
+    "lob_budgets": 0.9999,
+    "committed_dates": 0.0029,
+    "okr_targets": 0.0096,
+    "capacity": 9.999999999998899e-05,
+    "value_floor": 0.9646,
+    "downside_protection": 0.6190057045872455,
+    "value_certainty": 0.883885201460385
+   },
+   "ALT-21FE297D": {
+    "budget_confidence": 0.8216,
+    "lob_budgets": 0.9982,
+    "committed_dates": 0.0,
+    "okr_targets": 0.0,
+    "capacity": 0.0,
+    "value_floor": 0.9602,
+    "downside_protection": 0.6172533686182737,
+    "value_certainty": 0.8868926167867734
+   },
+   "ALT-B2407A3A": {
+    "budget_confidence": 0.8712,
+    "lob_budgets": 1.0,
+    "committed_dates": 0.2335,
+    "okr_targets": 1.0,
+    "capacity": 1.0,
+    "value_floor": 0.9742,
+    "downside_protection": 0.6377905878104939,
+    "value_certainty": 0.9174352799160457
+   },
+   "ALT-5072212F": {
+    "budget_confidence": 0.826,
+    "lob_budgets": 1.0,
+    "committed_dates": 0.0,
+    "okr_targets": 0.0089,
+    "capacity": 0.00039999999999995595,
+    "value_floor": 0.9697,
+    "downside_protection": 0.632410055480548,
+    "value_certainty": 0.8846750778549424
+   },
+   "ALT-B489601E": {
+    "budget_confidence": 0.9116,
+    "lob_budgets": 1.0,
+    "committed_dates": 0.7079,
+    "okr_targets": 1.0,
+    "capacity": 0.9791,
+    "value_floor": 0.9714,
+    "downside_protection": 0.6955839657492844,
+    "value_certainty": 0.9346205804181306
+   },
+   "ALT-2DA2C631": {
+    "budget_confidence": 0.8991,
+    "lob_budgets": 1.0,
+    "committed_dates": 0.5477,
+    "okr_targets": 0.9736,
+    "capacity": 0.03069999999999995,
+    "value_floor": 0.9798,
+    "downside_protection": 0.6993222202031861,
+    "value_certainty": 0.9237100048807659
+   },
+   "ALT-CC94C6FF": {
+    "budget_confidence": 0.9019,
+    "lob_budgets": 1.0,
+    "committed_dates": 0.3057,
+    "okr_targets": 0.8838,
+    "capacity": 0.0027000000000000357,
+    "value_floor": 0.9858,
+    "downside_protection": 0.7051757322990948,
+    "value_certainty": 0.9207904971516594
+   },
+   "ALT-992045F3": {
+    "budget_confidence": 0.8931,
+    "lob_budgets": 1.0,
+    "committed_dates": 0.0182,
+    "okr_targets": 0.3922,
+    "capacity": 0.0009000000000000119,
+    "value_floor": 0.985,
+    "downside_protection": 0.6900796716866309,
+    "value_certainty": 0.9095688827069739
+   },
+   "ALT-8AC3CE73": {
+    "budget_confidence": 0.8471,
+    "lob_budgets": 0.9999,
+    "committed_dates": 0.0555,
+    "okr_targets": 0.9855,
+    "capacity": 0.005199999999999982,
+    "value_floor": 0.9479,
+    "downside_protection": 0.6133322685384897,
+    "value_certainty": 0.8971111643046844
+   },
+   "ALT-17179BCF": {
+    "budget_confidence": 0.838,
+    "lob_budgets": 1.0,
+    "committed_dates": 0.0003,
+    "okr_targets": 0.0003,
+    "capacity": 0.0,
+    "value_floor": 0.9599,
+    "downside_protection": 0.6280095911361948,
+    "value_certainty": 0.8876068996088057
+   }
+  },
+  "risk_adaptive": {
+   "ALT-5072212F": {
+    "budget_confidence": 0.72,
+    "lob_budgets": 0.9997,
+    "committed_dates": 0.0439,
+    "okr_targets": 0.0155,
+    "capacity": 0.275,
+    "value_floor": 0.9712,
+    "downside_protection": 0.6258614929289261,
+    "value_certainty": 0.8838506465589159
+   },
+   "ALT-17179BCF": {
+    "budget_confidence": 0.6925,
+    "lob_budgets": 0.9998,
+    "committed_dates": 0.044,
+    "okr_targets": 0.0134,
+    "capacity": 0.11750000000000005,
+    "value_floor": 0.9685,
+    "downside_protection": 0.6226739085732228,
+    "value_certainty": 0.8870688802396594
+   },
+   "ALT-D71AA2BD": {
+    "budget_confidence": 0.6779,
+    "lob_budgets": 0.9942,
+    "committed_dates": 0.0767,
+    "okr_targets": 0.0557,
+    "capacity": 0.06989999999999996,
+    "value_floor": 0.9683,
+    "downside_protection": 0.6109957101556509,
+    "value_certainty": 0.8831083138292869
+   }
+  },
+  "kpi": {
+   "ALT-5072212F": {
+    "value": 0.9417125347829055,
+    "npv": 0.9462461738440243,
+    "alignment": 1.0,
+    "okr": 0.8736842105263157,
+    "acceleration": 0.8205128205128205,
+    "compliance": 1.0,
+    "cost": 0.08068845685515298,
+    "risk": 0.11115553778488604,
+    "overload": 0.0,
+    "time_to_value": 1.0,
+    "diversification": 1.0
+   },
+   "ALT-D71AA2BD": {
+    "value": 1.0,
+    "npv": 1.0,
+    "alignment": 0.896551724137931,
+    "okr": 0.8736842105263157,
+    "acceleration": 0.6923076923076923,
+    "compliance": 1.0,
+    "cost": 0.0,
+    "risk": 0.0,
+    "overload": 0.0,
+    "time_to_value": 0.8962264150943396,
+    "diversification": 0.9218670584221629
+   },
+   "ALT-50A345E7": {
+    "value": 0.7724440329124447,
+    "npv": 0.7979885241166729,
+    "alignment": 0.7586206896551724,
+    "okr": 0.655,
+    "acceleration": 0.8888888888888888,
+    "compliance": 1.0,
+    "cost": 0.2847956656770327,
+    "risk": 0.3516593362654938,
+    "overload": 0.0,
+    "time_to_value": 0.8687821612349916,
+    "diversification": 0.49073294018534114
+   },
+   "ALT-992045F3": {
+    "value": 0.4496802308518832,
+    "npv": 0.43958221252279506,
+    "alignment": 0.4482758620689655,
+    "okr": 0.4,
+    "acceleration": 0.5811965811965812,
+    "compliance": 1.0,
+    "cost": 0.550526056559631,
+    "risk": 0.678328668532587,
+    "overload": 0.0,
+    "time_to_value": 0.6535162950257289,
+    "diversification": 0.45155855096882885
+   },
+   "ALT-5DE3EABC": {
+    "value": 0.4419420450611568,
+    "npv": 0.4429659626798518,
+    "alignment": 0.5862068965517241,
+    "okr": 0.41035087719298247,
+    "acceleration": 0.452991452991453,
+    "compliance": 1.0,
+    "cost": 0.5784364696063811,
+    "risk": 0.6867253098760496,
+    "overload": 0.0,
+    "time_to_value": 0.6672384219554032,
+    "diversification": 0.3601516427969671
+   },
+   "ALT-B2407A3A": {
+    "value": 0.0011200005749735572,
+    "npv": 0.0005694778808421497,
+    "alignment": 0.0,
+    "okr": 0.0,
+    "acceleration": 0.0,
+    "compliance": 0.0,
+    "cost": 1.0,
+    "risk": 1.0,
+    "overload": 1.0,
+    "time_to_value": 0.01886792452830209,
+    "diversification": 0.0
+   },
+   "ALT-17179BCF": {
+    "value": 0.8515568007992133,
+    "npv": 0.8660625772514717,
+    "alignment": 0.9655172413793104,
+    "okr": 0.7253508771929825,
+    "acceleration": 0.5128205128205128,
+    "compliance": 1.0,
+    "cost": 0.18013161675172037,
+    "risk": 0.2389044382247101,
+    "overload": 0.0,
+    "time_to_value": 0.8867924528301886,
+    "diversification": 0.7388374052232517
+   },
+   "ALT-8AC3CE73": {
+    "value": 0.6023057637505524,
+    "npv": 0.6198118697234927,
+    "alignment": 0.6896551724137931,
+    "okr": 0.479,
+    "acceleration": 1.0,
+    "compliance": 1.0,
+    "cost": 0.45051374314211046,
+    "risk": 0.5195921631347461,
+    "overload": 0.0,
+    "time_to_value": 0.7984562607204116,
+    "diversification": 0.49073294018534114
+   },
+   "ALT-6AF5B9C5": {
+    "value": 0.27877832493432725,
+    "npv": 0.2885893703809757,
+    "alignment": 0.3103448275862069,
+    "okr": 0.23333333333333334,
+    "acceleration": 0.49572649572649574,
+    "compliance": 1.0,
+    "cost": 0.7528765511485682,
+    "risk": 0.8522590963614555,
+    "overload": 0.0,
+    "time_to_value": 0.46655231560891935,
+    "diversification": 0.17399235519783884
+   },
+   "ALT-70988639": {
+    "value": 0.9886231898814236,
+    "npv": 0.988972092467489,
+    "alignment": 0.896551724137931,
+    "okr": 1.0,
+    "acceleration": 0.6239316239316239,
+    "compliance": 1.0,
+    "cost": 0.011705955589607407,
+    "risk": 0.027988804478208718,
+    "overload": 0.0,
+    "time_to_value": 0.8893653516295028,
+    "diversification": 1.0
+   },
+   "ALT-47A47AD1": {
+    "value": 0.5157093556582788,
+    "npv": 0.5178726699338536,
+    "alignment": 0.5172413793103449,
+    "okr": 0.4,
+    "acceleration": 0.5811965811965812,
+    "compliance": 1.0,
+    "cost": 0.5086604369895061,
+    "risk": 0.6345461815273891,
+    "overload": 0.0,
+    "time_to_value": 0.6809605488850775,
+    "diversification": 0.34709351305812963
+   },
+   "ALT-2DA2C631": {
+    "value": 0.347861996763378,
+    "npv": 0.3549061813721823,
+    "alignment": 0.41379310344827586,
+    "okr": 0.344,
+    "acceleration": 0.5811965811965812,
+    "compliance": 1.0,
+    "cost": 0.6831005185316933,
+    "risk": 0.7844862055177929,
+    "overload": 0.0,
+    "time_to_value": 0.5849056603773586,
+    "diversification": 0.2818028643639427
+   },
+   "ALT-B489601E": {
+    "value": 0.14646552973631471,
+    "npv": 0.15870148447269228,
+    "alignment": 0.2413793103448276,
+    "okr": 0.07333333333333333,
+    "acceleration": 0.24786324786324787,
+    "compliance": 1.0,
+    "cost": 0.8842880792436825,
+    "risk": 0.9350259896041584,
+    "overload": 0.0,
+    "time_to_value": 0.28130360205831945,
+    "diversification": 0.17399235519783884
+   },
+   "ALT-179E80E6": {
+    "value": 0.4168947594753845,
+    "npv": 0.4252456022205249,
+    "alignment": 0.4482758620689655,
+    "okr": 0.30666666666666664,
+    "acceleration": 0.5299145299145299,
+    "compliance": 1.0,
+    "cost": 0.6237908908073497,
+    "risk": 0.7335065973610556,
+    "overload": 0.0,
+    "time_to_value": 0.6440823327615784,
+    "diversification": 0.34709351305812963
+   },
+   "ALT-CC94C6FF": {
+    "value": 0.42610930966039423,
+    "npv": 0.4280778388046778,
+    "alignment": 0.4482758620689655,
+    "okr": 0.4,
+    "acceleration": 0.5811965811965812,
+    "compliance": 1.0,
+    "cost": 0.5958804777605997,
+    "risk": 0.7245101959216314,
+    "overload": 0.0,
+    "time_to_value": 0.6509433962264153,
+    "diversification": 0.2818028643639427
+   },
+   "ALT-21FE297D": {
+    "value": 0.9928351107602708,
+    "npv": 0.9931452301280252,
+    "alignment": 1.0,
+    "okr": 1.0,
+    "acceleration": 0.49572649572649574,
+    "compliance": 1.0,
+    "cost": 0.008905337182416274,
+    "risk": 0.01879248300679728,
+    "overload": 0.0,
+    "time_to_value": 0.902229845626072,
+    "diversification": 1.0
+   }
+  },
+  "scenarios": {
+   "baseline": {
+    "name": "Baseline",
+    "alt_id": "ALT-D71AA2BD",
+    "values": {
+     "expected_npv": 0.8756708668379123,
+     "p10_npv": 0.8624080059275456,
+     "budget_confidence": 0.8181,
+     "committed_dates": 0.0029,
+     "capacity": 9.999999999998899e-05,
+     "downside_protection": 0.6190057045872455,
+     "value_certainty": 0.883885201460385
+    }
+   },
+   "optimistic": {
+    "name": "Optimistic",
+    "alt_id": "ALT-14C62CEE",
+    "values": {
+     "expected_npv": 1.0,
+     "p10_npv": 1.0,
+     "budget_confidence": 0.8975,
+     "committed_dates": 0.0005,
+     "capacity": 0.0004999999999999449,
+     "downside_protection": 0.7358559716247177,
+     "value_certainty": 0.8974783573762931
+    }
+   },
+   "constrained": {
+    "name": "Constrained",
+    "alt_id": "ALT-97DE5679",
+    "values": {
+     "expected_npv": 0.7705468736794654,
+     "p10_npv": 0.7529201452575363,
+     "budget_confidence": 0.8295,
+     "committed_dates": 0.0,
+     "capacity": 0.0,
+     "downside_protection": 0.6201658034572303,
+     "value_certainty": 0.8769479940584975
+    }
+   },
+   "adverse": {
+    "name": "Adverse",
+    "alt_id": "ALT-D5308E27",
+    "values": {
+     "expected_npv": 0.4403677379169452,
+     "p10_npv": 0.43972156300182763,
+     "budget_confidence": 0.796,
+     "committed_dates": 0.082,
+     "capacity": 0.0,
+     "downside_protection": 0.43052460505478085,
+     "value_certainty": 0.8961614398288343
+    }
+   }
+  },
+  "profiles": {
+   "risk_neutral": {
+    "weights": {
+     "expected_npv": 0.6,
+     "downside_risk": 0.0,
+     "budget_confidence": 0.0,
+     "schedule_confidence": 0.0,
+     "strategic_alignment": 0.1,
+     "okr_achievement": 0.1,
+     "resource_resilience": 0.0,
+     "time_to_value": 0.0
+    },
+    "recommended": "ALT-D71AA2BD",
+    "lambda": 0.0
+   },
+   "balanced": {
+    "weights": {
+     "expected_npv": 0.3,
+     "downside_risk": 0.2,
+     "budget_confidence": 0.15,
+     "schedule_confidence": 0.15,
+     "strategic_alignment": 0.1,
+     "okr_achievement": 0.1,
+     "resource_resilience": 0.0,
+     "time_to_value": 0.0
+    },
+    "recommended": "ALT-D71AA2BD",
+    "lambda": 0.35
+   },
+   "risk_averse": {
+    "weights": {
+     "expected_npv": 0.15,
+     "downside_risk": 0.35,
+     "budget_confidence": 0.2,
+     "schedule_confidence": 0.2,
+     "strategic_alignment": 0.0,
+     "okr_achievement": 0.0,
+     "resource_resilience": 0.1,
+     "time_to_value": 0.0
+    },
+    "recommended": "ALT-5072212F",
+    "lambda": 0.7
+   }
+  },
+  "choices": {
+   "aggressive": "ALT-D71AA2BD",
+   "balanced": "ALT-D71AA2BD",
+   "conservative": "ALT-17179BCF",
+   "accelerated": "ALT-5072212F"
+  },
+  "leaders": {
+   "risk": {
+    "budget_confidence": "ALT-17179BCF",
+    "lob_budgets": null,
+    "committed_dates": null,
+    "okr_targets": null,
+    "capacity": null,
+    "value_floor": null,
+    "downside_protection": null,
+    "value_certainty": null
+   },
+   "kpi": {
+    "value": "ALT-D71AA2BD",
+    "npv": "ALT-D71AA2BD",
+    "alignment": "ALT-5072212F",
+    "okr": null,
+    "acceleration": "ALT-5072212F",
+    "compliance": null,
+    "cost": "ALT-17179BCF",
+    "risk": "ALT-17179BCF",
+    "overload": null,
+    "time_to_value": "ALT-5072212F",
+    "diversification": "ALT-5072212F"
+   }
+  }
+ },
  "timings": {
-  "optimize_validate": 30.290223836898804,
-  "pareto": 190.43160820007324,
-  "monte_carlo": 13.639730453491211,
-  "monte_carlo_adaptive": 3.9145145416259766,
-  "whatif": 126.74763989448547,
-  "total": 365.2599024772644
+  "optimize_validate": 0.007040262222290039,
+  "pareto": 0.01082301139831543,
+  "monte_carlo": 0.030490636825561523,
+  "monte_carlo_adaptive": 0.009033918380737305,
+  "whatif": 0.036443471908569336,
+  "total": 0.4904508590698242
  },
  "cache": {
-  "hits": 0,
-  "misses": 18,
+  "hits": 18,
+  "misses": 0,
   "entries": 18
  },
  "consistency_issues": []

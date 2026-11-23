@@ -40,7 +40,7 @@ python -m frontier_portfolio_iq run --input intake.xlsx --out out_v1/    # v1 an
 | File | Contents |
 |---|---|
 | `decision_dashboard.html` | Executive decision dashboard: choices, frontier (2-D, 3-D, parallel coordinates, table), compare (radar, increments, LOB, bottlenecks), risk, execution (timeline, utilization), what-if, decision assurance. Self-contained, light/dark |
-| `ceo_decision_deck.pptx` | 12-slide CEO decision story + 4 technical appendices, native charts, built from the run |
+| `ceo_decision_deck.pptx` | 12-slide CEO decision story + 7 technical appendices (incl. risk, KPI and risk-appetite/what-if radars), native charts, built from the run |
 | `ceo_deck_manifest.json` | Every figure placed on each slide, for audit |
 | `decision_results.xlsx` | Alternatives, Monte Carlo, rankings, strategic choices, what-if, solver confidence, assumptions |
 | `decision_intelligence.json` | The whole bundle, machine-readable (schema `fpiq-decision-intelligence/2.0`) |

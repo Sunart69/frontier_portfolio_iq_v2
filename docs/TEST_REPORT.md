@@ -2,7 +2,7 @@
 
 This is the full suite as executed when the repository was built. Nothing below is estimated.
 
-**Result: 166 passed, 0 failed, 3 warnings, in 903.5 s (15 min 3 s).**
+**Result: 167 passed, 0 failed, 3 warnings, in 874.4 s (14 min 34 s).** (Latest run, after the radar views were added.)
 
 Command: `python -m pytest -q --durations=25` (with `--junitxml` for the per-file table).
 
@@ -20,26 +20,26 @@ full decision-intelligence bundle) are charged to the first test that uses them.
 | `test_capacity_rules.py` | 22 | 0 | v1: ring-fencing, shared capacity, transfers, budgets, benefit attribution |
 | `test_integration.py` | 18 | 0 | v1: tiers, 12 scenarios, workbook and dashboard on the sample |
 | `test_intake.py` | 12 | 1 | Excel intake, validation, optional v2 sheets, round trip and fingerprint |
-| `test_deck.py` | 11 | 116 | v1 executive deck |
-| `test_cadence.py` | 20 | 126 | Cadence agent: schedule, issues, reminders, run (now with v2 outputs), LT pre-read |
-| `test_decision.py` | 14 | 26 | LT decision record, `alternative:` adoption, preserve mode, memo and register |
-| `test_solvers.py` | 13 | 58 | HiGHS/SCIP agreement, CBC, CP-SAT reformulation, OSQP, validator, confidence report, timeouts |
-| `test_pareto.py` | 11 | 140 | Objective linearizations, epsilon-constraint, weighted sum, NSGA-II labelling, dominance, scope |
-| `test_montecarlo.py` | 23 | 9 | Distributions, correlation repair, CRN, reproducibility, fixed vs adaptive, VaR/CVaR, convergence |
-| `test_decision_intelligence.py` | 15 | 340 | End to end: intake → validated optimization → frontier → MC → recommendation → what-if → dashboard and CEO deck |
-| `test_performance.py` | 7 | 84 | Synthetic generator at 25–500 × 12–36, small end of the grid solved and simulated, benchmark report coverage |
-| **Total** | **166** | | |
+| `test_deck.py` | 11 | 115 | v1 executive deck |
+| `test_cadence.py` | 20 | 124 | Cadence agent: schedule, issues, reminders, run (now with v2 outputs), LT pre-read |
+| `test_decision.py` | 14 | 25 | LT decision record, `alternative:` adoption, preserve mode, memo and register |
+| `test_solvers.py` | 13 | 64 | HiGHS/SCIP agreement, CBC, CP-SAT reformulation, OSQP, validator, confidence report, timeouts |
+| `test_pareto.py` | 11 | 136 | Objective linearizations, epsilon-constraint, weighted sum, NSGA-II labelling, dominance, scope |
+| `test_montecarlo.py` | 23 | 8 | Distributions, correlation repair, CRN, reproducibility, fixed vs adaptive, VaR/CVaR, convergence |
+| `test_decision_intelligence.py` | 16 | 318 | End to end: intake → validated optimization → frontier → MC → recommendation → what-if → dashboard and CEO deck, including the radar views reconciled between dashboard, deck and bundle |
+| `test_performance.py` | 7 | 82 | Synthetic generator at 25–500 × 12–36, small end of the grid solved and simulated, benchmark report coverage |
+| **Total** | **167** | | |
 
 ## Slowest steps
 
 | Seconds | Step |
 |---:|---|
-| 180.4 | setup of the full decision-intelligence bundle (shared by `test_decision_intelligence.py`) |
-| 121.5 | `test_cadence.py::test_run_cycle_produces_lt_preread` (v1 + v2 pre-read, quick mode) |
-| 119.5 | `test_decision_intelligence.py::test_cli_decide_end_to_end` |
-| 116.1 | setup of the v1 analysis (shared by `test_deck.py`) |
-| 90.1 | setup of the Pareto frontier fixture |
-| 79.9 | `test_performance.py::test_small_end_of_the_grid_solves_validates_and_simulates[25-24]` |
+| 169.3 | setup of the full decision-intelligence bundle (shared by `test_decision_intelligence.py`) |
+| 119.1 | `test_cadence.py::test_run_cycle_produces_lt_preread` (v1 + v2 pre-read, quick mode) |
+| 111.6 | `test_decision_intelligence.py::test_cli_decide_end_to_end` |
+| 114.6 | setup of the v1 analysis (shared by `test_deck.py`) |
+| 89.6 | setup of the Pareto frontier fixture |
+| 78.1 | `test_performance.py::test_small_end_of_the_grid_solves_validates_and_simulates[25-24]` |
 
 ## Warnings
 
@@ -47,7 +47,7 @@ full decision-intelligence bundle) are charged to the first test that uses them.
   raised by the parallel Monte Carlo test. Results are checked to be identical to the serial run.
 - One `PendingDeprecationWarning` from OSQP about a future default of `raise_error`.
 
-## Fixes made during the final run
+## Fixes made during the first v2 run
 
 An earlier full run (same code, with another job running alongside it) had 3 failures, all in test
 assumptions rather than in the package:

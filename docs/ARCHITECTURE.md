@@ -30,7 +30,9 @@
                ┌──────────────────────┼─────────────────────────────┐
                ▼                      ▼                             ▼
    dashboard_v2.py            deck_v2.py (12 slides +      decision/config.py: decision_results.xlsx
-   decision_dashboard.html    4 appendices) + manifest     decision_intelligence.json, solver_confidence.md
+   decision_dashboard.html    7 appendices) + manifest     decision_intelligence.json, solver_confidence.md
+          ▲                       ▲
+          └─────── radar.py ──────┘   spider-chart profiles shared by dashboard and deck
 ```
 
 ## Package map
@@ -47,6 +49,7 @@
 | `whatif.py`, `cache.py` | scenario levers and sets; fingerprint-keyed result cache |
 | `intelligence.py` | the end-to-end pipeline and `DecisionBundle` |
 | `dashboard_v2.py`, `deck_v2.py` | decision dashboard and CEO deck (v1 `dashboard.py` / `deck.py` kept) |
+| `radar.py` | radar (spider) profiles: risk trade-off, optimization KPIs, risk appetite, what-if; shared by dashboard and deck |
 | `benchmark.py` | synthetic generator and the measured performance grid |
 | `cadence/` | semi-annual cycle: schedule, owners, follow-ups, GitHub issues, orchestration, LT decision and publishing — now running the v2 pipeline for the pre-read |
 
