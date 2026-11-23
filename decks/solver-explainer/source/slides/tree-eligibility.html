@@ -1,0 +1,18 @@
+<section id="tree-eligibility" data-transition="fade" style="gap:32px">
+<div class="head">
+<p class="eyebrow">Decision tree 1 · Can this team’s hours go to this initiative?</p>
+<h2>Ring-fenced hours reach another LOB only with the owner’s approval</h2>
+</div>
+<div class="col" style="gap:6px">
+<div class="tree-row"><p class="q" style="width:780px">1. Hours, skill and funding all allowed?</p><p class="edge" style="width:40px">no</p><x-shape kind="arrow-right" class="arrow-r"></x-shape><p class="out" style="width:700px">Cannot serve</p></div>
+<div class="down"><div style="width:376px"></div><x-shape kind="arrow-down" class="arrow-d"></x-shape><p class="edge">yes</p></div>
+<div class="tree-row"><p class="q" style="width:780px">2. Is the team shared across the enterprise?</p><p class="edge" style="width:40px">yes</p><x-shape kind="arrow-right" class="arrow-r"></x-shape><p class="out committed" style="width:700px">Direct use · Committed</p></div>
+<div class="down"><div style="width:376px"></div><x-shape kind="arrow-down" class="arrow-d"></x-shape><p class="edge">no</p></div>
+<div class="tree-row"><p class="q" style="width:780px">3. Owner’s own work, or owner-authorized?</p><p class="edge" style="width:40px">yes</p><x-shape kind="arrow-right" class="arrow-r"></x-shape><p class="out committed" style="width:700px">Direct use · Committed</p></div>
+<div class="down"><div style="width:376px"></div><x-shape kind="arrow-down" class="arrow-d"></x-shape><p class="edge">no</p></div>
+<div class="tree-row"><p class="q" style="width:780px">4. Active transfer or release rule?</p><p class="edge" style="width:40px">no</p><x-shape kind="arrow-right" class="arrow-r"></x-shape><p class="out" style="width:700px">Stays with the owner; idle hours are priced</p></div>
+<div class="down"><div style="width:376px"></div><x-shape kind="arrow-down" class="arrow-d"></x-shape><p class="edge">yes</p></div>
+<div class="tree-row"><p class="q" style="width:780px">5. Has the owner approved that rule?</p><div style="width:40px"></div><x-shape kind="arrow-right" class="arrow-r"></x-shape><div class="row" style="width:700px; gap:12px"><p class="out committed" style="width:344px; padding:18px 20px">Yes → Committed</p><p class="out conditional" style="width:344px; padding:18px 20px">Pending → Conditional</p></div></div>
+</div>
+<aside>The solver runs this check for every team, initiative and month before it chooses anything. A route the tree rejects never exists in the model, so ownership is respected by construction. Step 1 covers the team's start and end months, whether its skill matches (or an allowed substitute at lower efficiency), and funding restrictions. Shared teams and the owner's own work go straight into the committed plan. Another LOB can use ring-fenced hours only if the owner authorized that initiative or approved a transfer. A pending transfer appears only in the conditional plan, priced. A rejected transfer is used only in the unconstrained comparison.</aside>
+</section>

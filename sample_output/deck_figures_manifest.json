@@ -1,0 +1,301 @@
+{
+  "1": {
+    "committed_net_value": "$27.7M",
+    "committed_investment": "$9.6M",
+    "conditional_gain": "+$2.8M",
+    "unconstrained_gap": "+$4.8M"
+  },
+  "2": {
+    "chart_categories": [
+      "AI Engineering",
+      "Data Engineering",
+      "Integration Engineering",
+      "Software Engineering",
+      "Solution Architecture"
+    ],
+    "demand": [
+      5920.0,
+      7000.0,
+      8810.0,
+      17640.0,
+      2090.0
+    ],
+    "available": [
+      5474.0,
+      9996.0,
+      6783.0,
+      22134.0,
+      3570.0
+    ],
+    "candidate_investment": "$12.7M",
+    "budget": "$13.7M"
+  },
+  "3": {
+    "categories": [
+      "Retail Banking",
+      "Commercial Banking",
+      "Wealth Management",
+      "Enterprise IT (Shared Platforms)",
+      "Enterprise-wide"
+    ],
+    "value": [
+      7300.0,
+      10400.0,
+      8800.0,
+      0.0,
+      2400.0
+    ],
+    "investment": [
+      2323.9411764705883,
+      3117.5,
+      2257.5,
+      1865.0,
+      0.0
+    ]
+  },
+  "4": {
+    "categories": [
+      "AI Engineering",
+      "Data Engineering",
+      "Integration Engineering",
+      "Software Engineering",
+      "Solution Architecture"
+    ],
+    "series": {
+      "Shared \u2013 allocated": [
+        1785.0,
+        5111.0,
+        1369.0,
+        5420.0,
+        1670.0
+      ],
+      "Shared \u2013 unused": [
+        357.0,
+        601.0,
+        59.000000000000014,
+        292.00000000000017,
+        1900.0
+      ],
+      "Ring-fenced / conditional \u2013 allocated": [
+        2108.5588235294117,
+        2402.0,
+        2722.0,
+        10965.0,
+        0.0
+      ],
+      "Ring-fenced / conditional \u2013 idle": [
+        1223.4411764705883,
+        1882.0,
+        2633.0,
+        5457.0,
+        0.0
+      ]
+    },
+    "idle_rf": 11195,
+    "restricted_unavailable": 5262
+  },
+  "5": {
+    "portfolios": [
+      "Committed",
+      "LOB-balanced",
+      "Ring-fence release 20%",
+      "Conditional (all pending)",
+      "Unconstrained"
+    ],
+    "net_value": [
+      27689.808823529413,
+      27483.25294117647,
+      29030.88988235294,
+      30465.69339869281,
+      32450.776666666665
+    ]
+  },
+  "6": {
+    "scores": {
+      "Committed": [
+        85.3,
+        87.0,
+        81.2,
+        99.5,
+        99.5,
+        100.0
+      ],
+      "LOB-balanced": [
+        84.7,
+        100.0,
+        81.2,
+        99.6,
+        99.8,
+        100.0
+      ],
+      "Ring-fence release 20%": [
+        89.5,
+        87.0,
+        87.5,
+        100.0,
+        99.8,
+        100.0
+      ],
+      "Unconstrained (analytical)": [
+        100.0,
+        93.5,
+        100.0,
+        98.7,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  "7": {
+    "ladder": [
+      27331.25,
+      27689.808823529413,
+      30465.69339869281,
+      32450.776666666665
+    ],
+    "release": [
+      1076.5764705882357,
+      1044.0156470588227,
+      1002.9950980392132,
+      980.3617647058818,
+      329.5245098039195,
+      0.0
+    ],
+    "authorized_sharing": "$359K"
+  },
+  "8": {
+    "series": {
+      "Retail Banking": [
+        165.0,
+        215.0,
+        233.0,
+        233.0,
+        233.0,
+        293.0,
+        228.0,
+        211.97058823529412,
+        211.97058823529412,
+        150.0,
+        150.0,
+        0.0
+      ],
+      "Commercial Banking": [
+        195.0,
+        245.0,
+        258.5,
+        258.5,
+        258.5,
+        313.5,
+        263.5,
+        310.0,
+        310.0,
+        310.0,
+        255.0,
+        140.0
+      ],
+      "Wealth Management": [
+        95.0,
+        145.0,
+        158.5,
+        283.5,
+        188.5,
+        188.5,
+        138.5,
+        260.0,
+        260.0,
+        180.0,
+        180.0,
+        180.0
+      ],
+      "Enterprise IT (Shared Platforms)": [
+        0.0,
+        100.0,
+        145.0,
+        145.0,
+        145.0,
+        145.0,
+        235.0,
+        190.0,
+        190.0,
+        190.0,
+        190.0,
+        190.0
+      ]
+    },
+    "starts": {
+      "A01": 1,
+      "A02": 7,
+      "A03": 6,
+      "B01": 1,
+      "B02": 8,
+      "B03": 6,
+      "B04": 8,
+      "C01": 4,
+      "C02": 8,
+      "C03": 10,
+      "C04": 1,
+      "E01": 2,
+      "E02": 7,
+      "E04": 3
+    }
+  },
+  "9": {
+    "investment": {
+      "LOB-A": "$2.3M",
+      "LOB-B": "$3.1M",
+      "LOB-C": "$2.3M"
+    },
+    "value": {
+      "LOB-A": "$7.3M",
+      "LOB-B": "$10.4M",
+      "LOB-C": "$8.8M"
+    }
+  },
+  "10": {
+    "delta_net_value": {
+      "1": "$0",
+      "2": "+$1.1M",
+      "3": "+$1.1M",
+      "4": "+$1.3M",
+      "5": "+$311K",
+      "6": "+$2.7M",
+      "7": "\u2212$1.5M",
+      "8": "$0",
+      "9": "\u2212$359K",
+      "10": "\u2212$207K",
+      "11": "\u2212$283K",
+      "12": "+$972K"
+    }
+  },
+  "11": {
+    "Approved": [
+      "A01",
+      "A02",
+      "A03",
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "E01",
+      "E02",
+      "E04"
+    ],
+    "Conditional": [
+      "A04",
+      "E03",
+      "E05"
+    ],
+    "Deferred": [],
+    "Rejected": [
+      "A05",
+      "B05"
+    ]
+  },
+  "12": {
+    "conditional_gain": "$2.8M"
+  }
+}

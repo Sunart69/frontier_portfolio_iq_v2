@@ -1,0 +1,45 @@
+# Input owners for each cycle. Replace the bracketed placeholders with real people.
+#   github: GitHub username (without @) — gets the input issue assigned and is @mentioned in follow-ups
+#   email:  optional; used only when reminders.email is true in cadence.yaml
+# Packages: strategy, budget, capacity, initiatives (per LOB) and enterprise (portfolio office).
+
+portfolio_lead:  {name: "[Portfolio lead]", github: "", email: ""}
+escalation:      {name: "[CIO or LT sponsor]", github: "", email: ""}
+leadership_team: {name: "Leadership team", github: "", email: ""}
+
+lobs:
+  LOB-A:
+    name: Retail Banking
+    executive_sponsor: {name: "[Retail EVP]", github: "", email: ""}
+    owners:
+      strategy:    {name: "[Retail outcome owner]", github: "", email: ""}
+      budget:      {name: "[Retail budget owner]", github: "", email: ""}
+      capacity:    {name: "[Retail resource manager]", github: "", email: ""}
+      initiatives: {name: "[Retail PMO lead]", github: "", email: ""}
+  LOB-B:
+    name: Commercial Banking
+    executive_sponsor: {name: "[Commercial EVP]", github: "", email: ""}
+    owners:
+      strategy:    {name: "[Commercial outcome owner]", github: "", email: ""}
+      budget:      {name: "[Commercial budget owner]", github: "", email: ""}
+      capacity:    {name: "[Commercial resource manager]", github: "", email: ""}
+      initiatives: {name: "[Commercial PMO lead]", github: "", email: ""}
+  LOB-C:
+    name: Wealth Management
+    executive_sponsor: {name: "[Wealth EVP]", github: "", email: ""}
+    owners:
+      strategy:    {name: "[Wealth outcome owner]", github: "", email: ""}
+      budget:      {name: "[Wealth budget owner]", github: "", email: ""}
+      capacity:    {name: "[Wealth resource manager]", github: "", email: ""}
+      initiatives: {name: "[Wealth PMO lead]", github: "", email: ""}
+  ENT:
+    name: Enterprise IT (Shared Platforms)
+    executive_sponsor: {name: "[CIO]", github: "", email: ""}
+    owners:
+      strategy:    {name: "[Chief architect]", github: "", email: ""}
+      budget:      {name: "[IT finance lead]", github: "", email: ""}
+      capacity:    {name: "[Shared services resource manager]", github: "", email: ""}
+      initiatives: {name: "[Enterprise PMO lead]", github: "", email: ""}
+
+enterprise:
+  owner: portfolio_lead   # the enterprise package (settings, skill substitution) belongs to the portfolio lead

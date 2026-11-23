@@ -1,0 +1,17 @@
+<section id="guardrails" data-transition="fade">
+<div class="head">
+<p class="eyebrow">Guardrails</p>
+<h2>Eight rules the solver will never break</h2>
+</div>
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:20px 32px">
+<div class="card fade-in" style="flex-direction:row; align-items:center; gap:20px; --i:0"><x-icon name="Lock" style="width:40px; height:40px; color:#2459B8"></x-icon><p>Ring-fenced teams work only for their owner, unless the owner authorizes</p></div>
+<div class="card fade-in" style="flex-direction:row; align-items:center; gap:20px; --i:1"><x-icon name="Verified" style="width:40px; height:40px; color:#2459B8"></x-icon><p>Unapproved transfers never enter the committed plan</p></div>
+<div class="card fade-in" style="flex-direction:row; align-items:center; gap:20px; --i:2"><x-icon name="Clock" style="width:40px; height:40px; color:#2459B8"></x-icon><p>No hour is counted twice, whatever route it takes</p></div>
+<div class="card fade-in" style="flex-direction:row; align-items:center; gap:20px; --i:3"><x-icon name="Chart" style="width:40px; height:40px; color:#2459B8"></x-icon><p>No LOB budget is overspent in any month</p></div>
+<div class="card fade-in" style="flex-direction:row; align-items:center; gap:20px; --i:4"><x-icon name="Key" style="width:40px; height:40px; color:#2459B8"></x-icon><p>Restricted money pays only for the work it is meant for</p></div>
+<div class="card fade-in" style="flex-direction:row; align-items:center; gap:20px; --i:5"><x-icon name="Warning" style="width:40px; height:40px; color:#2459B8"></x-icon><p>Mandatory and critical work is never silently dropped</p></div>
+<div class="card fade-in" style="flex-direction:row; align-items:center; gap:20px; --i:6"><x-icon name="Users" style="width:40px; height:40px; color:#2459B8"></x-icon><p>A shared benefit is counted once, split across LOBs</p></div>
+<div class="card fade-in" style="flex-direction:row; align-items:center; gap:20px; --i:7"><x-icon name="Settings" style="width:40px; height:40px; color:#2459B8"></x-icon><p>Fairness rules apply only when leadership turns them on</p></div>
+</div>
+<aside>These are hard constraints in the model, not preferences. A plan that breaks one is never shown as feasible. If a mandatory or critical commitment cannot be met, the solver does not quietly drop it: it reports which commitment fails and why, so the conflict reaches leadership. Fairness rules such as minimum investment per LOB are available, but switched off unless leadership asks for them.</aside>
+</section>

@@ -1,0 +1,22 @@
+# LT decision record for 2027-H2
+# Fill this in after the LT decision meeting (Tue Jun 8, 2027) and merge it to main.
+# The agent then re-runs the portfolio with these decisions and publishes the approved-portfolio memo
+# to cycles/2027-H2/published/. Leave decided_on blank until LT has decided.
+#
+# Recommended in the pre-read (14): A01, A02, A03, A05, B01, B02, B03, C01, C02, C03, E01, E02, E04, E05
+# Not recommended: A04, B04, B05, C04, E03
+# Pending approvals that would add value: TR-02, REL-RF-DATA-C-20
+
+cycle: 2027-H2
+decided_on: 2027-06-08 # YYYY-MM-DD, the date LT decided
+decided_by: Leadership team
+
+approve: [TR-02, REL-RF-DATA-C-20]                # approvals LT granted, using the ids above, e.g. [TR-02, REL-RF-DATA-C-20]
+include: []                # initiatives LT added to the portfolio, e.g. [A04]
+exclude: [E05]                # initiatives LT removed, e.g. [E05]
+start_by: {}               # latest start month per initiative, e.g. {E05: 2027-09}
+notes: {E05: "Deferred to 2028-H1 pending vendor selection", TR-02: "Approved by Wealth EVP at the meeting"}                  # rationale for the memo, e.g. {A04: "Board commitment"}
+actions:
+  - {action: "Confirm AI engineers transfer start date", owner: "Wealth resource manager", due: 2027-06-30}
+  - {action: "Re-submit E05 with vendor quote", owner: "Enterprise PMO lead", due: 2027-11-15}                # follow-ups, e.g.
+#  - {action: "Confirm resourcing for A04", owner: "PMO lead", due: 2027-06-15}

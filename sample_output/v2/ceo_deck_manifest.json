@@ -1,0 +1,179 @@
+{
+  "1": {
+    "alt": "ALT-D71AA2BD",
+    "expected_npv": 15577.69236571563,
+    "p_within_budget": 0.8181,
+    "investment": 9563.941176470587
+  },
+  "2": {
+    "total_value": 37500,
+    "captured": 28900,
+    "expected_value": 24964.96282878384
+  },
+  "3": {
+    "budget": 13740,
+    "asks": 12660.0,
+    "oversubscribed": [
+      "AI Engineering",
+      "Integration Engineering"
+    ],
+    "peak_load": 1.000000000000004
+  },
+  "4": {
+    "efficient": 16,
+    "dominated": 11,
+    "x": "risk",
+    "y": "value"
+  },
+  "5": {
+    "aggressive": {
+      "alt": "ALT-D71AA2BD",
+      "expected_npv": 15577.69236571563
+    },
+    "balanced": {
+      "alt": "ALT-D71AA2BD",
+      "expected_npv": 15577.69236571563
+    },
+    "conservative": {
+      "alt": "ALT-17179BCF",
+      "expected_npv": 13878.76675523979
+    },
+    "accelerated": {
+      "alt": "ALT-5072212F",
+      "expected_npv": 14998.837416815126
+    }
+  },
+  "6": {
+    "criteria": [
+      "expected_npv",
+      "downside_risk",
+      "budget_confidence",
+      "schedule_confidence",
+      "strategic_alignment",
+      "okr_achievement",
+      "resource_resilience",
+      "time_to_value"
+    ],
+    "winners": {
+      "Aggressive": [
+        "expected npv",
+        "schedule confidence",
+        "okr achievement"
+      ],
+      "Accelerated delivery": [
+        "downside risk",
+        "strategic alignment",
+        "resource resilience",
+        "time to value"
+      ],
+      "Conservative": [
+        "budget confidence"
+      ]
+    }
+  },
+  "7": {
+    "p10": 13768.89175495846,
+    "cvar": 5935.01192703247,
+    "within_budget": 0.8181
+  },
+  "8": {
+    "top_capabilities": [
+      "Integration Engineering",
+      "AI Engineering",
+      "Data Engineering"
+    ],
+    "likely_late": 14
+  },
+  "9": {
+    "investment": {
+      "LOB-A": 2323.9411764705883,
+      "LOB-B": 3117.5,
+      "LOB-C": 2257.5,
+      "ENT": 1865.0
+    },
+    "value": {
+      "LOB-A": 7300.0,
+      "LOB-B": 10400.0,
+      "LOB-C": 8800.0,
+      "ENT": 0.0
+    }
+  },
+  "10": {
+    "alt": "ALT-D71AA2BD",
+    "selected": [
+      "A01",
+      "A02",
+      "A03",
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "E01",
+      "E02",
+      "E04"
+    ]
+  },
+  "11": {
+    "optimistic": 17789.437739281417,
+    "constrained": 13707.595634518791,
+    "adverse": 7833.894456061694
+  },
+  "12": {
+    "funding": 9563.941176470587,
+    "pending": [
+      "TR-02",
+      "TR-03"
+    ],
+    "deferred": [
+      "A04",
+      "A05",
+      "B05",
+      "E03",
+      "E05"
+    ]
+  },
+  "A1": {
+    "level": "CONFIRMED_OPTIMAL"
+  },
+  "A2": {
+    "objectives": [
+      "value",
+      "npv",
+      "alignment",
+      "okr",
+      "acceleration",
+      "compliance",
+      "cost",
+      "risk",
+      "overload",
+      "time_to_value",
+      "diversification"
+    ]
+  },
+  "A3": {
+    "calibrated": false,
+    "drivers": [
+      "INFL",
+      "CAP-AIEngineeri",
+      "CAP-DataEnginee",
+      "CAP-Integration",
+      "CAP-SoftwareEng",
+      "CAP-SolutionArc",
+      "REG",
+      "PLAT"
+    ]
+  },
+  "A4": {
+    "top": [
+      "E01 benefit",
+      "B01 benefit",
+      "driver INFL",
+      "E02 benefit",
+      "A01 benefit"
+    ]
+  }
+}

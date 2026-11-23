@@ -1,0 +1,528 @@
+{
+ "meta": {
+  "machine": "Linux-6.18.44-fc-v726-x86_64-with-glibc2.39",
+  "cpus": 2,
+  "python": "3.13.18",
+  "date": "2026-11-22",
+  "time_limit": 60.0,
+  "iterations": 2000
+ },
+ "results": [
+  {
+   "projects": 25,
+   "horizon": 12,
+   "time_limit_s": 60.0,
+   "build_s": 0.04,
+   "variables": 1089,
+   "integer_variables": 111,
+   "constraints": 893,
+   "nonzeros": 6065,
+   "HiGHS": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 15120.960276666667,
+    "gap": 0.0016205285870817933,
+    "runtime_s": 0.48,
+    "validated": true,
+    "selected": 12
+   },
+   "SCIP": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 15120.96027666667,
+    "gap": 0.008708002801171373,
+    "runtime_s": 1.98,
+    "validated": true,
+    "selected": 12
+   },
+   "CP-SAT": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 15088.140276666667,
+    "gap_scaled_model": 0.008574906839871926,
+    "runtime_s": 0.97
+   },
+   "monte_carlo": {
+    "iterations": 2000,
+    "seconds": 0.33,
+    "throughput_per_s": 6082.7,
+    "converged": false,
+    "rel_se_mean_npv": 0.001556051078951096
+   },
+   "peak_rss_mb": 245.2
+  },
+  {
+   "projects": 25,
+   "horizon": 24,
+   "time_limit_s": 60.0,
+   "build_s": 0.09,
+   "variables": 2012,
+   "integer_variables": 296,
+   "constraints": 1597,
+   "nonzeros": 17368,
+   "HiGHS": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 15903.10575,
+    "gap": 0.009968067323433631,
+    "runtime_s": 18.04,
+    "validated": true,
+    "selected": 14
+   },
+   "SCIP": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 15903.10575000001,
+    "gap": 0.011691687023654617,
+    "runtime_s": 60.0,
+    "validated": true,
+    "selected": 14
+   },
+   "CP-SAT": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 15899.2745,
+    "gap_scaled_model": 0.009703931729879642,
+    "runtime_s": 41.75
+   },
+   "monte_carlo": {
+    "iterations": 2000,
+    "seconds": 0.39,
+    "throughput_per_s": 5269.1,
+    "converged": false,
+    "rel_se_mean_npv": 0.0015756258159950027
+   },
+   "peak_rss_mb": 450.5
+  },
+  {
+   "projects": 25,
+   "horizon": 36,
+   "time_limit_s": 60.0,
+   "build_s": 0.16,
+   "variables": 2936,
+   "integer_variables": 482,
+   "constraints": 2302,
+   "nonzeros": 33039,
+   "HiGHS": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 16138.883576666689,
+    "gap": 0.022232769625176292,
+    "runtime_s": 60.02,
+    "validated": true,
+    "selected": 15
+   },
+   "SCIP": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 16148.451910000023,
+    "gap": 0.037391939495024215,
+    "runtime_s": 60.0,
+    "validated": true,
+    "selected": 15
+   },
+   "CP-SAT": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 15896.878181666667,
+    "gap_scaled_model": 0.07247882352645216,
+    "runtime_s": 60.01
+   },
+   "monte_carlo": {
+    "iterations": 2000,
+    "seconds": 0.38,
+    "throughput_per_s": 5366.9,
+    "converged": false,
+    "rel_se_mean_npv": 0.0014533782494508163
+   },
+   "peak_rss_mb": 566.2
+  },
+  {
+   "projects": 100,
+   "horizon": 12,
+   "time_limit_s": 60.0,
+   "build_s": 0.13,
+   "variables": 4014,
+   "integer_variables": 409,
+   "constraints": 2502,
+   "nonzeros": 22637,
+   "HiGHS": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 75813.7318166667,
+    "gap": 0.014728780210005595,
+    "runtime_s": 60.02,
+    "validated": true,
+    "selected": 55
+   },
+   "SCIP": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 75904.6341217105,
+    "gap": 0.013964261050453926,
+    "runtime_s": 60.0,
+    "validated": true,
+    "selected": 56
+   },
+   "CP-SAT": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 69884.30350666666,
+    "gap_scaled_model": 0.12435970037617808,
+    "runtime_s": 60.0
+   },
+   "monte_carlo": {
+    "iterations": 2000,
+    "seconds": 0.88,
+    "throughput_per_s": 2295.8,
+    "converged": false,
+    "rel_se_mean_npv": 0.0008140462903280137
+   },
+   "peak_rss_mb": 521.4
+  },
+  {
+   "projects": 100,
+   "horizon": 24,
+   "time_limit_s": 60.0,
+   "build_s": 0.35,
+   "variables": 7347,
+   "integer_variables": 1100,
+   "constraints": 4340,
+   "nonzeros": 63607,
+   "HiGHS": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 92645.667245,
+    "gap": 0.029655300671162652,
+    "runtime_s": 60.03,
+    "validated": true,
+    "selected": 69
+   },
+   "SCIP": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 91460.0770966667,
+    "gap": 0.04506694887794484,
+    "runtime_s": 60.0,
+    "validated": true,
+    "selected": 69
+   },
+   "CP-SAT": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 87301.24695,
+    "gap_scaled_model": 0.115592773443386,
+    "runtime_s": 60.02
+   },
+   "monte_carlo": {
+    "iterations": 2000,
+    "seconds": 1.19,
+    "throughput_per_s": 1699.1,
+    "converged": false,
+    "rel_se_mean_npv": 0.0008102982603613488
+   },
+   "peak_rss_mb": 825.7
+  },
+  {
+   "projects": 100,
+   "horizon": 36,
+   "time_limit_s": 60.0,
+   "build_s": 0.57,
+   "variables": 10735,
+   "integer_variables": 1800,
+   "constraints": 6212,
+   "nonzeros": 119904,
+   "HiGHS": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 96255.20243666672,
+    "gap": 0.02009104501832675,
+    "runtime_s": 60.04,
+    "validated": true,
+    "selected": 71
+   },
+   "SCIP": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 95894.37401000001,
+    "gap": 0.02378366034182054,
+    "runtime_s": 60.01,
+    "validated": true,
+    "selected": 71
+   },
+   "CP-SAT": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 89142.24019333333,
+    "gap_scaled_model": 0.11201795428332578,
+    "runtime_s": 60.02
+   },
+   "monte_carlo": {
+    "iterations": 2000,
+    "seconds": 1.26,
+    "throughput_per_s": 1596.7,
+    "converged": false,
+    "rel_se_mean_npv": 0.0007690586135050407
+   },
+   "peak_rss_mb": 1064.4
+  },
+  {
+   "projects": 250,
+   "horizon": 12,
+   "time_limit_s": 60.0,
+   "build_s": 0.33,
+   "variables": 9407,
+   "integer_variables": 1000,
+   "constraints": 5451,
+   "nonzeros": 53780,
+   "HiGHS": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 190476.1805,
+    "gap": 0.009999916465424726,
+    "runtime_s": 13.21,
+    "validated": true,
+    "selected": 159
+   },
+   "SCIP": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 190594.8315566667,
+    "gap": 0.009593124756703214,
+    "runtime_s": 17.31,
+    "validated": true,
+    "selected": 158
+   },
+   "CP-SAT": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 163964.09405,
+    "gap_scaled_model": 0.32197797943124545,
+    "runtime_s": 60.01
+   },
+   "monte_carlo": {
+    "iterations": 2000,
+    "seconds": 2.33,
+    "throughput_per_s": 866.1,
+    "converged": false,
+    "rel_se_mean_npv": 0.0005754058742041901
+   },
+   "peak_rss_mb": 633.1
+  },
+  {
+   "projects": 250,
+   "horizon": 24,
+   "time_limit_s": 60.0,
+   "build_s": 0.9,
+   "variables": 16936,
+   "integer_variables": 2624,
+   "constraints": 9255,
+   "nonzeros": 151559,
+   "HiGHS": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 220128.19359,
+    "gap": 0.009998458412642772,
+    "runtime_s": 38.23,
+    "validated": true,
+    "selected": 178
+   },
+   "SCIP": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 220349.8006466668,
+    "gap": 0.009274196504595135,
+    "runtime_s": 21.3,
+    "validated": true,
+    "selected": 179
+   },
+   "CP-SAT": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 150985.29336,
+    "gap_scaled_model": 0.5124350090498784,
+    "runtime_s": 60.04
+   },
+   "monte_carlo": {
+    "iterations": 2000,
+    "seconds": 2.77,
+    "throughput_per_s": 726.6,
+    "converged": false,
+    "rel_se_mean_npv": 0.0006226576121030684
+   },
+   "peak_rss_mb": 1049.4
+  },
+  {
+   "projects": 250,
+   "horizon": 36,
+   "time_limit_s": 60.0,
+   "build_s": 1.52,
+   "variables": 24674,
+   "integer_variables": 4301,
+   "constraints": 13177,
+   "nonzeros": 288972,
+   "HiGHS": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 222856.47781,
+    "gap": 0.009747206051486629,
+    "runtime_s": 26.86,
+    "validated": true,
+    "selected": 181
+   },
+   "SCIP": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 223442.81870833377,
+    "gap": 0.007193599908472523,
+    "runtime_s": 28.82,
+    "validated": true,
+    "selected": 180
+   },
+   "CP-SAT": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 202577.10380333333,
+    "gap_scaled_model": 0.11453969453396802,
+    "runtime_s": 60.06
+   },
+   "monte_carlo": {
+    "iterations": 2000,
+    "seconds": 2.75,
+    "throughput_per_s": 732.5,
+    "converged": false,
+    "rel_se_mean_npv": 0.0006283341039778471
+   },
+   "peak_rss_mb": 1573.6
+  },
+  {
+   "projects": 500,
+   "horizon": 12,
+   "time_limit_s": 60.0,
+   "build_s": 0.78,
+   "variables": 19029,
+   "integer_variables": 1991,
+   "constraints": 10656,
+   "nonzeros": 105418,
+   "HiGHS": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 403019.96389,
+    "gap": 0.005585926451157667,
+    "runtime_s": 8.19,
+    "validated": true,
+    "selected": 312
+   },
+   "SCIP": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 402335.763446668,
+    "gap": 0.007347449991197462,
+    "runtime_s": 13.4,
+    "validated": true,
+    "selected": 313
+   },
+   "CP-SAT": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 322213.48402,
+    "gap_scaled_model": 0.3060033290525225,
+    "runtime_s": 60.02
+   },
+   "monte_carlo": {
+    "iterations": 2000,
+    "seconds": 3.82,
+    "throughput_per_s": 527.8,
+    "converged": false,
+    "rel_se_mean_npv": 0.0004660846098173502
+   },
+   "peak_rss_mb": 959.2
+  },
+  {
+   "projects": 500,
+   "horizon": 24,
+   "time_limit_s": 60.0,
+   "build_s": 1.65,
+   "variables": 34194,
+   "integer_variables": 5247,
+   "constraints": 17905,
+   "nonzeros": 296226,
+   "HiGHS": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 455054.58125166665,
+    "gap": 0.0068939431561620985,
+    "runtime_s": 34.48,
+    "validated": true,
+    "selected": 337
+   },
+   "SCIP": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 455185.3128866675,
+    "gap": 0.006635656721778507,
+    "runtime_s": 58.45,
+    "validated": true,
+    "selected": 337
+   },
+   "CP-SAT": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 385075.61454,
+    "gap_scaled_model": 0.20461494800174054,
+    "runtime_s": 60.14
+   },
+   "monte_carlo": {
+    "iterations": 2000,
+    "seconds": 4.93,
+    "throughput_per_s": 409.0,
+    "converged": false,
+    "rel_se_mean_npv": 0.0004774990083927827
+   },
+   "peak_rss_mb": 1874.6
+  },
+  {
+   "projects": 500,
+   "horizon": 36,
+   "time_limit_s": 60.0,
+   "build_s": 3.17,
+   "variables": 49386,
+   "integer_variables": 8541,
+   "constraints": 25246,
+   "nonzeros": 555063,
+   "HiGHS": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 461254.62791,
+    "gap": 0.0007174061207641651,
+    "runtime_s": 49.4,
+    "validated": true,
+    "selected": 348
+   },
+   "SCIP": {
+    "status": "optimal",
+    "proof": "within_gap",
+    "objective": 459131.63882666786,
+    "gap": 0.005379423564009043,
+    "runtime_s": 37.74,
+    "validated": true,
+    "selected": 343
+   },
+   "CP-SAT": {
+    "status": "feasible",
+    "proof": "feasible",
+    "objective": 380430.91407,
+    "gap_scaled_model": 0.22079487418959298,
+    "runtime_s": 60.15
+   },
+   "monte_carlo": {
+    "iterations": 2000,
+    "seconds": 5.43,
+    "throughput_per_s": 370.7,
+    "converged": false,
+    "rel_se_mean_npv": 0.0004627644080834939
+   },
+   "peak_rss_mb": 2518.5
+  }
+ ]
+}

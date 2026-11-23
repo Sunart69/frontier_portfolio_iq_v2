@@ -1,0 +1,18 @@
+<section id="appendix" data-transition="fade" style="gap:28px">
+<div class="head">
+<p class="eyebrow">Appendix · for the team</p>
+<h2>The model in one slide</h2>
+</div>
+<div class="row" style="align-items:stretch">
+<div class="card grow"><h3>Decisions</h3><p class="sm" style="color:#3F4A5A">x[i,s]: start initiative i in month s (yes or no)</p><p class="sm" style="color:#3F4A5A">y[p,i,c,t]: hours team p gives initiative i for skill c in month t</p><p class="sm" style="color:#3F4A5A">A[p,t]: hours team p has in month t</p></div>
+<div class="card grow"><h3>Objective</h3><p class="sm" style="color:#3F4A5A">Maximize time-adjusted value minus transfer and contractor costs</p><p class="sm" style="color:#3F4A5A">Time-indexed MILP, PuLP with the HiGHS solver, 1% optimality gap</p></div>
+<div class="card grow"><h3>Main constraints</h3><p class="sm" style="color:#3F4A5A">Hours used ≤ A[p,t] for every team and month</p><p class="sm" style="color:#3F4A5A">Each month’s demand met exactly</p><p class="sm" style="color:#3F4A5A">Cumulative spend ≤ budget, per LOB and funding source</p><p class="sm" style="color:#3F4A5A">Eligibility, transfer limits, deadlines, dependencies</p></div>
+</div>
+<div class="card night">
+<p class="mono">python -m frontier_portfolio_iq sample --out intake.xlsx</p>
+<p class="mono">python -m frontier_portfolio_iq run --input intake.xlsx --out out/</p>
+<p class="mono">pytest</p>
+</div>
+<p class="sm">Code, tests and sample outputs: github.com/Sunart69/frontier-portfolio-iq. A full run takes about 2.5 minutes.</p>
+<aside>For analysts and engineers. The model is a time-indexed mixed-integer linear program. Binary variables choose each initiative's start month; continuous variables route team hours, directly or through transfer and release rules, with substitution and transfer efficiencies applied. Every hour is drawn from exactly one team's monthly availability. A full run solves three portfolios, twelve scenarios, a per-team release scan and the LOB reconciliation, and writes the results workbook, dashboard and executive deck.</aside>
+</section>

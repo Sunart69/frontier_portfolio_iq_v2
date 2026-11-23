@@ -1,0 +1,83 @@
+# Frontier Portfolio IQ — semi-annual prioritization cadence.
+#
+# Every half-year (semester) the portfolio is re-prioritized for the NEXT half:
+#   H1 = January–June, H2 = July–December.
+# All dates are worked back from the LT decision meeting (T0). Edit this file to change the cadence;
+# the agent, the workflows, the calendar and the stakeholder deck all read it.
+
+first_cycle: 2027-H2          # earlier cycles are ignored (2027-H1 kickoff would have been Sep 2026)
+timezone: America/Los_Angeles
+
+decision_meeting:
+  weeks_before_half_start: 3  # LT decides ~3 weeks before the half starts
+  weekday: TUE                # moved back to this weekday
+
+# Optional per-cycle overrides (e.g. an LT calendar conflict or an expedited first cycle):
+cycle_overrides: {}
+#  2027-H2:
+#    decision_date: 2027-06-08
+
+# Workback schedule. Offsets are relative to the LT decision meeting (T0):
+#   date = T0 + weeks*7 + days, then moved back to the previous business day if it falls on a
+#   weekend or a holiday. A milestone with `package` is the due date for that input package.
+milestones:
+  - {key: kickoff, name: "Cycle kickoff and stakeholder briefing", weeks: -10, days: 0, owner: portfolio_lead}
+  - {key: templates, name: "Input templates issued to owners", weeks: -9, days: 0, owner: portfolio_lead}
+  - {key: due_strategy, name: "Due: LOB strategy, KPI targets and benefit split", weeks: -7, days: 3, package: strategy}
+  - {key: due_budget, name: "Due: LOB budgets by month and funding source", weeks: -6, days: 3, package: budget}
+  - {key: due_capacity, name: "Due: capacity pools, eligibility and transfer rules", weeks: -6, days: 3, package: capacity}
+  - {key: due_initiatives, name: "Due: initiative proposals (demand, costs, dependencies)", weeks: -5, days: 3, package: initiatives}
+  - {key: due_enterprise, name: "Due: enterprise settings and skill substitution", weeks: -4, days: 3, package: enterprise}
+  - {key: validation, name: "Input validation and clean-up complete", weeks: -3, days: 0, owner: portfolio_lead}
+  - {key: approvals, name: "Owning LOBs decide pending transfer and release requests", weeks: -3, days: 3, owner: lob_sponsors}
+  - {key: solver_run, name: "Optimization run and scenario analysis", weeks: -2, days: 0, owner: portfolio_lead}
+  - {key: preread, name: "LT pre-read published (deck, dashboard, results)", weeks: -1, days: 0, owner: portfolio_lead}
+  - {key: decision, name: "LT decision meeting", weeks: 0, days: 0, owner: leadership_team}
+  - {key: publish, name: "Committed portfolio published to sponsors", weeks: 1, days: 0, owner: portfolio_lead}
+
+# Follow-up policy for input owners.
+reminders:
+  before_due_days: [7, 2, 0]          # heads-up, reminder, due today (calendar days before due)
+  escalate_after_business_days: [2, 5] # overdue: +2 → LOB executive sponsor, +5 → portfolio escalation contact
+  email: false                         # also email owners (needs FPIQ_SMTP_* secrets)
+
+# What happens at the optimization-run milestone.
+run:
+  require_all_inputs: true    # run only when every package is valid…
+  carry_forward_missing: false # …or, if true, reuse last cycle's data for missing packages (flagged)
+
+# v2 decision intelligence in the LT pre-read: validated multi-solver optimization, Pareto frontier,
+# Monte Carlo risk, risk-adjusted recommendation, decision dashboard and CEO deck.
+decision_intelligence:
+  enabled: true
+  config: config/decision.yaml
+  iterations: 10000            # Monte Carlo iterations for the pre-read
+  publish_iterations: 5000     # risk profile of the approved portfolio in the published memo
+  quick: false                 # true = small frontier and 1,000 iterations (testing only)
+
+# Where cycle files live, and the baseline used to pre-fill templates when there is no prior cycle.
+paths:
+  cycles_dir: cycles
+  baseline_intake: cadence/baseline_intake.xlsx
+
+holidays:   # company holidays: edit to your calendar
+  - 2027-01-01
+  - 2027-01-18
+  - 2027-02-15
+  - 2027-05-31
+  - 2027-06-18
+  - 2027-07-05
+  - 2027-09-06
+  - 2027-11-25
+  - 2027-11-26
+  - 2027-12-24
+  - 2027-12-31
+  - 2028-01-17
+  - 2028-02-21
+  - 2028-05-29
+  - 2028-06-19
+  - 2028-07-04
+  - 2028-09-04
+  - 2028-11-23
+  - 2028-11-24
+  - 2028-12-25

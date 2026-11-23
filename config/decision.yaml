@@ -1,0 +1,50 @@
+# Frontier Portfolio IQ v2 — decision-intelligence configuration.
+# Used by `python -m frontier_portfolio_iq decide --config config/decision.yaml` and by the semi-annual
+# cycle (cadence/cadence.yaml -> decision_intelligence.config). Every value has a documented default;
+# delete a line to fall back to it.
+
+pareto:
+  primary: value                       # objective optimized in the epsilon-constraint method
+  secondary: [risk, time_to_value]     # objectives bounded by epsilon (the frontier's other axes)
+  grid_points: 4                       # epsilon levels per secondary objective
+  refine_rounds: 2                     # adaptive refinement passes
+  refine_threshold: 0.25               # bisect gaps larger than this (normalized distance)
+  weighted_step: 0.5                   # weighted-sum lattice step (0 = no weighted sums)
+  time_limit: 10                       # seconds per MILP
+  mip_gap: 0.01
+  max_points: 36
+
+objectives:
+  enabled: [value, npv, alignment, okr, acceleration, compliance, cost, risk, overload, time_to_value,
+            diversification]
+  overrides: {}                        # e.g. {risk: {normalization: fixed, fixed_range: [0, 5000]}}
+  custom: []                           # e.g. [{key: nps, name: NPS uplift, direction: max, unit: points,
+                                       #        expression: "attributes['nps_uplift']"}]
+
+simulation:
+  iterations: 10000
+  mode: fixed                          # fixed plan; the four strategic choices also run adaptive
+  seed: 20270101
+  workers: 1                           # results are identical for any number of workers
+
+recommendation:
+  profile: balanced                    # risk_neutral | balanced | risk_averse | custom
+  rule_sets: []                        # e.g. [npv_budget80, okr_dates85, mandatory, downside_protected]
+  constraints: []                      # e.g. [{metric: within_budget, op: ">=", value: 0.8}]
+  value_floor: 0.7                     # conservative / accelerated choices keep >= 70% of the top value
+  # custom_profile: {name: cfo, base: balanced, lambda: 0.5, min_value_share: 0.6}
+
+stochastic:                            # risk-aware stochastic MILP (set to false to skip)
+  scenarios: 40
+  lam: 0.35
+  alpha: 0.9
+  budget_confidence: null              # e.g. 0.8 adds an in-sample budget chance constraint
+
+# nsga: {pop_size: 24, generations: 12}  # optional NSGA-II (approximate; feasibility certified)
+
+whatif:
+  run: true
+  iterations: 2000
+  scenarios: []                        # added to baseline / optimistic / constrained / adverse, e.g.
+  # - {key: hiring_freeze, name: Hiring freeze, description: "No new AI hires in H1",
+  #    capability_month: [[AI Engineering, 1, 6, 0.7]]}

@@ -1,0 +1,697 @@
+{
+  "run_id": "2026-11-21 13:47",
+  "tiers": {
+    "strict": {
+      "label": "Strict ring-fencing (no transfers)",
+      "tier": "Committed",
+      "status": "Optimal",
+      "enterprise_value": 28500.0,
+      "net_value": 27331.25,
+      "investment": 9485.0,
+      "n_selected": 14,
+      "approvals_required": []
+    },
+    "committed": {
+      "label": "Committed portfolio",
+      "tier": "Committed",
+      "status": "Optimal",
+      "enterprise_value": 28900.0,
+      "net_value": 27689.808823529413,
+      "investment": 9563.941176470587,
+      "n_selected": 14,
+      "approvals_required": []
+    },
+    "conditional": {
+      "label": "Conditional portfolio",
+      "tier": "Conditional",
+      "status": "Optimal",
+      "enterprise_value": 31900.0,
+      "net_value": 30465.69339869281,
+      "investment": 10579.306601307188,
+      "n_selected": 16,
+      "approvals_required": [
+        "REL-RF-DATA-C-20",
+        "REL-RF-INT-A-20",
+        "REL-RF-SWE-B-20",
+        "TR-02"
+      ]
+    },
+    "unconstrained": {
+      "label": "Unconstrained opportunity portfolio",
+      "tier": "Unconstrained Opportunity",
+      "status": "Optimal",
+      "enterprise_value": 33900.0,
+      "net_value": 32450.776666666665,
+      "investment": 11312.973333333333,
+      "n_selected": 17,
+      "approvals_required": [
+        "TR-02",
+        "TR-04",
+        "RELAXED-RING-FENCING"
+      ]
+    }
+  },
+  "scenarios": [
+    {
+      "id": 1,
+      "name": "Enterprise-optimal, current ring-fencing",
+      "status": "Committed basis",
+      "net_value": 27689.808823529413,
+      "delta_net_value": 0.0,
+      "approvals": [],
+      "diagnostics": []
+    },
+    {
+      "id": 2,
+      "name": "Enterprise-optimal, all authorized shared capacity",
+      "status": "Conditional \u2014 requires approval",
+      "net_value": 28789.214705882354,
+      "delta_net_value": 1099.4058823529413,
+      "approvals": [
+        "Grant pending transfer approvals",
+        "LOB-C approval to release CT-AI-C capacity to LOB-B (TR-02)"
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": 3,
+      "name": "Release 10% of eligible ring-fenced capacity",
+      "status": "Conditional \u2014 requires approval",
+      "net_value": 28813.235689542482,
+      "delta_net_value": 1123.4268660130692,
+      "approvals": [
+        "Owning-LOB approval for 10% ring-fence release",
+        "LOB-C approval to release RF-DATA-C capacity to any LOB (REL-RF-DATA-C-10)",
+        "LOB-A approval to release RF-INT-A capacity to any LOB (REL-RF-INT-A-10)",
+        "LOB-B approval to release RF-SWE-B capacity to any LOB (REL-RF-SWE-B-10)"
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": 4,
+      "name": "Release 20% of eligible ring-fenced capacity",
+      "status": "Conditional \u2014 requires approval",
+      "net_value": 29030.88988235294,
+      "delta_net_value": 1341.081058823529,
+      "approvals": [
+        "Owning-LOB approval for 20% ring-fence release",
+        "LOB-C approval to release RF-DATA-C capacity to any LOB (REL-RF-DATA-C-20)",
+        "LOB-A approval to release RF-INT-A capacity to any LOB (REL-RF-INT-A-20)",
+        "LOB-B approval to release RF-SWE-B capacity to any LOB (REL-RF-SWE-B-20)"
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": 5,
+      "name": "Transfer capacity from Retail Banking to Commercial Banking",
+      "status": "Conditional \u2014 requires approval",
+      "net_value": 28000.583333333332,
+      "delta_net_value": 310.7745098039195,
+      "approvals": [
+        "Retail Banking leadership approval to transfer capacity to Commercial Banking",
+        "LOB-A approval to release RF-INT-A capacity to LOB-B (XFER-LOB-A-LOB-B-RF-INT-A)"
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": 6,
+      "name": "Increase enterprise shared capacity by 20%",
+      "status": "Conditional \u2014 requires approval",
+      "net_value": 30437.517124183007,
+      "delta_net_value": 2747.708300653594,
+      "approvals": [
+        "Fund and hire +20% enterprise shared capacity"
+      ],
+      "diagnostics": []
+    },
+    {
+      "id": 7,
+      "name": "Reduce Retail Banking budget by 15%",
+      "status": "Committed basis",
+      "net_value": 26230.0,
+      "delta_net_value": -1459.8088235294126,
+      "approvals": [],
+      "diagnostics": []
+    },
+    {
+      "id": 8,
+      "name": "Protect all LOB compliance commitments",
+      "status": "Committed basis",
+      "net_value": 27689.808823529413,
+      "delta_net_value": 0.0,
+      "approvals": [],
+      "diagnostics": []
+    },
+    {
+      "id": 9,
+      "name": "Prioritize enterprise-wide initiatives",
+      "status": "Committed basis",
+      "net_value": 27331.25,
+      "delta_net_value": -358.5588235294126,
+      "approvals": [],
+      "diagnostics": []
+    },
+    {
+      "id": 10,
+      "name": "Optimize for balanced LOB outcomes",
+      "status": "Committed basis",
+      "net_value": 27483.25294117647,
+      "delta_net_value": -206.55588235294272,
+      "approvals": [],
+      "diagnostics": []
+    },
+    {
+      "id": 11,
+      "name": "Accelerate C01 Advisor Desktop",
+      "status": "Committed basis",
+      "net_value": 27407.00294117647,
+      "delta_net_value": -282.8058823529427,
+      "approvals": [],
+      "diagnostics": []
+    },
+    {
+      "id": 12,
+      "name": "Add temporary contractors to Retail Banking",
+      "status": "Conditional \u2014 requires approval",
+      "net_value": 28661.518161764707,
+      "delta_net_value": 971.7093382352941,
+      "approvals": [
+        "Fund temporary AI Engineering contractors for Retail Banking"
+      ],
+      "diagnostics": []
+    }
+  ],
+  "classification": {
+    "A01": "Approved",
+    "A02": "Approved",
+    "A03": "Approved",
+    "A04": "Conditional",
+    "A05": "Rejected",
+    "B01": "Approved",
+    "B02": "Approved",
+    "B03": "Approved",
+    "B04": "Approved",
+    "B05": "Rejected",
+    "C01": "Approved",
+    "C02": "Approved",
+    "C03": "Approved",
+    "C04": "Approved",
+    "E01": "Approved",
+    "E02": "Approved",
+    "E03": "Conditional",
+    "E04": "Approved",
+    "E05": "Conditional"
+  },
+  "release_values": [
+    {
+      "pool": "RF-SWE-A",
+      "owner": "LOB-A",
+      "capability": "Software Engineering",
+      "type": "Ring-fenced",
+      "release_pct": 0.3,
+      "incremental_value": 1076.5764705882357,
+      "hours_released_used": 302.22222222222223,
+      "beneficiary_lobs": {
+        "LOB-C": 220.0,
+        "ENT": 82.22222222222223
+      },
+      "release_eligible": false
+    },
+    {
+      "pool": "CT-AI-C",
+      "owner": "LOB-C",
+      "capability": "AI Engineering",
+      "type": "Conditionally Transferable",
+      "release_pct": 0.3,
+      "incremental_value": 1044.0156470588227,
+      "hours_released_used": 698.3999999999999,
+      "beneficiary_lobs": {
+        "LOB-B": 698.3999999999999
+      },
+      "release_eligible": true
+    },
+    {
+      "pool": "RF-SWE-B",
+      "owner": "LOB-B",
+      "capability": "Software Engineering",
+      "type": "Ring-fenced",
+      "release_pct": 0.3,
+      "incremental_value": 1002.9950980392132,
+      "hours_released_used": 384.4444444444444,
+      "beneficiary_lobs": {
+        "ENT": 384.4444444444444
+      },
+      "release_eligible": true
+    },
+    {
+      "pool": "RF-DATA-C",
+      "owner": "LOB-C",
+      "capability": "Data Engineering",
+      "type": "Ring-fenced",
+      "release_pct": 0.3,
+      "incremental_value": 980.3617647058818,
+      "hours_released_used": 165.88235294117646,
+      "beneficiary_lobs": {
+        "LOB-B": 110.58823529411765,
+        "ENT": 55.294117647058826
+      },
+      "release_eligible": true
+    },
+    {
+      "pool": "RF-INT-A",
+      "owner": "LOB-A",
+      "capability": "Integration Engineering",
+      "type": "Ring-fenced",
+      "release_pct": 0.3,
+      "incremental_value": 329.5245098039195,
+      "hours_released_used": 44.44444444444422,
+      "beneficiary_lobs": {
+        "LOB-B": 14.222222222222234,
+        "LOB-C": 30.222222222221987
+      },
+      "release_eligible": true
+    },
+    {
+      "pool": "RF-SWE-C-TMP",
+      "owner": "LOB-C",
+      "capability": "Software Engineering",
+      "type": "Ring-fenced",
+      "release_pct": 0.3,
+      "incremental_value": 0.0,
+      "hours_released_used": 0,
+      "beneficiary_lobs": {},
+      "release_eligible": false
+    }
+  ],
+  "lob_reconciliation": {
+    "lobs": [
+      {
+        "lob": "LOB-A",
+        "lob_name": "Retail Banking",
+        "standalone_status": "Optimal",
+        "standalone_value": 7200.0,
+        "enterprise_plan_own_value": 5300.0,
+        "cross_lob_benefit_received": 2000.0,
+        "enterprise_plan_value": 7300.0,
+        "concession": 1900.0,
+        "standalone_only": [
+          "A05"
+        ],
+        "enterprise_only": []
+      },
+      {
+        "lob": "LOB-B",
+        "lob_name": "Commercial Banking",
+        "standalone_status": "Optimal",
+        "standalone_value": 7800.0,
+        "enterprise_plan_own_value": 7800.0,
+        "cross_lob_benefit_received": 2600.0,
+        "enterprise_plan_value": 10400.0,
+        "concession": 0.0,
+        "standalone_only": [],
+        "enterprise_only": []
+      },
+      {
+        "lob": "LOB-C",
+        "lob_name": "Wealth Management",
+        "standalone_status": "Optimal",
+        "standalone_value": 6500.0,
+        "enterprise_plan_own_value": 6500.0,
+        "cross_lob_benefit_received": 2300.0,
+        "enterprise_plan_value": 8800.0,
+        "concession": 0.0,
+        "standalone_only": [],
+        "enterprise_only": []
+      }
+    ],
+    "shared_conflicts": [
+      {
+        "pool": "SH-AI-ENT",
+        "month": 7,
+        "available": 178.5,
+        "claimed": 357.0,
+        "oversubscribed": 178.5,
+        "claims": {
+          "LOB-A": 178.5,
+          "LOB-C": 178.5
+        },
+        "enterprise_allocated": 0.0
+      },
+      {
+        "pool": "SH-AI-ENT",
+        "month": 8,
+        "available": 178.5,
+        "claimed": 386.0,
+        "oversubscribed": 207.5,
+        "claims": {
+          "LOB-A": 178.5,
+          "LOB-B": 178.5,
+          "LOB-C": 28.999999999999986
+        },
+        "enterprise_allocated": 178.5
+      },
+      {
+        "pool": "SH-AI-ENT",
+        "month": 9,
+        "available": 178.5,
+        "claimed": 535.5,
+        "oversubscribed": 357.0,
+        "claims": {
+          "LOB-A": 178.5,
+          "LOB-B": 178.5,
+          "LOB-C": 178.5
+        },
+        "enterprise_allocated": 178.5
+      },
+      {
+        "pool": "SH-AI-ENT",
+        "month": 10,
+        "available": 178.5,
+        "claimed": 535.5,
+        "oversubscribed": 357.0,
+        "claims": {
+          "LOB-A": 178.5,
+          "LOB-B": 178.5,
+          "LOB-C": 178.5
+        },
+        "enterprise_allocated": 178.50000000000003
+      },
+      {
+        "pool": "SH-AI-ENT",
+        "month": 11,
+        "available": 178.5,
+        "claimed": 357.0,
+        "oversubscribed": 178.5,
+        "claims": {
+          "LOB-A": 178.5,
+          "LOB-B": 178.5
+        },
+        "enterprise_allocated": 178.5
+      },
+      {
+        "pool": "SH-DATA-ENT",
+        "month": 3,
+        "available": 476.0,
+        "claimed": 500.0,
+        "oversubscribed": 24.0,
+        "claims": {
+          "LOB-A": 80.0,
+          "LOB-B": 220.0,
+          "LOB-C": 200.0
+        },
+        "enterprise_allocated": 423.0
+      },
+      {
+        "pool": "SH-DATA-ENT",
+        "month": 7,
+        "available": 476.0,
+        "claimed": 563.0,
+        "oversubscribed": 87.0,
+        "claims": {
+          "LOB-A": 223.0,
+          "LOB-B": 220.0,
+          "LOB-C": 120.0
+        },
+        "enterprise_allocated": 420.0
+      },
+      {
+        "pool": "SH-DATA-ENT",
+        "month": 9,
+        "available": 476.0,
+        "claimed": 789.0000000000009,
+        "oversubscribed": 313.0000000000009,
+        "claims": {
+          "LOB-A": 223.0000000000009,
+          "LOB-B": 243.0,
+          "LOB-C": 323.0
+        },
+        "enterprise_allocated": 476.0
+      },
+      {
+        "pool": "SH-DATA-ENT",
+        "month": 10,
+        "available": 476.0,
+        "claimed": 586.0000000000009,
+        "oversubscribed": 110.00000000000091,
+        "claims": {
+          "LOB-A": 223.0000000000009,
+          "LOB-B": 243.0,
+          "LOB-C": 120.0
+        },
+        "enterprise_allocated": 476.0
+      },
+      {
+        "pool": "SH-INT-ENT",
+        "month": 1,
+        "available": 119.0,
+        "claimed": 238.0,
+        "oversubscribed": 119.0,
+        "claims": {
+          "LOB-A": 119.0,
+          "LOB-B": 119.0
+        },
+        "enterprise_allocated": 119.0
+      },
+      {
+        "pool": "SH-INT-ENT",
+        "month": 2,
+        "available": 119.0,
+        "claimed": 237.99999999999994,
+        "oversubscribed": 118.99999999999994,
+        "claims": {
+          "LOB-A": 119.0,
+          "LOB-B": 118.99999999999996
+        },
+        "enterprise_allocated": 119.0
+      },
+      {
+        "pool": "SH-INT-ENT",
+        "month": 3,
+        "available": 119.0,
+        "claimed": 238.00000000000009,
+        "oversubscribed": 119.00000000000009,
+        "claims": {
+          "LOB-A": 119.00000000000009,
+          "LOB-B": 119.0
+        },
+        "enterprise_allocated": 119.0
+      },
+      {
+        "pool": "SH-INT-ENT",
+        "month": 4,
+        "available": 119.0,
+        "claimed": 238.0,
+        "oversubscribed": 119.0,
+        "claims": {
+          "LOB-A": 119.0,
+          "LOB-B": 119.0
+        },
+        "enterprise_allocated": 119.0
+      },
+      {
+        "pool": "SH-INT-ENT",
+        "month": 6,
+        "available": 119.0,
+        "claimed": 338.0,
+        "oversubscribed": 219.0,
+        "claims": {
+          "LOB-A": 119.0,
+          "LOB-B": 119.0,
+          "LOB-C": 100.0
+        },
+        "enterprise_allocated": 118.99999999999999
+      },
+      {
+        "pool": "SH-INT-ENT",
+        "month": 7,
+        "available": 119.0,
+        "claimed": 219.0,
+        "oversubscribed": 100.0,
+        "claims": {
+          "LOB-B": 119.0,
+          "LOB-C": 100.0
+        },
+        "enterprise_allocated": 119.0
+      },
+      {
+        "pool": "SH-INT-ENT",
+        "month": 8,
+        "available": 119.0,
+        "claimed": 160.0,
+        "oversubscribed": 41.0,
+        "claims": {
+          "LOB-B": 60.0,
+          "LOB-C": 99.99999999999999
+        },
+        "enterprise_allocated": 119.0
+      },
+      {
+        "pool": "SH-INT-ENT",
+        "month": 9,
+        "available": 119.0,
+        "claimed": 160.0,
+        "oversubscribed": 41.0,
+        "claims": {
+          "LOB-B": 60.0,
+          "LOB-C": 100.0
+        },
+        "enterprise_allocated": 119.00000000000011
+      },
+      {
+        "pool": "SH-INT-ENT",
+        "month": 10,
+        "available": 119.0,
+        "claimed": 160.0,
+        "oversubscribed": 41.0,
+        "claims": {
+          "LOB-B": 60.0,
+          "LOB-C": 100.0
+        },
+        "enterprise_allocated": 119.0
+      },
+      {
+        "pool": "SH-INT-ENT",
+        "month": 11,
+        "available": 119.0,
+        "claimed": 156.39999999999998,
+        "oversubscribed": 37.39999999999998,
+        "claims": {
+          "LOB-B": 60.0,
+          "LOB-C": 96.39999999999999
+        },
+        "enterprise_allocated": 119.0
+      },
+      {
+        "pool": "SH-SWE-ENT",
+        "month": 1,
+        "available": 476.0,
+        "claimed": 971.6666666666667,
+        "oversubscribed": 495.66666666666674,
+        "claims": {
+          "LOB-A": 401.6666666666667,
+          "LOB-B": 420.0,
+          "LOB-C": 150.0
+        },
+        "enterprise_allocated": 476.0
+      },
+      {
+        "pool": "SH-SWE-ENT",
+        "month": 3,
+        "available": 476.0,
+        "claimed": 626.0,
+        "oversubscribed": 150.0,
+        "claims": {
+          "LOB-A": 476.0,
+          "LOB-C": 150.0
+        },
+        "enterprise_allocated": 475.99999999999994
+      },
+      {
+        "pool": "SH-SWE-ENT",
+        "month": 4,
+        "available": 476.0,
+        "claimed": 561.6666666666667,
+        "oversubscribed": 85.66666666666674,
+        "claims": {
+          "LOB-A": 220.0,
+          "LOB-B": 191.66666666666669,
+          "LOB-C": 150.0
+        },
+        "enterprise_allocated": 476.0
+      },
+      {
+        "pool": "SH-SWE-ENT",
+        "month": 6,
+        "available": 476.0,
+        "claimed": 799.0,
+        "oversubscribed": 323.0,
+        "claims": {
+          "LOB-A": 220.0,
+          "LOB-B": 476.0,
+          "LOB-C": 103.0
+        },
+        "enterprise_allocated": 475.9999999999999
+      },
+      {
+        "pool": "SH-SWE-ENT",
+        "month": 8,
+        "available": 476.0,
+        "claimed": 806.0,
+        "oversubscribed": 330.0,
+        "claims": {
+          "LOB-A": 200.00000000000006,
+          "LOB-B": 440.0,
+          "LOB-C": 166.0
+        },
+        "enterprise_allocated": 476.00000000000006
+      },
+      {
+        "pool": "SH-SWE-ENT",
+        "month": 9,
+        "available": 476.0,
+        "claimed": 940.0000000000002,
+        "oversubscribed": 464.0000000000002,
+        "claims": {
+          "LOB-A": 200.00000000000026,
+          "LOB-B": 440.0,
+          "LOB-C": 300.0
+        },
+        "enterprise_allocated": 476.0
+      },
+      {
+        "pool": "SH-SWE-ENT",
+        "month": 10,
+        "available": 476.0,
+        "claimed": 500.0000000000001,
+        "oversubscribed": 24.000000000000114,
+        "claims": {
+          "LOB-A": 80.00000000000013,
+          "LOB-B": 120.0,
+          "LOB-C": 300.0
+        },
+        "enterprise_allocated": 476.0
+      },
+      {
+        "pool": "SH-SWE-ENT",
+        "month": 11,
+        "available": 476.0,
+        "claimed": 506.0,
+        "oversubscribed": 30.0,
+        "claims": {
+          "LOB-A": 80.0,
+          "LOB-B": 120.0,
+          "LOB-C": 306.0
+        },
+        "enterprise_allocated": 476.0
+      }
+    ],
+    "oversubscribed_hours": 4670.233333333335,
+    "enterprise_within_capacity": true,
+    "shared_commitments_by_lob": {
+      "LOB-A": {
+        "SH-INT-ENT": 356.0,
+        "SH-SWE-ENT": 820.9999999999998,
+        "SH-ARC-ENT": 440.0,
+        "SH-DATA-ENT": 186.00000000000006
+      },
+      "LOB-B": {
+        "SH-SWE-ENT": 427.0,
+        "SH-INT-ENT": 516.8000000000001,
+        "SH-ARC-ENT": 470.0,
+        "SH-DATA-ENT": 2315.0,
+        "SH-AI-ENT": 892.5
+      },
+      "LOB-C": {
+        "SH-SWE-ENT": 1532.0,
+        "SH-INT-ENT": 496.20000000000005,
+        "SH-DATA-ENT": 739.0000000000001
+      },
+      "ENT": {
+        "SH-DATA-ENT": 1871.0,
+        "SH-AI-ENT": 892.5,
+        "SH-SWE-ENT": 2640.0,
+        "SH-ARC-ENT": 760.0
+      }
+    }
+  }
+}

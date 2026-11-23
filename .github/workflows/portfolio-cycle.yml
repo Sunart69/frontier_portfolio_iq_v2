@@ -1,0 +1,109 @@
+# The clock and the messenger for the semi-annual prioritization cycle.
+# Every weekday morning it runs `cycle tick`, which (only when due, and never twice):
+#   kicks off the cycle (templates, calendar, stakeholder deck, one input issue per owner),
+#   posts reminders and escalations on the input issues, keeps the status issue current,
+#   on the optimization-run date merges the inputs and runs the optimizer, and once the LT decision
+#   record is filled in, re-solves with LT's decisions and publishes the approved-portfolio memo.
+# Committed files go to the default branch; optimizer outputs arrive as an LT pre-read pull request.
+name: Portfolio cycle
+
+on:
+  schedule:
+    - cron: "0 16 * * 1-5"        # 16:00 UTC = 08:00 Pacific (standard time), weekdays
+  push:
+    branches: [main]
+    paths:
+      - "cycles/*/inputs/**"             # an owner's file was merged: acknowledge and close their issue
+      - "cycles/*/decision/**"           # the LT decision record was filled in: publish the approved portfolio
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "What to do"
+        type: choice
+        options: [tick, status, followup, kickoff, run, publish]
+        default: tick
+      cycle:
+        description: "Cycle id, e.g. 2027-H2 (blank = the active cycle)"
+        required: false
+        default: ""
+      force:
+        description: "Run the optimizer even if inputs are incomplete (missing ones carried forward)"
+        type: boolean
+        default: false
+      dry_run:
+        description: "Dry run: post nothing to issues"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: portfolio-cycle
+  cancel-in-progress: false
+
+jobs:
+  cycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install
+        run: pip install -e .
+      - name: Run cycle step
+        id: tick
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTION: ${{ github.event.inputs.action || 'tick' }}
+          CYCLE: ${{ github.event.inputs.cycle }}
+          FORCE: ${{ github.event.inputs.force }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+          FPIQ_SMTP_HOST: ${{ secrets.FPIQ_SMTP_HOST }}
+          FPIQ_SMTP_PORT: ${{ secrets.FPIQ_SMTP_PORT }}
+          FPIQ_SMTP_USER: ${{ secrets.FPIQ_SMTP_USER }}
+          FPIQ_SMTP_PASSWORD: ${{ secrets.FPIQ_SMTP_PASSWORD }}
+          FPIQ_SMTP_FROM: ${{ secrets.FPIQ_SMTP_FROM }}
+        run: |
+          args=()
+          [ -n "$CYCLE" ] && args+=(--cycle "$CYCLE")
+          [ "$FORCE" = "true" ] && args+=(--force)
+          [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
+          python -m frontier_portfolio_iq cycle "$ACTION" "${args[@]}" | tee cycle.log
+          echo "## Portfolio cycle: $ACTION" >> "$GITHUB_STEP_SUMMARY"
+          sed 's/^/    /' cycle.log >> "$GITHUB_STEP_SUMMARY"
+          if [ -n "$(git status --porcelain cycles)" ]; then echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Save cycle files and open the LT pre-read pull request
+        if: steps.tick.outputs.changed == 'true' && github.event.inputs.dry_run != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "portfolio-cycle[bot]"
+          git config user.email "portfolio-cycle@users.noreply.github.com"
+          out_cycle="$(git status --porcelain --untracked-files=all cycles | sed -n 's#.*cycles/\([^/]*\)/outputs/.*#\1#p' | head -n1)"
+          # 1) Cycle state, status, templates, calendar and merged intake go straight to the default branch,
+          #    so the next run knows what has already happened.
+          git add -A cycles ':(exclude)cycles/*/outputs/**'
+          if ! git diff --cached --quiet; then
+            git commit -m "Portfolio cycle: update cycle files [skip ci]"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+          # 2) Optimizer outputs arrive as a pull request for review before the LT pre-read.
+          if [ -n "$out_cycle" ]; then
+            branch="portfolio/${out_cycle}-preread"
+            git checkout -b "$branch"
+            git add -A "cycles/${out_cycle}/outputs"
+            git commit -m "Portfolio ${out_cycle}: optimization outputs for the LT pre-read"
+            git push -u origin "$branch" --force-with-lease
+            gh pr create --base "${GITHUB_REF_NAME}" --head "$branch" \
+              --title "Portfolio ${out_cycle}: LT pre-read" \
+              --body "Optimization outputs for ${out_cycle}: executive deck, LOB dashboard, results workbook and summary in \`cycles/${out_cycle}/outputs/\`. Review before the pre-read milestone and merge. After the LT meeting, fill in \`cycles/${out_cycle}/decision/lt_decision.yaml\` on main; the approved-portfolio memo is then published to \`cycles/${out_cycle}/published/\`." \
+              || echo "::warning::Could not open the pull request. Allow GitHub Actions to create pull requests (Settings → Actions → General), or open it from branch ${branch}."
+          fi

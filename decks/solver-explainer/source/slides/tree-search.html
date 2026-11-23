@@ -1,0 +1,31 @@
+<section id="tree-search" data-transition="fade" style="gap:32px">
+<div class="head">
+<p class="eyebrow">Decision tree 2 · How the solver searches</p>
+<h2>The solver prunes branches that cannot win</h2>
+</div>
+<div class="col" style="gap:8px; align-items:center">
+<div class="card fade-in" style="width:760px; align-items:center; --i:0"><p class="strong" style="text-align:center">Start: every initiative undecided</p><p class="sm" style="text-align:center">Bound = the value if team and budget limits were relaxed</p></div>
+<div class="row" style="width:1664px; gap:32px">
+<div class="col" style="width:816px; gap:8px; align-items:center">
+<div class="down" style="justify-content:center"><x-shape kind="arrow-down" class="arrow-d"></x-shape><p class="edge">fund E01, the AI Platform</p></div>
+<div class="card fade-in" style="width:816px; --i:1"><p class="strong">Step 1 · E01 funded</p><p class="sm">Bound still beats the best plan, so keep branching</p></div>
+<div class="row" style="width:816px; gap:16px">
+<div class="col" style="width:400px; gap:8px; align-items:center">
+<div class="down"><x-shape kind="arrow-down" class="arrow-d"></x-shape><p class="edge">fund B04 too</p></div>
+<div class="card committed fade-in" style="width:400px; --i:2"><p class="strong">Step 2 · New best</p><p class="sm" style="color:#3F4A5A">Every rule met</p></div>
+</div>
+<div class="col" style="width:400px; gap:8px; align-items:center">
+<div class="down"><x-shape kind="arrow-down" class="arrow-d"></x-shape><p class="edge">skip B04</p></div>
+<div class="card pruned fade-in" style="width:400px; --i:3"><p class="strong">Step 3 · Pruned</p><p class="sm">Below the new best</p></div>
+</div>
+</div>
+</div>
+<div class="col" style="width:816px; gap:8px; align-items:center">
+<div class="down" style="justify-content:center"><x-shape kind="arrow-down" class="arrow-d"></x-shape><p class="edge">skip E01</p></div>
+<div class="card pruned fade-in" style="width:816px; --i:4"><p class="strong">Step 4 · Pruned</p><p class="sm">Bound below the best plan: no plan beneath it is checked</p></div>
+</div>
+</div>
+</div>
+<p class="sm">Illustration of the method (branch-and-bound), not a log of the sample run. Pruning one branch discards every plan beneath it, which is how the solver proves a plan is within 1% of the best in under 5 seconds.</p>
+<aside>The solver never lists every plan. It builds a tree of yes-or-no choices. At each branch it computes a bound, the best value anything below could reach if limits were relaxed. If that bound cannot beat the best plan found so far, the whole branch is discarded without checking a single plan in it. Dashed boxes are pruned branches. The blue box is a complete plan that meets every rule.</aside>
+</section>

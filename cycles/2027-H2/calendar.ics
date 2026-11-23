@@ -1,0 +1,157 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Frontier Portfolio IQ//Cadence//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Portfolio 2027-H2 cadence
+BEGIN:VEVENT
+UID:fpiq-2027-H2-kickoff@frontier-portfolio-iq
+DTSTAMP:20270101T000000Z
+DTSTART;VALUE=DATE:20270330
+DTEND;VALUE=DATE:20270331
+SUMMARY:[Portfolio 2027-H2] Cycle kickoff and stakeholder briefing
+DESCRIPTION:Cycle kickoff and stakeholder briefing. Owner: [Portfolio lead
+ ].
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fpiq-2027-H2-templates@frontier-portfolio-iq
+DTSTAMP:20270101T000000Z
+DTSTART;VALUE=DATE:20270406
+DTEND;VALUE=DATE:20270407
+SUMMARY:[Portfolio 2027-H2] Input templates issued to owners
+DESCRIPTION:Input templates issued to owners. Owner: [Portfolio lead].
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fpiq-2027-H2-due_strategy@frontier-portfolio-iq
+DTSTAMP:20270101T000000Z
+DTSTART;VALUE=DATE:20270423
+DTEND;VALUE=DATE:20270424
+SUMMARY:[Portfolio 2027-H2] Due: LOB strategy\, KPI targets and benefit sp
+ lit
+DESCRIPTION:LOB strategy & outcomes: Your LOB's sponsor and owners\, KPI t
+ argets and minimum outcomes\, and the benefit your LOB expects from each 
+ initiative\, including cross-LOB platforms. Owners: Retail Banking: [Reta
+ il outcome owner]\; Commercial Banking: [Commercial outcome owner]\; Weal
+ th Management: [Wealth outcome owner]\; Enterprise IT (Shared Platforms):
+  [Chief architect].
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fpiq-2027-H2-due_budget@frontier-portfolio-iq
+DTSTAMP:20270101T000000Z
+DTSTART;VALUE=DATE:20270430
+DTEND;VALUE=DATE:20270501
+SUMMARY:[Portfolio 2027-H2] Due: LOB budgets by month and funding source
+DESCRIPTION:LOB budget allocation: Available budget by month and funding s
+ ource\, carry-forward rule and restrictions. Owners: Retail Banking: [Ret
+ ail budget owner]\; Commercial Banking: [Commercial budget owner]\; Wealt
+ h Management: [Wealth budget owner]\; Enterprise IT (Shared Platforms): [
+ IT finance lead].
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fpiq-2027-H2-due_capacity@frontier-portfolio-iq
+DTSTAMP:20270101T000000Z
+DTSTART;VALUE=DATE:20270430
+DTEND;VALUE=DATE:20270501
+SUMMARY:[Portfolio 2027-H2] Due: capacity pools\, eligibility and transfer
+  rules
+DESCRIPTION:Capacity pools & transfer rules: Teams your LOB owns (FTE\, st
+ art and end months\, ring-fenced or shared)\, who may use them\, and tran
+ sfers you approve\, decline or propose. Owners: Retail Banking: [Retail r
+ esource manager]\; Commercial Banking: [Commercial resource manager]\; We
+ alth Management: [Wealth resource manager]\; Enterprise IT (Shared Platfo
+ rms): [Shared services resource manager].
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fpiq-2027-H2-due_initiatives@frontier-portfolio-iq
+DTSTAMP:20270101T000000Z
+DTSTART;VALUE=DATE:20270507
+DTEND;VALUE=DATE:20270508
+SUMMARY:[Portfolio 2027-H2] Due: initiative proposals (demand\, costs\, de
+ pendencies)
+DESCRIPTION:Initiative proposals: Every initiative your LOB sponsors: valu
+ e\, priority\, mandatory and compliance flags\, monthly hours by skill\, 
+ monthly cost\, deadlines and dependencies. Owners: Retail Banking: [Retai
+ l PMO lead]\; Commercial Banking: [Commercial PMO lead]\; Wealth Manageme
+ nt: [Wealth PMO lead]\; Enterprise IT (Shared Platforms): [Enterprise PMO
+  lead].
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fpiq-2027-H2-due_enterprise@frontier-portfolio-iq
+DTSTAMP:20270101T000000Z
+DTSTART;VALUE=DATE:20270514
+DTEND;VALUE=DATE:20270515
+SUMMARY:[Portfolio 2027-H2] Due: enterprise settings and skill substitutio
+ n
+DESCRIPTION:Enterprise settings: Planning horizon\, governance switches an
+ d which skills can substitute for others. Owners: [Portfolio lead].
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fpiq-2027-H2-validation@frontier-portfolio-iq
+DTSTAMP:20270101T000000Z
+DTSTART;VALUE=DATE:20270518
+DTEND;VALUE=DATE:20270519
+SUMMARY:[Portfolio 2027-H2] Input validation and clean-up complete
+DESCRIPTION:Input validation and clean-up complete. Owner: [Portfolio lead
+ ].
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fpiq-2027-H2-approvals@frontier-portfolio-iq
+DTSTAMP:20270101T000000Z
+DTSTART;VALUE=DATE:20270521
+DTEND;VALUE=DATE:20270522
+SUMMARY:[Portfolio 2027-H2] Owning LOBs decide pending transfer and releas
+ e requests
+DESCRIPTION:Owning LOBs decide pending transfer and release requests. Owne
+ r: LOB executive sponsors ([Retail EVP]\, [Commercial EVP]\, [Wealth EVP]
+ \, [CIO]).
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fpiq-2027-H2-solver_run@frontier-portfolio-iq
+DTSTAMP:20270101T000000Z
+DTSTART;VALUE=DATE:20270525
+DTEND;VALUE=DATE:20270526
+SUMMARY:[Portfolio 2027-H2] Optimization run and scenario analysis
+DESCRIPTION:Optimization run and scenario analysis. Owner: [Portfolio lead
+ ].
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fpiq-2027-H2-preread@frontier-portfolio-iq
+DTSTAMP:20270101T000000Z
+DTSTART;VALUE=DATE:20270601
+DTEND;VALUE=DATE:20270602
+SUMMARY:[Portfolio 2027-H2] LT pre-read published (deck\, dashboard\, resu
+ lts)
+DESCRIPTION:LT pre-read published (deck\, dashboard\, results). Owner: [Po
+ rtfolio lead].
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fpiq-2027-H2-decision@frontier-portfolio-iq
+DTSTAMP:20270101T000000Z
+DTSTART;VALUE=DATE:20270608
+DTEND;VALUE=DATE:20270609
+SUMMARY:[Portfolio 2027-H2] LT decision meeting
+DESCRIPTION:LT decision meeting. Owner: Leadership team.
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fpiq-2027-H2-publish@frontier-portfolio-iq
+DTSTAMP:20270101T000000Z
+DTSTART;VALUE=DATE:20270615
+DTEND;VALUE=DATE:20270616
+SUMMARY:[Portfolio 2027-H2] Committed portfolio published to sponsors
+DESCRIPTION:Committed portfolio published to sponsors. Owner: [Portfolio l
+ ead].
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

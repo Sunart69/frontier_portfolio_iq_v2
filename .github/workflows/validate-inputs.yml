@@ -1,0 +1,49 @@
+# Checks every input workbook added or changed in a pull request and reports problems on the PR.
+name: Validate portfolio inputs
+
+on:
+  pull_request:
+    paths: ["cycles/*/inputs/**"]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -e .
+      - name: Check submitted workbooks
+        id: check
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          mapfile -t files < <(git diff --name-only --diff-filter=AM "$BASE_SHA" HEAD -- 'cycles/*/inputs/*.xlsx')
+          if [ ${#files[@]} -eq 0 ]; then echo "No input workbooks changed." | tee report.txt; exit 0; fi
+          set +e
+          python -m frontier_portfolio_iq cycle check --files "${files[@]}" > report.txt
+          status=$?
+          set -e
+          cat report.txt
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+      - name: Report on the pull request
+        if: always() && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.number }}
+          STATUS: ${{ steps.check.outputs.status }}
+        run: |
+          if [ "$STATUS" = "0" ] || [ -z "$STATUS" ]; then head="✅ Input check passed"; else head="⚠️ Input check found problems"; fi
+          { echo "### $head"; echo; echo '```'; cat report.txt; echo '```'; } > comment.md
+          gh pr comment "$PR" --body-file comment.md
+      - name: Fail when invalid
+        if: steps.check.outputs.status != '' && steps.check.outputs.status != '0'
+        run: exit 1

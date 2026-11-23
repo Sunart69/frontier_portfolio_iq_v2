@@ -1,0 +1,17 @@
+<section id="tree-labels" data-transition="fade" style="gap:32px">
+<div class="head">
+<p class="eyebrow">Decision tree 3 · How each initiative is labeled</p>
+<h2>Every initiative gets exactly one label</h2>
+</div>
+<div class="col" style="gap:6px">
+<div class="tree-row"><p class="q" style="width:700px">In the committed portfolio?</p><p class="edge" style="width:48px">yes</p><x-shape kind="arrow-right" class="arrow-r"></x-shape><p class="out committed" style="width:812px">Approved · 14 in the sample: fund now</p></div>
+<div class="down"><div style="width:336px"></div><x-shape kind="arrow-down" class="arrow-d"></x-shape><p class="edge">no</p></div>
+<div class="tree-row"><p class="q" style="width:700px">In the conditional portfolio?</p><p class="edge" style="width:48px">yes</p><x-shape kind="arrow-right" class="arrow-r"></x-shape><p class="out conditional" style="width:812px">Conditional · 3: A04, E03, E05, after LOB approvals</p></div>
+<div class="down"><div style="width:336px"></div><x-shape kind="arrow-down" class="arrow-d"></x-shape><p class="edge">no</p></div>
+<div class="tree-row"><p class="q" style="width:700px">In the unconstrained ceiling?</p><p class="edge" style="width:48px">yes</p><x-shape kind="arrow-right" class="arrow-r"></x-shape><p class="out" style="width:812px">Deferred · 0: only if restrictions are relaxed</p></div>
+<div class="down"><div style="width:336px"></div><x-shape kind="arrow-down" class="arrow-d"></x-shape><p class="edge">no</p></div>
+<div class="tree-row"><p class="out" style="width:700px">Rejected · 2: A05, B05, in no portfolio</p></div>
+</div>
+<p class="sm">Each label tells a sponsor what would change it: an approval for Conditional, a policy change for Deferred, a stronger business case for Rejected.</p>
+<aside>After the three portfolios are solved, each initiative is checked in order, from the most certain portfolio to the least. In the sample, 14 initiatives are approved, 3 become fundable once LOB owners approve capacity transfers or releases, none sit only in the unconstrained ceiling, and 2 are in no portfolio at all.</aside>
+</section>

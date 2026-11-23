@@ -1,0 +1,85 @@
+:root {
+  --ink: #16243B;
+  --ink2: #3F4A5A;
+  --muted: #5F6672;
+  --paper: #F6F4EF;
+  --card: #FCFBF8;
+  --line: #D6D2C8;
+  --accent: #2459B8;
+  --accent-soft: #E2EAF7;
+  --amber: #8A5A00;
+  --amber-line: #D9900F;
+  --amber-soft: #FBEFD5;
+  --night2: #22324D;
+  --on-dark: #F3F1EC;
+  --on-dark2: #C9D2E0;
+}
+
+section {
+  background: var(--paper);
+  padding: 128px;
+  box-sizing: border-box;
+  font-family: 'Inter', Arial, sans-serif;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+section.dark { background: var(--ink); color: var(--on-dark); }
+
+.head { display: flex; flex-direction: column; gap: 12px; }
+.eyebrow { font-size: 24px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); line-height: 1.2; }
+.dark .eyebrow { color: #F2B544; }
+
+h1 { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 96px; font-weight: 700; line-height: 1.05; color: var(--on-dark); }
+h2 { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 60px; font-weight: 700; line-height: 1.1; color: var(--ink); }
+.dark h2 { color: var(--on-dark); }
+h3 { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 28px; font-weight: 700; line-height: 1.2; color: var(--ink); }
+.dark h3 { color: var(--on-dark); }
+
+p { font-size: 28px; line-height: 1.4; color: var(--ink2); }
+.dark p { color: var(--on-dark2); }
+p.sm { font-size: 24px; line-height: 1.4; color: var(--muted); }
+.dark p.sm { color: var(--on-dark2); }
+p.strong { font-weight: 600; color: var(--ink); }
+
+.row { display: flex; flex-direction: row; gap: 32px; }
+.col { display: flex; flex-direction: column; gap: 24px; }
+.grow { flex: 1; }
+
+.card { background: var(--card); border: 2px solid var(--line); border-radius: 16px; padding: 28px 32px; display: flex; flex-direction: column; gap: 10px; box-sizing: border-box; }
+.card.committed { background: var(--accent-soft); border-color: var(--accent); }
+.card.conditional { background: var(--amber-soft); border-color: var(--amber-line); }
+.card.pruned { background: var(--paper); border: 2px dashed #9AA0A8; }
+.card.night { background: var(--night2); border-color: var(--night2); }
+
+.big { font-family: 'Space Grotesk', Arial, sans-serif; font-size: 96px; font-weight: 700; line-height: 1; color: var(--ink); }
+.dark .big { color: var(--on-dark); }
+
+.pill { font-size: 24px; font-weight: 600; line-height: 1.2; padding: 10px 20px; border-radius: 999px; background: var(--card); border: 2px solid var(--line); color: var(--ink); }
+.pill.committed { background: var(--accent-soft); border-color: var(--accent); }
+.pill.conditional { background: var(--amber-soft); border-color: var(--amber-line); }
+
+.q { background: var(--card); border: 2px solid var(--line); border-radius: 14px; padding: 18px 28px; box-sizing: border-box; font-size: 28px; line-height: 1.35; color: var(--ink); font-weight: 600; }
+.out { border-radius: 14px; padding: 18px 24px; box-sizing: border-box; font-size: 24px; line-height: 1.35; font-weight: 600; color: var(--ink); background: var(--card); border: 2px solid var(--line); }
+.out.committed { background: var(--accent-soft); border-color: var(--accent); }
+.out.conditional { background: var(--amber-soft); border-color: var(--amber-line); }
+.edge { font-size: 24px; color: var(--muted); line-height: 1.2; }
+
+.tree-row { display: flex; flex-direction: row; align-items: center; gap: 16px; }
+.down { display: flex; flex-direction: row; align-items: center; gap: 12px; height: 36px; }
+.arrow-r { width: 56px; height: 28px; background: #8E959E; }
+.arrow-d { width: 28px; height: 36px; background: #8E959E; }
+
+.bar-row { display: flex; flex-direction: row; align-items: center; gap: 24px; }
+.bar { height: 40px; border-radius: 6px; background: #B9B4A8; }
+.bar.lead { background: var(--accent); }
+
+.mono { font-family: 'Courier New', monospace; font-size: 24px; line-height: 1.5; color: var(--on-dark); }
+
+.fade-in { animation: rise 600ms ease-out both; animation-delay: calc(var(--i, 0) * 120ms); }
+@keyframes rise { from { opacity: 0; transform: translate(0px, 16px); } to { opacity: 1; transform: translate(0px, 0px); } }
+
+.card.night h3 { color: var(--on-dark); }
+.card.night p { color: var(--on-dark2); }
